@@ -1,4 +1,4 @@
-package book;
+package akkis;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;

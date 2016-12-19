@@ -1,4 +1,4 @@
-package book;
+package akkis;
 
 import java.io.Serializable;
 import javax.persistence.*;

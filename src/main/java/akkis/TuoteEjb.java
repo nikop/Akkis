@@ -1,4 +1,4 @@
-package book;
+package akkis;
 
 // JPA:n vaatimat kirjastojen importtaukset
 import javax.persistence.EntityManager;

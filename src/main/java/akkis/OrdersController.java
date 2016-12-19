@@ -1,4 +1,4 @@
-package book;
+package akkis;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;

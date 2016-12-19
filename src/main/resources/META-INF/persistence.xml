@@ -9,9 +9,9 @@
 		<jta-data-source>jdbc/h2demo</jta-data-source>
 		
 
-		<class>book.Tuote</class>
-		<class>book.Tilaus</class>
-		<class>book.TilausRivi</class>
+		<class>akkis.Tuote</class>
+		<class>akkis.Tilaus</class>
+		<class>akkis.TilausRivi</class>
 
 		
 		<properties>
