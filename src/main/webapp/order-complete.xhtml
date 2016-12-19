@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+	<title>Kauppa Oy</title>
+	<h:outputStylesheet library="css" name="tyylit.css" />
+</h:head>
+<h:body>
+	<h1>Tilaus ##{tuoteController.prevTilaus.id}</h1>
+	
+	<h:form id="ostoskori">
+	
+		Kiitos tilauksestasi, #{tuoteController.prevTilaus.name}! <br />
+		Tilauksesi on otettu vastaan #{tuoteController.prevTilaus.submitTime}!
+	
+		<h:dataTable styleClass="data" cellspacing="0" cellpadding="0"
+			border="0" rowClasses="odd,even" value="#{tuoteController.prevTilaus.rivit}"
+			var="b">
+			<h:column headerstyleClass="first">
+				<f:facet name="header">Tuote</f:facet>
+                    #{b.tuote.name}
+            </h:column>
+            <h:column headerstyleClass="first">
+				<f:facet name="header">Hinta</f:facet>
+                    #{b.price} €
+            </h:column>
+		</h:dataTable>
+		
+		<div>Yhteensä: #{tuoteController.prevTilaus.total} €</div>
+		
+		<a href="index.xhtml">Palaa etusivulle!</a>
+	</h:form>
+
+</h:body>
+
+</html>
