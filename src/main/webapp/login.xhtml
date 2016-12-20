@@ -14,10 +14,10 @@
 	
 	<h:form id="uusituote">
 		
-		<div>Nimi: <h:inputText id="nimi" value="#{loginUser.name}" /></div>
-		<div>Salasana: <h:inputText id="hinta" value="#{loginUser.password}" /></div>
+		<div>Nimi: <h:inputText id="user" value="#{loginUser.user}" /></div>
+		<div>Salasana: <h:inputText id="password" value="#{loginUser.password}" /></div>
 		
-		<h:commandButton action="#{loginController.insertTuote}" value="Kirjaudu" />
+		<h:commandButton action="#{loginController.login}" value="Kirjaudu" />
 	</h:form>
 
 	<div style="color: red">
