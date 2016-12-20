@@ -28,13 +28,13 @@ public class TilausRivi {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_seq_tilausrivi")
     private Long id;
     
-	private Tuote tuote;
+	private Product tuote;
 	
 	private double price;
 	
 	private Tilaus tilaus;
 
-	public TilausRivi(Tilaus tilaus, Tuote tuote) {
+	public TilausRivi(Tilaus tilaus, Product tuote) {
 		super();
 		this.tilaus = tilaus;
 		this.tuote = tuote;
@@ -61,11 +61,11 @@ public class TilausRivi {
 		this.tilaus = tilaus;
 	}
 
-	public Tuote getTuote() {
+	public Product getTuote() {
 		return tuote;
 	}
 
-	public void setTuote(Tuote tuote) {
+	public void setTuote(Product tuote) {
 		this.tuote = tuote;
 	}
 	

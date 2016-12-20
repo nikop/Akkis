@@ -76,6 +76,13 @@ public class Company  implements Serializable {
 	public void setyTunnus(String yTunnus) {
 		this.yTunnus = yTunnus;
 	}
+
+	@Override
+	public String toString() {
+		return "Company [id=" + id + ", name=" + name + ", phoneNumber="
+				+ phoneNumber + ", address=" + address + ", webPage=" + webPage
+				+ ", yTunnus=" + yTunnus + "]";
+	}
 	
 	
 	

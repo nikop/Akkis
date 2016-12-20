@@ -17,7 +17,7 @@ public class TuoteController {
 	private TuoteEjb tuoteEjb;
 
 	@ManagedProperty(value = "#{tuote}")
-	private Tuote tuote;
+	private Product tuote;
 	
 	@ManagedProperty(value = "#{tilaus}")
 	private Tilaus tilaus;
@@ -46,11 +46,11 @@ public class TuoteController {
 
 	}
 
-	public Tuote getTuote() {
+	public Product getTuote() {
 		return tuote;
 	}
 
-	public void setTuote(Tuote book) {
+	public void setTuote(Product book) {
 		this.tuote = book;
 	}
 
@@ -60,7 +60,7 @@ public class TuoteController {
 		return "index";
 	}
 
-	public List<Tuote> getTuotteet() {
+	public List<Product> getTuotteet() {
 		return tuoteEjb.getTuottet();
 	}
 	
@@ -72,7 +72,7 @@ public class TuoteController {
 	}
 	
 	
-	public String addToCart(Tuote t)
+	public String addToCart(Product t)
 	{
 		tilaus.Add(t);
 		
