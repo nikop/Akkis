@@ -24,6 +24,11 @@ public class LoginUser {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+	public boolean isLogged() {
+		return isLogged;
+	}
+	public void setLogged(boolean isLogged) {
+		this.isLogged = isLogged;
+	}
 	
 }
