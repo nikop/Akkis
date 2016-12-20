@@ -1,6 +1,7 @@
 package akkis;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -22,12 +23,16 @@ public class User implements Serializable {
     
 	private Long id;
 	private String name;
-	private Role role;
+	private List<Role> roles;
 	
 	public User () {
 		
 	}
 
+	 public boolean hasRole(Role role) {
+	        return roles.contains(role);
+	 }
+	
 	public Long getId() {
 		return id;
 	}
@@ -46,8 +51,10 @@ public class User implements Serializable {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", role=" + role + "]";
+		return "User [id=" + id + ", name=" + name + ", roles=" + roles + "]";
 	}
+
+	
 	
 	
 	
