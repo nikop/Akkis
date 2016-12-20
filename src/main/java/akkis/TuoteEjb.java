@@ -12,7 +12,7 @@ import javax.ejb.Stateless;
 public class TuoteEjb {
 	
 	
-	@PersistenceContext(unitName = "jpa_book") // Name in persistence.xml
+	@PersistenceContext(unitName = "jpa_akkis") // Name in persistence.xml
 	private EntityManager em;
 
 	public TuoteEjb() {
