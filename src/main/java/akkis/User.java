@@ -14,7 +14,10 @@ import akkis.types.Role;
 @ManagedBean
 @RequestScoped
 @Entity
-@NamedQuery(name = "searchAllUsers", query = "SELECT u from User u") 
+@NamedQueries({
+	@NamedQuery(name = "searchAllUsers", query = "SELECT u from User u"),
+	@NamedQuery(name = "userLogin", query = "SELECT u from User u WHERE u.name = :user AND u.password = :password") 
+})
 public class User implements Serializable {
 	
 	@Id
@@ -23,6 +26,7 @@ public class User implements Serializable {
     
 	private Long id;
 	private String name;
+	private String password;
 	private List<Role> roles;
 	
 	public User () {
@@ -47,6 +51,14 @@ public class User implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	@Override
