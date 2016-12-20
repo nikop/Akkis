@@ -12,5 +12,10 @@ public class LoginController {
 	@EJB
 	private AkkisEjb tuoteEjb;
 	
-	
+	public String login()
+	{
+		// tähän kirjautuminen
+		
+		return "index";
+	}
 }
