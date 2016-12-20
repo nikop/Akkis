@@ -15,7 +15,7 @@
 	<h:form id="login">
 		
 		<div>Nimi: <h:inputText id="user" value="#{loginUser.user}" /></div>
-		<div>Salasana: <h:inputText id="password" value="#{loginUser.password}" /></div>
+		<div>Salasana: <h:inputSecret id="password" value="#{loginUser.password}" /></div>
 		
 		<h:commandButton action="#{loginController.login}" value="Kirjaudu" />
 	</h:form>
