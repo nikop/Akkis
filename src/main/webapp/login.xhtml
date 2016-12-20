@@ -5,19 +5,19 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
-	<title>Kauppa Oy</title>
+	<title>Akkis</title>
 	<h:outputStylesheet library="css" name="tyylit.css" />
 </h:head>
 <h:body>
 	
 	<h1>Akkis</h1>
 	
-	<h:form id="uusituote">
+	<h:form id="login">
 		
-		<div>Nimi: <h:inputText id="nimi" value="#{loginUser.name}" /></div>
-		<div>Salasana: <h:inputText id="hinta" value="#{loginUser.password}" /></div>
+		<div>Nimi: <h:inputText id="user" value="#{loginUser.user}" /></div>
+		<div>Salasana: <h:inputText id="password" value="#{loginUser.password}" /></div>
 		
-		<h:commandButton action="#{loginController.insertTuote}" value="Kirjaudu" />
+		<h:commandButton action="#{loginController.login}" value="Kirjaudu" />
 	</h:form>
 
 	<div style="color: red">

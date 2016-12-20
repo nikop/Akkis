@@ -12,6 +12,13 @@
 
 	<h1>Akkis</h1>
 
+	<h:panelGroup rendered="#{!loginUser.isLogged}">
+		<a href="login.xhtml">Kirjaudu sisään</a>
+	</h:panelGroup>
+	<h:panelGroup rendered="#{loginUser.isLogged}">
+		Terve, #{loginUser.user}!
+	</h:panelGroup>
+
 
 </h:body>
 
