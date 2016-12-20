@@ -5,6 +5,11 @@
 	<artifactId>akkis</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
+	
+	<properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <jsf.version>2.0</jsf.version>
+    </properties>
 
 	<dependencies>
 		<dependency>
