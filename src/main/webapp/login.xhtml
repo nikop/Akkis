@@ -10,14 +10,14 @@
 </h:head>
 <h:body>
 	
-	<h1>Lisää tuote</h1>
+	<h1>Akkis</h1>
 	
 	<h:form id="uusituote">
 		
-		<div>Nimi: <h:inputText id="nimi" value="#{tuote.name}" /></div>
-		<div>Hinta: <h:inputText id="hinta" value="#{tuote.price}" /></div>
+		<div>Nimi: <h:inputText id="nimi" value="#{loginUser.name}" /></div>
+		<div>Salasana: <h:inputText id="hinta" value="#{loginUser.password}" /></div>
 		
-		<h:commandButton action="#{tuoteController.insertTuote}" value="Lisää" />
+		<h:commandButton action="#{loginController.insertTuote}" value="Kirjaudu" />
 	</h:form>
 
 	<div style="color: red">
