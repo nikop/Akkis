@@ -25,7 +25,8 @@ public class AkkisEjb {
 		
 		User user1 = new User();
 		
-		user1.setName("jorma");
+		user1.setUsername("jorma");
+		user1.setName("Jorma");
 		user1.setPassword("salasana");
 		
 		em.persist(user1);
@@ -35,23 +36,6 @@ public class AkkisEjb {
 		em.persist(book);
 	}
 	
-	@SuppressWarnings("unchecked")
-	public List<Product> getTuottet() {
-		List<Product> books = null; 
-		// get all books from the database
-		books = em.createNamedQuery("searchAll").getResultList();
-		System.out.println("*********** search all ********** => " + books);
-		return books;
-	}
-
-	public List<Tilaus> getOrders() {
-		List<Tilaus> orders = null; 
-		// get all books from the database
-		orders = em.createNamedQuery("searchAllOrders").getResultList();
-		System.out.println("*********** search all ********** => " + orders);
-		return orders;
-	}
-
 	public User getUser(LoginUser loginUser) {
 		
 		User user = (User) em.createNamedQuery("userLogin")

@@ -16,7 +16,7 @@ import akkis.types.Role;
 @Entity
 @NamedQueries({
 	@NamedQuery(name = "searchAllUsers", query = "SELECT u from User u"),
-	@NamedQuery(name = "userLogin", query = "SELECT u from User u WHERE u.name = :user AND u.password = :password") 
+	@NamedQuery(name = "userLogin", query = "SELECT u from User u WHERE u.username = :user AND u.password = :password") 
 })
 public class User implements Serializable {
 	
@@ -25,8 +25,12 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_seq_user")
     
 	private Long id;
-	private String name;
+	
+	@Column(unique=true)
+	private String username;
+	
 	private String password;
+	private String name;
 	private List<Role> roles;
 	
 	public User () {
@@ -43,6 +47,14 @@ public class User implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+	
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getName() {
