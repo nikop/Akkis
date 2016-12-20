@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 @RequestScoped
 public class LoginUser {
 
+	private boolean isLogged;
 	private String user;
 	private String password;
 	
