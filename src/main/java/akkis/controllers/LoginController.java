@@ -42,7 +42,8 @@ public class LoginController {
 		if (user == null)
 			return "loginNoUse";
 		
-		// tähän kirjautuminen
+		loginUser.setLogged(true);
+		loginUser.setPassword("");
 		
 		return "index";
 	}
