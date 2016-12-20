@@ -2,14 +2,17 @@ package akkis.controllers;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.persistence.Entity;
 
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class LoginUser {
 
 	private boolean isLogged;
+	
 	private String user;
+	
 	private String password;
 	
 	public String getUser() {
