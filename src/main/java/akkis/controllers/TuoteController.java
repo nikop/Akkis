@@ -1,9 +1,13 @@
-package akkis;
+package akkis.controllers;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
+
+import akkis.AkkisEjb;
+import akkis.Product;
+import akkis.Tilaus;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -14,7 +18,7 @@ public class TuoteController {
 
 	// EJB-komponentti sisältää datan tallennuksen ja haun tietokannasta JPA:lla
 	@EJB
-	private TuoteEjb tuoteEjb;
+	private AkkisEjb tuoteEjb;
 
 	@ManagedProperty(value = "#{tuote}")
 	private Product tuote;
