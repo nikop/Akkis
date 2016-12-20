@@ -25,7 +25,8 @@ public class AkkisEjb {
 		
 		User user1 = new User();
 		
-		user1.setName("jorma");
+		user1.setUsername("jorma");
+		user1.setName("Jorma");
 		user1.setPassword("salasana");
 		
 		em.persist(user1);
