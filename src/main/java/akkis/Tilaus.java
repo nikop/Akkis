@@ -81,7 +81,7 @@ public class Tilaus {
 		return Math.round(total * 100) / 100.0;
 	} 
     
-    public void Add(Tuote t)
+    public void Add(Product t)
     {
     	rivit.add(new TilausRivi(this, t));
     }

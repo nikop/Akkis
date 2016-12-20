@@ -21,36 +21,36 @@ public class TuoteEjb {
 	
 	public void init() {
 		
-		Tuote b1= new Tuote();
+		Product b1= new Product();
 		b1.setName("Elements of Programming Interviews in Java");
 		b1.setPrice(13.37);
 				
-		Tuote b2= new Tuote();
+		Product b2= new Product();
 		b2.setName("Lada");
 		b2.setPrice(500);
 		
-		Tuote b3= new Tuote();
+		Product b3= new Product();
 		b3.setName("Tietokone");
 		b3.setPrice(100);
 				
-		Tuote b4= new Tuote();
-		b4.setName("Läppäri");
+		Product b4= new Product();
+		b4.setName("Lï¿½ppï¿½ri");
 		b4.setPrice(200);
 
-		Tuote b5= new Tuote();
+		Product b5= new Product();
 		b5.setName("Kirves");
 		b5.setPrice(50);
 
-		Tuote b6= new Tuote();
+		Product b6= new Product();
 		b6.setName("Leffapaketti");
 		b6.setPrice(80);
 
-		Tuote b7= new Tuote();
+		Product b7= new Product();
 		b7.setName("Oma verkkokauppa");
 		b7.setPrice(5000);
 
-		Tuote b8= new Tuote();
-		b8.setName("Sikasäkissä");
+		Product b8= new Product();
+		b8.setName("Sikasï¿½kissï¿½");
 		b8.setPrice(50);
 
 		em.persist(b1);
@@ -68,8 +68,8 @@ public class TuoteEjb {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Tuote> getTuottet() {
-		List<Tuote> books = null; 
+	public List<Product> getTuottet() {
+		List<Product> books = null; 
 		// get all books from the database
 		books = em.createNamedQuery("searchAll").getResultList();
 		System.out.println("*********** search all ********** => " + books);
