@@ -29,13 +29,6 @@
 			<artifactId>javax.persistence</artifactId>
 			<version>2.1.1</version>
 		</dependency>
-		
-		<!--  Jetty paikallinen testaus -->
-		<dependency>
-		    <groupId>org.eclipse.jetty</groupId>
-		    <artifactId>jetty-project</artifactId>
-		    <version>9.3.14.v20161028</version>
-		</dependency>
 
 		<!-- Testaus -->
 		<dependency>
@@ -64,6 +57,24 @@
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
 			</plugin>
+			
+			<plugin>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>9.2.11.v20150529</version>
+				<configuration>
+			        <httpConnector>
+			          <!--host>localhost</host-->
+			          <port>9080</port>
+			        </httpConnector>
+					<scanIntervalSeconds>10</scanIntervalSeconds>
+					<webApp>
+						<contextPath>/</contextPath>
+					</webApp>
+				</configuration>
+			</plugin>
 		</plugins>
+		
+		
 	</build>
 </project>
