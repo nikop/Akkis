@@ -30,6 +30,13 @@
 			<version>2.1.1</version>
 		</dependency>
 		
+		<!--  Jetty paikallinen testaus -->
+		<dependency>
+		    <groupId>org.eclipse.jetty</groupId>
+		    <artifactId>jetty-project</artifactId>
+		    <version>9.3.14.v20161028</version>
+		</dependency>
+
 		<!-- Testaus -->
 		<dependency>
 			<groupId>junit</groupId>
