@@ -38,13 +38,19 @@ public class LoginController {
 	public String login()
 	{
 		User user = tuoteEjb.getUser(loginUser);
-		
-		if (user == null)
-			return "loginNoUse";
-		
-		loginUser.setLogged(true);
 		loginUser.setPassword("");
 		
+		if (user == null)
+			return "login-error";
+		
+		loginUser.setUser(user);	
+		
 		return "index";
+	}
+	
+	public String logout()
+	{
+		loginUser.setUser(null);
+		return "logout-ok";
 	}
 }

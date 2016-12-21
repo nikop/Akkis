@@ -8,9 +8,6 @@
     <ui:param name="title" value="Akkis" />
 
     <ui:define name="content">
-		<h:panelGroup rendered="#{!loginUser.logged}">
-			<a href="login.xhtml">Kirjaudu sisään</a>
-		</h:panelGroup>
 		<h:panelGroup rendered="#{loginUser.logged}">
 			Terve, #{loginUser.user}!
 		</h:panelGroup>
