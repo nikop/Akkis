@@ -1,5 +1,7 @@
 package akkis.controllers;
 
+import java.io.Serializable;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
@@ -7,7 +9,12 @@ import javax.persistence.Entity;
 
 @ManagedBean
 @SessionScoped
-public class LoginUser {
+public class LoginUser implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	private boolean isLogged;
 	
