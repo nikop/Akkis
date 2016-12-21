@@ -104,6 +104,16 @@ public class Customer implements Serializable {
 	public void setStatus(Status status) {
 		this.status = status;
 	}
+
+
+	public User getResponsibilitySeller() {
+		return responsibilitySeller;
+	}
+
+
+	public void setResponsibilitySeller(User responsibilitySeller) {
+		this.responsibilitySeller = responsibilitySeller;
+	}
 	
 	
 
