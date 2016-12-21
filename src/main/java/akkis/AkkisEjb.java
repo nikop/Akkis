@@ -5,6 +5,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import akkis.controllers.LoginUser;
+import akkis.types.Status;
 
 import java.util.List;
 
@@ -37,6 +38,7 @@ public class AkkisEjb {
 		customer.setCountry("Finland");
 		customer.setEmail("pekka@gmail.com");
 		customer.setPhoneNumber("555 1234567");
+		customer.setStatus(Status.CONTACT);
 		
 		em.persist(customer);
 		

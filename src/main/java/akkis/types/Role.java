@@ -1,9 +1,9 @@
 package akkis.types;
 
 public enum Role {
-	Seller,
-	CustomerService,
-	Biller,
-	Boss,
-	Admin
+	SELLER,
+	CUSTOMERSERVICE,
+	BILLER,
+	BOSS,
+	ADMIN
 }
