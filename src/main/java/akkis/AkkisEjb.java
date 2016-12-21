@@ -30,6 +30,24 @@ public class AkkisEjb {
 		user1.setPassword("salasana");
 		
 		em.persist(user1);
+		
+		Customer customer = new Customer();
+		customer.setName("Pekka");
+		customer.setAddress("Asemakatu 4");
+		customer.setCountry("Finland");
+		customer.setEmail("pekka@gmail.com");
+		customer.setPhoneNumber("555 1234567");
+		
+		em.persist(customer);
+		
+		Company company = new Company();
+		company.setName("Nokia");
+		company.setAddress("Visiokatu 4");
+		company.setPhoneNumber("555 1234567");
+		company.setWebPage("http://www.nokia.com");
+		company.setyTunnus("1234567-8");
+		
+		em.persist(company);
 	}
 
 	public void save(Object book) {
@@ -43,6 +61,23 @@ public class AkkisEjb {
 			.setParameter("password", loginUser.getPassword()).getSingleResult();
 		
 		return user;
+	}
+
+	public List<Customer> getCustomers() {
+		List<Customer> customers = null;
+		customers = em.createNamedQuery("searchAllCustomers").getResultList();
+		System.out.println("**List of the Customers**");
+		// TODO Auto-generated method stub
+		return customers;
+	}
+	
+
+	public List<Company> getCompanies() {
+		List<Company> companies = null;
+		companies = em.createNamedQuery("searchAllCompanies").getResultList();
+		// TODO Auto-generated method stub
+		System.out.println("**List of the Companies**");
+		return companies;
 	}
 	
 }
