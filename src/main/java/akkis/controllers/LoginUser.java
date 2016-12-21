@@ -7,6 +7,8 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.persistence.Entity;
 
+import akkis.User;
+
 @ManagedBean
 @SessionScoped
 public class LoginUser implements Serializable {
@@ -15,18 +17,24 @@ public class LoginUser implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	private boolean isLogged;
 	
-	private String user;
+	private User user;
+	
+	private String username;
 	
 	private String password;
 	
-	public String getUser() {
+	public User getUser() {
 		return user;
 	}
-	public void setUser(String user) {
+	public void setUser(User user) {
 		this.user = user;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String user) {
+		this.username = user;
 	}
 	public String getPassword() {
 		return password;
@@ -35,10 +43,7 @@ public class LoginUser implements Serializable {
 		this.password = password;
 	}
 	public boolean isLogged() {
-		return isLogged;
-	}
-	public void setLogged(boolean isLogged) {
-		this.isLogged = isLogged;
+		return user != null;
 	}
 	
 }
