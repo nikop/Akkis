@@ -2,9 +2,11 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:b="http://bootsfaces.net/ui">
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title>Akkis</title>
+        <title>{#title}</title>
+        <h:outputStylesheet library="css" name="tyylit.css" />
     </h:head>
     <h:body style="padding: 60px;">
         <b:navBar brand="Akkis" brandHref="#" fixed="top" inverse="true">
@@ -15,12 +17,10 @@
             </b:navbarLinks>
         </b:navBar>
         <b:container>
-            <b:jumbotron>
-                <h1>Tervetuloa</h1>
-                <p> Tervertuloa....
-                </p>
-            </b:jumbotron>
+		   <ui:insert name="content">
+		        <h1>New content here</h1>
+		        <p>Blah blah</p>
+		    </ui:insert>
         </b:container>
-
     </h:body>
 </html>
