@@ -1,7 +1,9 @@
 package akkis;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -19,6 +21,7 @@ public class Invoice {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_seq_invoice")
 
 	private long id;
+	
 	private Delivery delivery;
 	private double sum;
 	private Date date;
@@ -26,6 +29,7 @@ public class Invoice {
 	private String infoText; 
 	
 	public Invoice() {
+		super();
 		
 	}
 
@@ -37,6 +41,8 @@ public class Invoice {
 		this.id = id;
 	}
 
+
+	
 	public Delivery getDelivery() {
 		return delivery;
 	}
