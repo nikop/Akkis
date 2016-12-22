@@ -54,21 +54,30 @@ public class AkkisEjb {
 		
 		em.persist(company);
 		
-		//List<Delivery> deliveries = new ArrayList<Delivery>();
-		//em.persist(deliveries);
+		Delivery delivery = new Delivery();
+		em.persist(delivery);
 		
 		Date tanaan = new Date();
 		SimpleDateFormat fdate = new SimpleDateFormat("dd.MM.yyyy");
 		fdate.format(tanaan);
 //			
 		Invoice invoice = new Invoice();
-		//invoice.setDeliveries(deliveries);
+		invoice.setDelivery(delivery);
 		invoice.setSum(100);
 		invoice.setDate(tanaan);
 		invoice.setDuePeriod(14);
 		invoice.setInfoText("InfoText");
 		
 		em.persist(invoice);
+
+		List<Delivery> deliveries = new ArrayList<Delivery>();
+		
+		
+		Product product = new Product();
+		product.setName("Tuote1");
+		product.setPrice(20.0);
+		
+		em.persist(product);
 		
 	}
 
@@ -134,6 +143,23 @@ public class AkkisEjb {
 			return null;
 		}
 		
+	}
+
+	public List<Product> getproducts() {
+		List<Product> products = null;
+		products = em.createNamedQuery("searchAllProducts").getResultList();
+		System.out.println("**List of the Products**");
+		// TODO Auto-generated method stub
+		return products;
+
+	}
+
+	public List<Delivery> getDeliveries() {
+		List<Delivery> deliveries = null;
+		deliveries = em.createNamedQuery("searchAllDeliveries").getResultList();
+		System.out.println("**List of the Deliveries**");
+		// TODO Auto-generated method stub
+		return deliveries;
 	}
 
 	

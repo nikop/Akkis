@@ -1,6 +1,7 @@
 package akkis;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -21,13 +22,14 @@ public class Invoice {
 
 	private long id;
 	
-	private List<Delivery> deliveries;
+	private Delivery delivery;
 	private double sum;
 	private Date date;
 	private int duePeriod;
 	private String infoText; 
 	
 	public Invoice() {
+		super();
 		
 	}
 
@@ -39,14 +41,14 @@ public class Invoice {
 		this.id = id;
 	}
 
+
 	
-	
-	public List<Delivery> getDeliveries() {
-		return deliveries;
+	public Delivery getDelivery() {
+		return delivery;
 	}
 
-	public void setDeliveries(List<Delivery> deliveries) {
-		this.deliveries = deliveries;
+	public void setDelivery(Delivery delivery) {
+		this.delivery = delivery;
 	}
 
 	public double getSum() {
@@ -83,9 +85,9 @@ public class Invoice {
 
 	@Override
 	public String toString() {
-		return "Invoice [id=" + id + ", deliveries=" + deliveries + ", sum="
-				+ sum + ", date=" + date + ", duePeriod=" + duePeriod
-				+ ", infoText=" + infoText + "]";
+		return "Invoice [id=" + id + ", delivery=" + delivery + ", sum=" + sum
+				+ ", date=" + date + ", duePeriod=" + duePeriod + ", infoText="
+				+ infoText + "]";
 	}
 	
 	

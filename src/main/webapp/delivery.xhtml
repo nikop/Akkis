@@ -5,12 +5,12 @@
     xmlns:b="http://bootsfaces.net/ui"
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
-<ui:param name="title" value="Invoice" />
+<ui:param name="title" value="Delivery" />
 
 
 <ui:define name="content">
 <h:dataTable styleClass="data" cellspacing="0" cellpadding="0"
-			border="0" rowClasses="odd,even" value="#{invoiceController.invoices}" var="in">
+			border="0" rowClasses="odd,even" value="#{deliveryController.deliveries}" var="de">
 		<h:column headerstyleClass="first">
 		<f:facet name="header">Delivery</f:facet>
 			  	#{in.delivery}
