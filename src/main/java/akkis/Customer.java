@@ -14,7 +14,10 @@ import akkis.types.Status;
 @ManagedBean
 @RequestScoped
 @Entity
-@NamedQuery(name = "searchAllCustomers", query = "SELECT c from Customer c") 
+@NamedQueries({
+	@NamedQuery(name = "searchAllCustomers", query = "SELECT c from Customer c"),
+	@NamedQuery(name = "customerbyId", query = "SELECT c from Customer c WHERE c.id = :id") 	
+})
 public class Customer implements Serializable {
 	
 	@Id

@@ -56,6 +56,10 @@ public class AkkisEjb {
 		em.persist(book);
 	}
 	
+	public void saveChanges(Object book) {
+		em.merge(book);
+	}
+	
 	public User getUser(LoginUser loginUser) {
 		
 		try {
@@ -86,6 +90,21 @@ public class AkkisEjb {
 		// TODO Auto-generated method stub
 		System.out.println("**List of the Companies**");
 		return companies;
+	}
+
+	public Customer getCustomer(Long id) {
+		
+		try {
+			Customer user = (Customer) em.createNamedQuery("customerbyId")
+				.setParameter("id", id).getSingleResult();
+			
+			return user;
+		}
+		catch (javax.persistence.NoResultException ex)
+		{
+			return null;
+		}
+		
 	}
 	
 }
