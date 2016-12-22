@@ -21,33 +21,55 @@ public class Delivery implements Serializable {
 
 	private long id;
 	
-	private List<Delivery> deliveries;
-	private Invoice invoice;
+	private List<Invoice> deliveries;
+//private Invoice invoice;
 	
 	
 	public Delivery() {
 		super();
-		deliveries = new ArrayList<Delivery>();
-		invoice = new Invoice();
+		deliveries = new ArrayList<Invoice>();
+	//	invoice = new Invoice();
 	}
 
 	
-	
-	public List<Delivery> getDeliveries() {
+
+
+
+	public long getId() {
+		return id;
+	}
+
+
+
+
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+
+
+
+
+	public List<Invoice> getDeliveries() {
 		return deliveries;
 	}
 
 
 
-	public void setDeliveries(List<Delivery> deliveries) {
+
+
+	public void setDeliveries(List<Invoice> deliveries) {
 		this.deliveries = deliveries;
 	}
 
 
 
+
+
 	@Override
 	public String toString() {
-		return "Delivery [id=" + id + "]";
+		return "Delivery [id=" + id + ", deliveries=" + deliveries + "]";
 	}
 	
 	
