@@ -9,6 +9,7 @@ import javax.faces.bean.ManagedProperty;
 import akkis.AkkisEjb;
 import akkis.Product;
 import akkis.User;
+import net.bootsfaces.utils.FacesMessages;
 
 @ManagedBean
 public class LoginController {
@@ -41,16 +42,22 @@ public class LoginController {
 		loginUser.setPassword("");
 		
 		if (user == null)
-			return "login-error";
-		
+		{
+			FacesMessages.error("Wrong username or password!");
+			return null;
+		}
 		loginUser.setUser(user);	
 		
-		return "index";
+		FacesMessages.info("Successfully logged in.");
+		
+		return null;
 	}
 	
 	public String logout()
 	{
+		FacesMessages.info("Successfully logged out.");
+		
 		loginUser.setUser(null);
-		return "logout-ok";
+		return "index";
 	}
 }
