@@ -7,6 +7,9 @@ import javax.persistence.PersistenceContext;
 import akkis.controllers.LoginUser;
 import akkis.types.Status;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -50,6 +53,23 @@ public class AkkisEjb {
 		company.setyTunnus("1234567-8");
 		
 		em.persist(company);
+		
+		//List<Delivery> deliveries = new ArrayList<Delivery>();
+		//em.persist(deliveries);
+		
+		Date tanaan = new Date();
+		SimpleDateFormat fdate = new SimpleDateFormat("dd.MM.yyyy");
+		fdate.format(tanaan);
+//			
+		Invoice invoice = new Invoice();
+		//invoice.setDeliveries(deliveries);
+		invoice.setSum(100);
+		invoice.setDate(tanaan);
+		invoice.setDuePeriod(14);
+		invoice.setInfoText("InfoText");
+		
+		em.persist(invoice);
+		
 	}
 
 	public void save(Object book) {
@@ -87,5 +107,15 @@ public class AkkisEjb {
 		System.out.println("**List of the Companies**");
 		return companies;
 	}
+
+	public List<Invoice> getInvoices() {
+		List<Invoice> invoices = null;
+		invoices = em.createNamedQuery("searchAllInvoices").getResultList();
+		System.out.println("**List of the Invoices**");
+		// TODO Auto-generated method stub
+		return invoices;
+	}
+
+	
 	
 }
