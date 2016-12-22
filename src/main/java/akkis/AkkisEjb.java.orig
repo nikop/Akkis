@@ -5,7 +5,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import akkis.controllers.LoginUser;
-import akkis.types.Role;
 import akkis.types.Status;
 
 import java.text.SimpleDateFormat;
@@ -30,13 +29,9 @@ public class AkkisEjb {
 		
 		User user1 = new User();
 		
-		ArrayList<Role> roles = new ArrayList<Role>();
-		roles.add(Role.ADMIN);
-		
 		user1.setUsername("jorma");
 		user1.setName("Jorma");
 		user1.setPassword("salasana");
-		user1.setRoles((List<Role>) roles);
 		
 		em.persist(user1);
 		
@@ -59,30 +54,21 @@ public class AkkisEjb {
 		
 		em.persist(company);
 		
-		Delivery delivery = new Delivery();
-		em.persist(delivery);
+		//List<Delivery> deliveries = new ArrayList<Delivery>();
+		//em.persist(deliveries);
 		
 		Date tanaan = new Date();
 		SimpleDateFormat fdate = new SimpleDateFormat("dd.MM.yyyy");
 		fdate.format(tanaan);
 //			
 		Invoice invoice = new Invoice();
-		invoice.setDelivery(delivery);
+		//invoice.setDeliveries(deliveries);
 		invoice.setSum(100);
 		invoice.setDate(tanaan);
 		invoice.setDuePeriod(14);
 		invoice.setInfoText("InfoText");
 		
 		em.persist(invoice);
-
-		List<Delivery> deliveries = new ArrayList<Delivery>();
-		
-		
-		Product product = new Product();
-		product.setName("Tuote1");
-		product.setPrice(20.0);
-		
-		em.persist(product);
 		
 	}
 
@@ -150,23 +136,4 @@ public class AkkisEjb {
 		
 	}
 
-	public List<Product> getproducts() {
-		List<Product> products = null;
-		products = em.createNamedQuery("searchAllProducts").getResultList();
-		System.out.println("**List of the Products**");
-		// TODO Auto-generated method stub
-		return products;
-
-	}
-
-	public List<Delivery> getDeliveries() {
-		List<Delivery> deliveries = null;
-		deliveries = em.createNamedQuery("searchAllDeliveries").getResultList();
-		System.out.println("**List of the Deliveries**");
-		// TODO Auto-generated method stub
-		return deliveries;
-	}
-
-	
-	
 }

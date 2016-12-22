@@ -1,15 +1,14 @@
 package akkis.controllers;
 
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 
 import akkis.AkkisEjb;
-import akkis.Company;
-import akkis.Customer;
-import akkis.Product;
-import akkis.Tilaus;
+import akkis.Delivery;
+import akkis.Invoice;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -19,34 +18,41 @@ import javax.ejb.EJB;
 import net.bootsfaces.utils.FacesMessages;
 
 @ManagedBean
-public class CompanyController {
+public class DeliveryController {
 
 	@EJB
 	private AkkisEjb tuoteEjb;
 	
-	@ManagedProperty(value = "#{company}")
-	private Company company;
+	@ManagedProperty(value = "#{delivery}")
+	private Delivery delivery;
+	private Invoice invoice;
 	
-	public CompanyController() {
+	
+	
+	public DeliveryController() {
 		
 	}
 
-	public Company getCompany() {
-		return company;
+
+
+	public Delivery getDelivery() {
+		return delivery;
 	}
 
-	public void setCompany(Company company) {
-		this.company = company;
+
+
+	public void setDelivery(Delivery delivery) {
+		this.delivery = delivery;
 	}
 	
-	public String saveCompany() {
+public String saveDelivery() {
 		
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		// JSF:ssa luodun beanin nimellä päästään olioon kiinni "fish"
 		// (faces-config.xml)
-		Company co = (Company) facesContext.getExternalContext().getRequestMap().get("company");
-		System.out.println("Company:" + co);
-		tuoteEjb.save(co);
+		Delivery de = (Delivery) facesContext.getExternalContext().getRequestMap().get("delivery");
+		System.out.println("Delivery:" + de);
+		tuoteEjb.save(de);
 		
 		FacesMessages.info("Successfully saved.");
 		
@@ -54,15 +60,18 @@ public class CompanyController {
 		
 			}
 
-	public List<Company> getCompanies() {
-		return tuoteEjb.getCompanies();
+	public List<Delivery> getDeliveries() {
+		return tuoteEjb.getDeliveries();
 	}
 
 	
-	public String initCompany() {
+	public String initDelivery() {
 		tuoteEjb.init();
 		return null;
 	}
 
+
+	
+	
 	
 }

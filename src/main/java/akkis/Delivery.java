@@ -1,6 +1,8 @@
 package akkis;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -19,9 +21,29 @@ public class Delivery implements Serializable {
 
 	private long id;
 	
+	private List<Delivery> deliveries;
+	private Invoice invoice;
+	
+	
 	public Delivery() {
-		
+		super();
+		deliveries = new ArrayList<Delivery>();
+		invoice = new Invoice();
 	}
+
+	
+	
+	public List<Delivery> getDeliveries() {
+		return deliveries;
+	}
+
+
+
+	public void setDeliveries(List<Delivery> deliveries) {
+		this.deliveries = deliveries;
+	}
+
+
 
 	@Override
 	public String toString() {

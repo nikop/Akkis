@@ -12,23 +12,24 @@
 <h:body style="padding: 60px;">
 	<ui:insert name="metadata" />
 	<f:view>
+
 		<b:navBar brand="Akkis" brandHref="index.xhtml" fixed="top"
 			inverse="true">
 			<b:navbarLinks>
 				<b:navLink value="Home" href="index.xhtml"></b:navLink>
 				<b:navLink value="Customer" href="customer.xhtml" rendered="{#loginUser.can(Permission.VIEW_CUSTOMERS)}"></b:navLink>
 				<b:navLink value="Company" href="company.xhtml"></b:navLink>
-			</b:navbarLinks>
-			<h:form styleClass="navbar-form navbar-right"
-				rendered="#{!loginUser.logged}">
-				<div class="form-group">
-					<b:inputText placeholder="Username" value="#{loginUser.username}"
-						fieldSize="sm" />
-				</div>
-				<div class="form-group">
-					<b:inputSecret placeholder="Password" value="#{loginUser.password}"
-						fieldSize="sm" />
-				</div> 
+                <b:navLink value="Invoice" href="invoice.xhtml"></b:navLink>
+                  <b:navLink value="Product" href="product.xhtml"></b:navLink>
+                  <b:navLink value="Product" href="delivery.xhtml"></b:navLink>
+            </b:navbarLinks>
+            <h:form styleClass="navbar-form navbar-right" rendered="#{!loginUser.logged}">
+                <div class="form-group">
+                    <b:inputText placeholder="Username" value="#{loginUser.username}" fieldSize="sm"/>
+                </div>
+                <div class="form-group">
+                    <b:inputSecret placeholder="Password" value="#{loginUser.password}" fieldSize="sm"/>
+                </div> 
                 #{' '}
                 <b:commandButton value="Sign in" look="success"
 					icon="chevron-right" iconAlign="right"

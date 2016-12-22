@@ -17,7 +17,7 @@ import javax.faces.bean.RequestScoped;
 @ManagedBean
 @RequestScoped
 @Entity
-@NamedQuery(name = "searchAll", query = "SELECT b from Product b") 
+@NamedQuery(name = "searchAllProducts", query = "SELECT b from Product b") 
 public class Product implements Serializable {
 
 	@Id
