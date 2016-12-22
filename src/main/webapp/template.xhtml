@@ -1,39 +1,53 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:b="http://bootsfaces.net/ui"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-    <h:head>
-        <title>{#title}</title>
-        <h:outputStylesheet library="css" name="tyylit.css" />
-    </h:head>
-    <h:body style="padding: 60px;">
-        <b:navBar brand="Akkis" brandHref="#" fixed="top" inverse="true">
-            <b:navbarLinks>
-                <b:navLink value="Home" href="index.xhtml"></b:navLink>
-                <b:navLink value="Customer" href="customer.xhtml"></b:navLink>
-                <b:navLink value="Company" href="company.xhtml"></b:navLink>
-            </b:navbarLinks>
-            <h:form styleClass="navbar-form navbar-right" rendered="#{!loginUser.logged}">
-                <div class="form-group">
-                    <b:inputText placeholder="Username" value="#{loginUser.username}" fieldSize="sm"/>
-                </div>
-                <div class="form-group">
-                    <b:inputSecret placeholder="Password" value="#{loginUser.password}" fieldSize="sm"/>
-                </div> 
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+	<title>#{title}</title>
+	<h:outputStylesheet library="css" name="tyylit.css" />
+</h:head>
+<h:body style="padding: 60px;">
+	<f:view>
+		<ui:insert name="metadata" />
+
+		<b:navBar brand="Akkis" brandHref="index.xhtml" fixed="top"
+			inverse="true">
+			<b:navbarLinks>
+				<b:navLink value="Home" href="index.xhtml"></b:navLink>
+				<b:navLink value="Customer" href="customer.xhtml"></b:navLink>
+				<b:navLink value="Company" href="company.xhtml"></b:navLink>
+			</b:navbarLinks>
+			<h:form styleClass="navbar-form navbar-right"
+				rendered="#{!loginUser.logged}">
+				<div class="form-group">
+					<b:inputText placeholder="Username" value="#{loginUser.username}"
+						fieldSize="sm" />
+				</div>
+				<div class="form-group">
+					<b:inputSecret placeholder="Password" value="#{loginUser.password}"
+						fieldSize="sm" />
+				</div> 
                 #{' '}
-                <b:commandButton value="Sign in" look="success" icon="chevron-right" iconAlign="right" action="#{loginController.login}" />
+                <b:commandButton value="Sign in" look="success"
+					icon="chevron-right" iconAlign="right"
+					action="#{loginController.login}" />
 			</h:form>
-			<h:form styleClass="navbar-form navbar-right" rendered="#{loginUser.logged}">
-                <b:commandButton value="Logout" look="success" icon="chevron-right" iconAlign="right" action="#{loginController.logout}" />
+			<h:form styleClass="navbar-form navbar-right"
+				rendered="#{loginUser.logged}">
+				<b:commandButton value="Logout" look="success" icon="chevron-right"
+					iconAlign="right" action="#{loginController.logout}" />
 			</h:form>
-        </b:navBar>
-        <b:container>
-		   <ui:insert name="content">
-		        <h1>New content here</h1>
-		        <p>Blah blah</p>
-		    </ui:insert>
-        </b:container>
-    </h:body>
+		</b:navBar>
+		<b:container>
+	       	<b:messages id="messages" />
+			<ui:insert name="content">
+				<h1>New content here</h1>
+				<p>Blah blah</p>
+			</ui:insert>
+		</b:container>
+	</f:view>
+</h:body>
 </html>
