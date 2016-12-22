@@ -5,8 +5,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import akkis.controllers.LoginUser;
+import akkis.types.Role;
 import akkis.types.Status;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -26,9 +28,13 @@ public class AkkisEjb {
 		
 		User user1 = new User();
 		
+		ArrayList<Role> roles = new ArrayList<Role>();
+		roles.add(Role.ADMIN);
+		
 		user1.setUsername("jorma");
 		user1.setName("Jorma");
 		user1.setPassword("salasana");
+		user1.setRoles((List<Role>) roles);
 		
 		em.persist(user1);
 		
