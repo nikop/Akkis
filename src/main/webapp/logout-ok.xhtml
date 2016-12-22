@@ -8,16 +8,6 @@
     <ui:param name="title" value="Akkis" />
 
     <ui:define name="content">
-		<h:panelGroup rendered="#{loginUser.logged}">
-			Terve, #{loginUser.user}!
-		</h:panelGroup>
-	
-		<h:form id="adminform">
-			<table>
-				<tr>
-					<td><h:commandButton action="#{loginController.init()}" value="lisÃ¤Ã¤ oletuskäyttäjä" /></td>
-				</tr>
-			</table>
-		</h:form>
+		<b:alert severity="success">You've sucessfully logged out. </b:alert>
     </ui:define>
 </ui:composition>

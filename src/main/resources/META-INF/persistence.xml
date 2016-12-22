@@ -9,7 +9,7 @@
 		<jta-data-source>jdbc/h2demo</jta-data-source>
 		
 
-		<class>akkis.Tuote</class>
+		<class>akkis.Product</class>
 		<class>akkis.Tilaus</class>
 		<class>akkis.TilausRivi</class>
 

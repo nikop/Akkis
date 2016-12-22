@@ -1,6 +1,7 @@
 package akkis;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
@@ -16,12 +17,12 @@ import javax.faces.bean.RequestScoped;
 @ManagedBean
 @RequestScoped
 @Entity
-@NamedQuery(name = "searchAll", query = "SELECT b from Tuote b") 
-public class Tuote implements Serializable {
+@NamedQuery(name = "searchAll", query = "SELECT b from Product b") 
+public class Product implements Serializable {
 
-    @Id
-	@SequenceGenerator(name = "id_seq_tuote", sequenceName = "TUOTE_ID_SEQ")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_seq_tuote")
+	@Id
+	@SequenceGenerator(name = "id_seq_product", sequenceName = "Product_ID_SEQ")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_seq_product")
     private Long id;
     
     @Size(min = 2, message = "Anna tuotteen nimi")
@@ -30,7 +31,7 @@ public class Tuote implements Serializable {
     @Min(1)
     private double price;
 
-	public Tuote() {
+	public Product() {
 
     } 
   
@@ -63,7 +64,7 @@ public class Tuote implements Serializable {
     
     @Override
 	public String toString() {
-		return "Tuote [id=" + id + ", name=" + name + "]";
+		return "Product [id=" + id + ", name=" + name + "]";
 	}
 
 }
