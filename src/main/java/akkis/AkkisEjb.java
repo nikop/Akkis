@@ -70,10 +70,6 @@ public class AkkisEjb {
 		
 		em.persist(invoice);
 
-		List<Invoice> deliveries = new ArrayList<Invoice>();
-		deliveries.add(invoice);
-		
-		em.persist(deliveries);
 		
 		Product product = new Product();
 		product.setName("Tuote1");

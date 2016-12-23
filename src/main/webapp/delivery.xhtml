@@ -12,14 +12,18 @@
 <h:dataTable styleClass="data" cellspacing="0" cellpadding="0"
 			border="0" rowClasses="odd,even" value="#{deliveryController.deliveries}" var="de">
 		<h:column headerstyleClass="first">
-		<f:facet name="header">Deliveries</f:facet>
-			  	// ui : repeat
-            </h:column>
-				
+		<f:facet name="header">Deliveries</f:facet> 
+			  	
+			<ol>
+				<ui:repeat value="${de.deliveries}" var="invoice">
+					<li>${invoice}</li>
+				</ui:repeat>
+			</ol>
+		</h:column>			
 
 	</h:dataTable>
 
-	 <!--  
+	   
 		<h:form id="invoiceform">
 			<table>
 				<tr>
@@ -51,6 +55,6 @@
 				</tr>
 			</table>
 		</h:form>
-		-->
+		
  </ui:define>
 </ui:composition>

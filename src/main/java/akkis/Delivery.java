@@ -10,6 +10,7 @@ import javax.validation.constraints.Size;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
+@RequestScoped
 @ManagedBean
 @Entity
 @NamedQuery(name = "searchAllDeliveries", query = "SELECT d from Delivery d") 
@@ -21,6 +22,7 @@ public class Delivery implements Serializable {
 
 	private long id;
 	
+	@OneToMany(fetch = FetchType.EAGER)
 	private List<Invoice> deliveries;
 //private Invoice invoice;
 	
@@ -28,6 +30,7 @@ public class Delivery implements Serializable {
 	public Delivery() {
 		super();
 		deliveries = new ArrayList<Invoice>();
+	//	deliveries.add(new Invoice());
 	//	invoice = new Invoice();
 	}
 

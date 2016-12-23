@@ -10,6 +10,10 @@
 		
 
 		<class>akkis.Product</class>
+		<class>akkis.Customer</class>
+		<class>akkis.Company</class>
+		<class>akkis.Delivery</class>
+		<class>akkis.Invoice</class>
 		<class>akkis.Tilaus</class>
 		<class>akkis.TilausRivi</class>
 
