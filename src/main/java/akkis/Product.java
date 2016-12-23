@@ -3,6 +3,8 @@ package akkis;
 import java.io.Serializable;
 
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 import javax.faces.bean.ManagedBean;
@@ -28,7 +30,9 @@ public class Product implements Serializable {
     @Size(min = 2, message = "Anna tuotteen nimi")
     private String name; 
 
-    @Min(1)
+    //@Min(1)
+    @DecimalMin("0.01")
+	@DecimalMax("9999.99")
     private double price;
 
 	public Product() {

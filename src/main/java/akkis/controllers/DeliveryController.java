@@ -11,6 +11,7 @@ import akkis.Delivery;
 import akkis.Invoice;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -59,6 +60,7 @@ public String saveDelivery() {
 		return null;
 		
 			}
+
 
 	public List<Delivery> getDeliveries() {
 		return tuoteEjb.getDeliveries();

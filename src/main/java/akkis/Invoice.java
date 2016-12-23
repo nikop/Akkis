@@ -6,6 +6,9 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 import javax.faces.bean.ManagedBean;
@@ -13,6 +16,7 @@ import javax.faces.bean.RequestScoped;
 
 @ManagedBean
 @Entity
+@RequestScoped
 @NamedQuery(name = "searchAllInvoices", query = "SELECT i from Invoice i") 
 public class Invoice {
 
@@ -22,10 +26,19 @@ public class Invoice {
 
 	private long id;
 	
+	
 	private Delivery delivery;
+	
+	@DecimalMin("0.01")
+	@DecimalMax("99999.99")
 	private double sum;
 	private Date date;
+	
+	@Min(1)
+	@Max(14)
 	private int duePeriod;
+	
+	@Size(min = 4, message = "Write Info text, at least 4 characters")
 	private String infoText; 
 	
 	public Invoice() {
