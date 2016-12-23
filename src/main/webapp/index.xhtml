@@ -10,6 +10,9 @@
     <ui:define name="content">
 		<h:panelGroup rendered="#{loginUser.logged}">
 			Terve, #{loginUser.user}!
+			
+			
+			Test: #{loginUser.can(Permission.VIEW_CUSTOMERS)}
 		</h:panelGroup>
 	
 		<h:form id="adminform">
