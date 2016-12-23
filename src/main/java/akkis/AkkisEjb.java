@@ -75,8 +75,6 @@ public class AkkisEjb {
 		
 		em.persist(invoice);
 
-		List<Delivery> deliveries = new ArrayList<Delivery>();
-		
 		
 		Product product = new Product();
 		product.setName("Tuote1");
