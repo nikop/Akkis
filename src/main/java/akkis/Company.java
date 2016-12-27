@@ -20,10 +20,16 @@ public class Company  implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_seq_company")
     
 	private Long id;
+	
+	@Size(min = 3, max=25, message = "Write Company name, at least 3 characters")
 	private String name;
+	@Size(min = 10, max = 13, message = "Write Company Phone Number, at least 10 numbers")
 	private String phoneNumber;
+	@Size(min = 5, max = 33, message = "Write Company address, at least 5 characters")
 	private String address;
+	@Size(min = 5, max = 33, message = "Write Company web page, at least 5 characters")
 	private String webPage;
+	@Size(min = 8, max = 33, message = "Write Company business id")
 	private String yTunnus;
 	
 	//private ArrayList<Company> companies = new ArrayList<Company>();

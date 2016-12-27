@@ -24,7 +24,7 @@ public class Product implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_seq_product")
     private Long id;
     
-    @Size(min = 2, message = "Anna tuotteen nimi")
+    @Size(min = 2, message = "Write product name")
     private String name; 
 
     //@Min(1)

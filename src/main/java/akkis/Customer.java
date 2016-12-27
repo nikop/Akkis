@@ -25,10 +25,15 @@ public class Customer implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_seq_customer")
     
 	private Long id;
+	
+	@Size(min = 3, max=25, message = "Write Customer name, at least 3 characters")
 	private String name;
+	@Size(min = 10, max = 13, message = "Write Customer Phone Number, at least 10 numbers")
 	private String phoneNumber;
 	private String email; 
+	@Size(min = 4, max = 13, message = "Write Customer country, at least 4 characters")
 	private String country;
+	@Size(min = 5, max = 33, message = "Write Customer address, at least 5 characters")
 	private String address;
 	private Status status;
 	private User responsibilitySeller;
