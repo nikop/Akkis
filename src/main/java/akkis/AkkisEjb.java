@@ -59,15 +59,15 @@ public class AkkisEjb {
 		
 		em.persist(company);
 		
-		Delivery delivery = new Delivery();
-		em.persist(delivery);
+		//Delivery delivery = new Delivery();
+		//em.persist(delivery);
 		
 		Date tanaan = new Date();
 		SimpleDateFormat fdate = new SimpleDateFormat("dd.MM.yyyy");
 		fdate.format(tanaan);
 //			
 		Invoice invoice = new Invoice();
-		invoice.setDelivery(delivery);
+		//invoice.setDelivery(delivery);
 		invoice.setSum(100);
 		invoice.setDate(tanaan);
 		invoice.setDuePeriod(14);
@@ -155,6 +155,23 @@ public class AkkisEjb {
 		// TODO Auto-generated method stub
 		return products;
 
+	}
+	
+	public Product getProduct(Long id) {
+		
+		try {
+			Object user = em.createNamedQuery("productByID")
+				.setParameter("id", id).getSingleResult();
+			
+			System.out.println(user);
+			
+			return (Product) user;
+		}
+		catch (javax.persistence.NoResultException ex)
+		{
+			return null;
+		}
+		
 	}
 
 	public List<Delivery> getDeliveries() {

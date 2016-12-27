@@ -1,0 +1,13 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                      xmlns:b="http://bootsfaces.net/ui">
+    
+    <b:inputText id="name" value="#{product.name}" label="Name" required="true" renderLabel="true"   />
+    <h:message for="name" />
+    <b:inputText id="price" value="#{product.price}" label="Price" renderLabel="true" />
+    <h:message for="price" />
+    
+</ui:composition>

@@ -6,6 +6,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 
 import akkis.AkkisEjb;
+import akkis.Customer;
 import akkis.Product;
 
 import java.sql.Timestamp;
@@ -49,6 +50,16 @@ public class ProductController {
 		FacesMessages.info("Successfully saved.");
 				
 		return null;
+	}
+	
+	public String saveProduct(Product product) {
+		//tuoteEjb.save(customer);
+		
+		tuoteEjb.saveChanges(product);
+		
+		FacesMessages.info("Successfully saved.");
+		
+		return "product?faces-redirect=true";
 	}
 
 	public List<Product> getProducts() {

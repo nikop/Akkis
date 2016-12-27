@@ -1,0 +1,31 @@
+<ui:composition template="/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	
+	<ui:define name="metadata">
+		<f:metadata>
+		    <f:viewParam name="id" value="#{productController.product}" 
+		        converter="#{productConverter}" converterMessage="Unknown Product"
+		        required="true" requiredMessage="Bad request, please use a link from within the system."
+		    />
+		</f:metadata>
+    </ui:define>
+    
+	<ui:param name="title" value="Product - Edit" />
+
+	<ui:define name="content">
+		<b:panel title="Edit Product #{productController.product.id} - #{productController.product.name}" collapsible="false">
+		<b:form id="productform">
+		
+			<ui:include src="/productForm.xhtml">
+				<ui:param name="product" value="#{productController.product}" />
+			</ui:include>
+			
+			<b:commandButton value="Save" action="#{productController.saveProduct(productController.product)}" />
+		</b:form>
+		</b:panel>
+	</ui:define>
+</ui:composition>
