@@ -54,28 +54,54 @@ public class AkkisEjb {
 		
 		em.persist(company);
 		
-		Delivery delivery = new Delivery();
-		em.persist(delivery);
+		
+		Delivery delivery1 = new Delivery();
+		em.persist(delivery1);
+		
+		Delivery delivery2 = new Delivery();
+		em.persist(delivery2);
 		
 		Date tanaan = new Date();
 		SimpleDateFormat fdate = new SimpleDateFormat("dd.MM.yyyy");
 		fdate.format(tanaan);
-//			
+			
 		Invoice invoice = new Invoice();
-		invoice.setDelivery(delivery);
+		invoice.setDelivery(delivery1);
 		invoice.setSum(100);
 		invoice.setDate(tanaan);
 		invoice.setDuePeriod(14);
 		invoice.setInfoText("InfoText");
 		
+		
+		Invoice invoice1 = new Invoice();
+		invoice1.setDelivery(delivery2);
+		invoice1.setSum(120);
+		invoice1.setDate(tanaan);
+		invoice1.setDuePeriod(10);
+		invoice1.setInfoText("InfoText2");
+		
+		
 		em.persist(invoice);
+		em.persist(invoice1);
 
+		List<Invoice> invoices = new ArrayList<Invoice>();
+		invoices.add(invoice);
+		invoices.add(invoice1);
+		
+		Delivery delivery = new Delivery();
+		delivery.setInvoices(invoices);
+		
+		em.persist(delivery);
+		
+		
+		
 		
 		Product product = new Product();
 		product.setName("Tuote1");
 		product.setPrice(20.0);
 		
 		em.persist(product);
+		
 		
 	}
 

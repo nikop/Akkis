@@ -6,6 +6,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 
 import akkis.AkkisEjb;
+import akkis.Delivery;
 import akkis.Invoice;
 
 import java.sql.Timestamp;

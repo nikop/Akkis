@@ -9,21 +9,27 @@
 
 
 <ui:define name="content">
+<h:form>
 <h:dataTable styleClass="data" cellspacing="0" cellpadding="0"
-			border="0" rowClasses="odd,even" value="#{deliveryController.deliveries}" var="de">
+			border="0" rowClasses="odd,even" value="#{deliveryController.deliveries}" var="item">
 		<h:column headerstyleClass="first">
-		<f:facet name="header">Deliveries</f:facet> 
-			  	
+		<f:facet name="header">Delivery</f:facet>
+			    	#{item.id} 
+        
+		</h:column>
+		<h:column>
+		<f:facet name="header">Deliveries</f:facet>  
 			<ol>
-				<ui:repeat value="${de.deliveries}" var="invoice">
+				<ui:repeat value="${item.invoices}" var="invoice">
 					<li>${invoice}</li>
 				</ui:repeat>
 			</ol>
-		</h:column>			
+</h:column>
+</h:dataTable>
+</h:form>
 
-	</h:dataTable>
 
-	   
+      
 		<h:form id="invoiceform">
 			<table>
 				<tr>
@@ -46,9 +52,6 @@
 				<td>Invoice Info text</td>
 				<td><h:inputText label="name" value="#{invoice.infoText}">
 				</h:inputText></td>
-				</tr>
-				<tr>
-					<td><h:commandButton action="#{invoiceController.initInvoice()}" value="Add initialized invoice" /></td>
 				</tr>
 				<tr>
 					<td><h:commandButton action="#{invoiceController.saveInvoice()}" value="Save invoice" /></td>

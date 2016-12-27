@@ -26,7 +26,7 @@ public class Invoice {
 
 	private long id;
 	
-	
+	@ManyToOne
 	private Delivery delivery;
 	
 	@DecimalMin("0.01")
@@ -45,6 +45,8 @@ public class Invoice {
 		super();
 		
 	}
+	
+
 
 	public long getId() {
 		return id;
@@ -52,16 +54,6 @@ public class Invoice {
 
 	public void setId(long id) {
 		this.id = id;
-	}
-
-
-	
-	public Delivery getDelivery() {
-		return delivery;
-	}
-
-	public void setDelivery(Delivery delivery) {
-		this.delivery = delivery;
 	}
 
 	public double getSum() {
@@ -96,11 +88,24 @@ public class Invoice {
 		this.infoText = infoText;
 	}
 
+	
+	
+	public Delivery getDelivery() {
+		return delivery;
+	}
+
+
+
+	public void setDelivery(Delivery delivery) {
+		this.delivery = delivery;
+	}
+
+
+
 	@Override
 	public String toString() {
-		return "Invoice [id=" + id + ", delivery=" + delivery + ", sum=" + sum
-				+ ", date=" + date + ", duePeriod=" + duePeriod + ", infoText="
-				+ infoText + "]";
+		return "Invoice [id=" + id + ", sum=" + sum + ", date=" + date
+				+ ", duePeriod=" + duePeriod + ", infoText=" + infoText + "]";
 	}
 	
 	
