@@ -53,12 +53,5 @@ public class InvoiceController {
 	public List<Invoice> getInvoices() {
 		return tuoteEjb.getInvoices();
 	}
-
-	
-	public String initInvoice() {
-		tuoteEjb.init();
-		return null;
-	}
-
 	
 }
