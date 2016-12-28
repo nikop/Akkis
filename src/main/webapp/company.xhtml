@@ -1,76 +1,74 @@
 <ui:composition template="/template.xhtml"
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:f="http://xmlns.jcp.org/jsf/core"
-    xmlns:h="http://xmlns.jcp.org/jsf/html"
-    xmlns:b="http://bootsfaces.net/ui"
-    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
-<ui:param name="title" value="Company" />
+	<ui:param name="title" value="Company" />
 
 
-<ui:define name="content">
-<h:dataTable styleClass="data" cellspacing="0" cellpadding="0"
-			border="0" rowClasses="odd,even" value="#{companyController.companies}" var="ca">
-		<h:column headerstyleClass="first">
-		<f:facet name="header">Name</f:facet>
+	<ui:define name="content">
+		<b:dataTable value="#{companyController.companies}" var="ca">
+			<h:column headerstyleClass="first">
+				<f:facet name="header">Name</f:facet>
 				#{ca.name}
             </h:column>
-		<h:column>
-		<f:facet name="header">Address</f:facet>
+			<h:column>
+				<f:facet name="header">Address</f:facet>
                     #{ca.address}
             </h:column>
-            <h:column>
-            <f:facet name="header">Phone Number</f:facet>
+			<h:column>
+				<f:facet name="header">Phone Number</f:facet>
                     #{ca.phoneNumber}
             </h:column>
-		<h:column>
-		<f:facet name="header">Web Page</f:facet>
+			<h:column>
+				<f:facet name="header">Web Page</f:facet>
                     #{ca.webPage}
             </h:column>
-		<h:column>
-		
-		<f:facet name="header">Business Id</f:facet>
+			<h:column>
+				<f:facet name="header">Business Id</f:facet>
                       #{ca.yTunnus} 
             </h:column>
-		
+		</b:dataTable>
 
-	</h:dataTable>
-
-	 
 		<h:form id="companyform">
 			<table>
 				<tr>
-				<td>Company Name</td>
-				<td><h:inputText label="name" value="#{company.name}">
-				</h:inputText></td>
+					<td>Company Name</td>
+					<td><h:inputText label="name" value="#{company.name}">
+						</h:inputText></td>
 				</tr>
 				<tr>
-				<td>Company Address</td>
-				<td><h:inputText label="name" value="#{company.address}">
-				</h:inputText></td>
+					<td>Company Address</td>
+					<td><h:inputText label="name" value="#{company.address}">
+						</h:inputText></td>
 				</tr>
 				<tr>
-				<td>Company Phone Number</td>
-				<td><h:inputText label="name" value="#{company.phoneNumber}">
-				</h:inputText></td>
+					<td>Company Phone Number</td>
+					<td><h:inputText label="name" value="#{company.phoneNumber}">
+						</h:inputText></td>
 				</tr>
 				<tr>
-				<td>Company web page</td>
-				<td><h:inputText label="name" value="#{company.webPage}">
-				</h:inputText></td>
+					<td>Company web page</td>
+					<td><h:inputText label="name" value="#{company.webPage}">
+						</h:inputText></td>
 				</tr>
 				<tr>
-				<td>Company business Id</td>
-				<td><h:inputText label="name" value="#{company.yTunnus}">
-				</h:inputText></td>
+					<td>Company business Id</td>
+					<td><h:inputText label="name" value="#{company.yTunnus}">
+						</h:inputText></td>
 				</tr>
 				<tr>
-					<td><h:commandButton action="#{companyController.initCompany()}" value="Add initialized company" /></td>
+					<td><h:commandButton
+							action="#{companyController.initCompany()}"
+							value="Add initialized company" /></td>
 				</tr>
 				<tr>
-					<td><h:commandButton action="#{companyController.saveCompany()}" value="Save company" /></td>
+					<td><h:commandButton
+							action="#{companyController.saveCompany()}" value="Save company" /></td>
 				</tr>
 			</table>
 		</h:form>
- </ui:define>
+	</ui:define>
 </ui:composition>

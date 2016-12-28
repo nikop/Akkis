@@ -1,63 +1,64 @@
 <ui:composition template="/template.xhtml"
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:f="http://xmlns.jcp.org/jsf/core"
-    xmlns:h="http://xmlns.jcp.org/jsf/html"
-    xmlns:b="http://bootsfaces.net/ui"
-    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
-<ui:param name="title" value="Delivery" />
+	<ui:param name="title" value="Delivery" />
 
 
-<ui:define name="content">
-<h:form>
-<h:dataTable styleClass="data" cellspacing="0" cellpadding="0"
-			border="0" rowClasses="odd,even" value="#{deliveryController.deliveries}" var="item">
-		<h:column headerstyleClass="first">
-		<f:facet name="header">Delivery</f:facet>
+	<ui:define name="content">
+		<h:form>
+			<b:dataTable 
+				value="#{deliveryController.deliveries}" var="item">
+				<h:column headerstyleClass="first">
+					<f:facet name="header">Delivery</f:facet>
 			    	#{item.id} 
         
 		</h:column>
-		<h:column>
-		<f:facet name="header">Deliveries</f:facet>  
-			<ol>
-				<ui:repeat value="${item.invoices}" var="invoice">
-					<li>${invoice}</li>
-				</ui:repeat>
-			</ol>
-</h:column>
-</h:dataTable>
-</h:form>
+				<h:column>
+					<f:facet name="header">Deliveries</f:facet>
+					<ol>
+						<ui:repeat value="${item.invoices}" var="invoice">
+							<li>${invoice}</li>
+						</ui:repeat>
+					</ol>
+				</h:column>
+			</b:dataTable>
+		</h:form>
 
 
-      
+
 		<h:form id="invoiceform">
 			<table>
 				<tr>
-				<td>Invoice Sum</td>
-				<td><h:inputText label="name" value="#{invoice.sum}">
-				</h:inputText></td>
+					<td>Invoice Sum</td>
+					<td><h:inputText label="name" value="#{invoice.sum}">
+						</h:inputText></td>
 				</tr>
 				<tr>
-				<td>Invoice Date</td>
-				<td><h:inputText label="name" value="#{invoice.date}">
-				<f:convertDateTime pattern="dd.MM.yyyy" />
-				</h:inputText></td>
+					<td>Invoice Date</td>
+					<td><h:inputText label="name" value="#{invoice.date}">
+							<f:convertDateTime pattern="dd.MM.yyyy" />
+						</h:inputText></td>
 				</tr>
 				<tr>
-				<td>Invoice Time Period</td>
-				<td><h:inputText label="name" value="#{invoice.duePeriod}">
-				</h:inputText></td>
+					<td>Invoice Time Period</td>
+					<td><h:inputText label="name" value="#{invoice.duePeriod}">
+						</h:inputText></td>
 				</tr>
 				<tr>
-				<td>Invoice Info text</td>
-				<td><h:inputText label="name" value="#{invoice.infoText}">
-				</h:inputText></td>
+					<td>Invoice Info text</td>
+					<td><h:inputText label="name" value="#{invoice.infoText}">
+						</h:inputText></td>
 				</tr>
 				<tr>
-					<td><h:commandButton action="#{invoiceController.saveInvoice()}" value="Save invoice" /></td>
+					<td><h:commandButton
+							action="#{invoiceController.saveInvoice()}" value="Save invoice" /></td>
 				</tr>
 			</table>
 		</h:form>
-		
- </ui:define>
+
+	</ui:define>
 </ui:composition>
