@@ -24,7 +24,7 @@ public class Delivery implements Serializable {
 
 	private long id;
 	
-	@OneToMany(fetch = FetchType.EAGER)
+	//@OneToMany(fetch = FetchType.EAGER)
 	private List<Invoice> invoices;
 //	private Invoice invoice = new Invoice();
 //	private boolean edit;
@@ -32,7 +32,7 @@ public class Delivery implements Serializable {
 	
 	public Delivery() {
 		super();
-		invoices = new ArrayList<Invoice>();
+	//	invoices = new ArrayList<Invoice>();
 	//	invoices.add(invoice);
 	//	invoice = new Invoice();
 	}

@@ -41,12 +41,12 @@ public class Invoice {
 	@Size(min = 4, message = "Write Info text, at least 4 characters")
 	private String infoText; 
 	
+	
 	public Invoice() {
 		super();
 		
 	}
 	
-
 
 	public long getId() {
 		return id;
