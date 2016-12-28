@@ -8,6 +8,8 @@ import javax.faces.bean.SessionScoped;
 import javax.persistence.Entity;
 
 import akkis.User;
+import akkis.types.Permission;
+import akkis.types.Role;
 
 @ManagedBean
 @SessionScoped
@@ -46,4 +48,19 @@ public class LoginUser implements Serializable {
 		return user != null;
 	}
 	
+	public boolean can(Permission permission)
+	{
+		if (!isLogged())
+			return false;
+		
+		if (user.hasRole(Role.ADMIN))
+			return true;
+		
+		switch (permission) {
+			case VIEW_CUSTOMERS:
+				return user.hasRole(Role.SELLER);
+			default:
+				return false;
+		}
+	}
 }

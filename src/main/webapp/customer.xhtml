@@ -8,9 +8,7 @@
 	<ui:param name="title" value="Customer" />
 
 	<ui:define name="content">
-		<h:dataTable styleClass="data" cellspacing="0" cellpadding="0"
-			border="0" rowClasses="odd,even"
-			value="#{customerController.customers}" var="ca">
+		<b:dataTable value="#{customerController.customers}" var="ca">
 			<h:column headerstyleClass="first">
 				<f:facet name="header">Name</f:facet>
                     #{ca.name}
@@ -41,67 +39,23 @@
                       #{ca.responsibilitySeller} 
         	</h:column>
 			<h:column>
-				<f:facet name="header"></f:facet>
+				<f:facet name="header"> </f:facet>
                       <h:link outcome="customerEdit.xhtml" value="Edit">
                       	<f:param name="id" value="#{ca.id}" />
                       </h:link>
         	</h:column>
+		</b:dataTable>
 
+		<b:panel title="New Customer" collapsible="false">
+			<h:form id="customerform">
 
-		</h:dataTable>
+				<ui:include src="/customerForm.xhtml">
+					<ui:param name="customer" value="#{customer}" />
+				</ui:include>
 
-
-		<h:form id="customerform">
-			<table>
-				<tr>
-					<td>Customer Name</td>
-					<td><h:inputText label="name" value="#{customer.name}">
-						</h:inputText></td>
-				</tr>
-				<tr>
-					<td>Customer Address</td>
-					<td><h:inputText label="name" value="#{customer.address}">
-						</h:inputText></td>
-				</tr>
-				<tr>
-					<td>Customer Country</td>
-					<td><h:inputText label="name" value="#{customer.country}">
-						</h:inputText></td>
-				</tr>
-				<tr>
-					<td>Customer Email</td>
-					<td><h:inputText label="name" value="#{customer.email}">
-						</h:inputText></td>
-				</tr>
-				<tr>
-					<td>Customer Phone Number</td>
-					<td><h:inputText label="name" value="#{customer.phoneNumber}">
-						</h:inputText></td>
-				</tr>
-				<tr>
-					<td>Customer Status</td>
-					<td><h:selectOneMenu value="#{customer.status}">
-							<f:selectItems value="#{data.statuses}" var="status"
-								itemValue="#{status}" itemLabel="#{status.label}" />
-						</h:selectOneMenu></td>
-				</tr>
-				<tr>
-					<td>Customer Responsibility Seller</td>
-					<td><h:inputText label="name"
-							value="#{customer.responsibilitySeller}">
-						</h:inputText></td>
-				</tr>
-				<tr>
-					<td><h:commandButton
-							action="#{customerController.initCustomer()}"
-							value="Add intialized customer" /></td>
-				</tr>
-				<tr>
-					<td><h:commandButton
-							action="#{customerController.saveCustomer()}"
-							value="Save Customer" /></td>
-				</tr>
-			</table>
-		</h:form>
+				<b:commandButton value="Add New"
+					action="#{customerController.saveCustomer()}" />
+			</h:form>
+		</b:panel>
 	</ui:define>
 </ui:composition>

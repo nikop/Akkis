@@ -36,6 +36,7 @@ public class CustomerController {
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
+	
 	public String saveCustomer() {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		// JSF:ssa luodun beanin nimellä päästään olioon kiinni "fish"

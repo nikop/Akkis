@@ -5,6 +5,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import akkis.controllers.LoginUser;
+import akkis.types.Role;
 import akkis.types.Status;
 
 import java.text.SimpleDateFormat;
@@ -29,9 +30,13 @@ public class AkkisEjb {
 		
 		User user1 = new User();
 		
+		ArrayList<Role> roles = new ArrayList<Role>();
+		roles.add(Role.ADMIN);
+		
 		user1.setUsername("jorma");
 		user1.setName("Jorma");
 		user1.setPassword("salasana");
+		user1.setRoles((List<Role>) roles);
 		
 		em.persist(user1);
 		
@@ -187,6 +192,23 @@ public class AkkisEjb {
 		// TODO Auto-generated method stub
 		return products;
 
+	}
+	
+	public Product getProduct(Long id) {
+		
+		try {
+			Object user = em.createNamedQuery("productByID")
+				.setParameter("id", id).getSingleResult();
+			
+			System.out.println(user);
+			
+			return (Product) user;
+		}
+		catch (javax.persistence.NoResultException ex)
+		{
+			return null;
+		}
+		
 	}
 
 	public List<Delivery> getDeliveries() {

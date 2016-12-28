@@ -1,98 +1,37 @@
 <ui:composition template="/template.xhtml"
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:f="http://xmlns.jcp.org/jsf/core"
-    xmlns:h="http://xmlns.jcp.org/jsf/html"
-    xmlns:b="http://bootsfaces.net/ui"
-    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
-<ui:param name="title" value="Invoice" />
+	<ui:param name="title" value="Invoice" />
 
+	<ui:define name="content">
+		<b:dataTable value="#{invoiceController.invoices}" var="in">
+			<h:column headerstyleClass="first">
 
-<ui:define name="content">
-<h3>Invoices</h3>
-<h:dataTable styleClass="data" cellspacing="0" cellpadding="0"
-			border="0" rowClasses="odd,even" value="#{invoiceController.invoices}" var="in">
-		<h:column headerstyleClass="first">
-		    <!--  
-		<f:facet name="header">Delivery</f:facet>
+				<f:facet name="header">Delivery</f:facet>
 			    	#{in.delivery} 
             </h:column>
-		<h:column>
-		-->
-		<f:facet name="header">Sum</f:facet>
+			<h:column>
+
+				<f:facet name="header">Sum</f:facet>
                     #{in.sum}
             </h:column>
-            <h:column>
-            <f:facet name="header">Date</f:facet>
+			<h:column>
+				<f:facet name="header">Date</f:facet>
                     #{in.date}
             </h:column>
-		<h:column>
-		<f:facet name="header">Time Period</f:facet>
+			<h:column>
+				<f:facet name="header">Time Period</f:facet>
                     #{in.duePeriod}
             </h:column>
-		<h:column>
-		
-		<f:facet name="header">Info text</f:facet>
+			<h:column>
+
+				<f:facet name="header">Info text</f:facet>
                       #{in.infoText} 
-            </h:column>
-	</h:dataTable>
-	<br></br>
-	<br></br>
-	<h3>Deliveries</h3>
-	<h:form>
-<h:dataTable styleClass="data" cellspacing="0" cellpadding="0"
-			border="0" rowClasses="odd,even" value="#{deliveryController.deliveries}" var="item">
-		<h:column headerstyleClass="first">
-		<f:facet name="header">Delivery</f:facet>
-			    	#{item.id} 
-        
-		</h:column>
-		<h:column>
-		<f:facet name="header">Deliveries</f:facet>  
-			<ol>
-				<ui:repeat value="${item.invoices}" var="invoice">
-					<li>${invoice}</li>
-				</ui:repeat>
-			</ol>
-</h:column>
-</h:dataTable>
-</h:form>
-	
-	
- <br></br>
- <br></br>
-	   
-		<h:form id="invoiceform">
-			<table>
-				<tr>
-				<td>Invoice Sum</td>
-				<td><h:inputText label="name" value="#{invoice.sum}">
-				</h:inputText></td>
-				</tr>
-				<tr>
-				<td>Invoice Date</td>
-				<td><h:inputText label="name" value="#{invoice.date}">
-				<f:convertDateTime pattern="dd.MM.yyyy" />
-				</h:inputText></td>
-				</tr>
-				<tr>
-				<td>Invoice Time Period</td>
-				<td><h:inputText label="name" value="#{invoice.duePeriod}">
-				</h:inputText></td>
-				</tr>
-				<tr>
-				<td>Invoice Info text</td>
-				<td><h:inputText label="name" value="#{invoice.infoText}">
-				</h:inputText></td>
-				</tr>
-				<tr>
-					<td><h:commandButton action="#{invoiceController.initInvoice()}" value="Add initialized invoice" /></td>
-				</tr>
-				<tr>
-					<td><h:commandButton action="#{invoiceController.saveInvoice()}" value="Save invoice" /></td>
-				</tr>
-			</table>
-		</h:form>
-		
- </ui:define>
+        </h:column>
+		</b:dataTable>
+	</ui:define>
 </ui:composition>

@@ -38,7 +38,7 @@ public class User implements Serializable {
 	}
 
 	 public boolean hasRole(Role role) {
-	        return roles.contains(role);
+		 return roles.contains(role);
 	 }
 	
 	public Long getId() {
@@ -73,13 +73,17 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", roles=" + roles + "]";
 	}
 
-	
-	
-	
-	
 }

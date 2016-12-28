@@ -12,7 +12,6 @@
 <h:body style="padding: 60px;">
 	<ui:insert name="metadata" />
 	<f:view>
-		
 
 		<b:navBar brand="Akkis" brandHref="index.xhtml" fixed="top"
 			inverse="true">
@@ -41,6 +40,9 @@
 				<b:commandButton value="Logout" look="success" icon="chevron-right"
 					iconAlign="right" action="#{loginController.logout}" />
 			</h:form>
+			<h:panelGroup class="navbar-text navbar-right" rendered="#{loginUser.logged}">
+				#{loginUser.user.name}
+			</h:panelGroup>
 		</b:navBar>
 		<b:container>
 	       	<b:messages id="messages" />
