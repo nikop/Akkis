@@ -54,7 +54,7 @@ public String saveDelivery() {
 		Delivery de = (Delivery) facesContext.getExternalContext().getRequestMap().get("delivery");
 	//	Delivery de = (Delivery) facesContext.getExternalContext().getSessionMap().get("delivery");
 		
-	//	de.add();
+	//	de.addRow();
 		System.out.println("Delivery:" + de);
 		tuoteEjb.save(de);
 		

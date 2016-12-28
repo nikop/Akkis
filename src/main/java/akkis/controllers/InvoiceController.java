@@ -6,7 +6,6 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 
 import akkis.AkkisEjb;
-import akkis.Delivery;
 import akkis.Invoice;
 
 import java.sql.Timestamp;
@@ -38,13 +37,13 @@ public class InvoiceController {
 	}
 
 	public String saveInvoice() {
-		
+	//	Delivery delivery = new Delivery();
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		// JSF:ssa luodun beanin nimellä päästään olioon kiinni "fish"
 		// (faces-config.xml)
 		Invoice in = (Invoice) facesContext.getExternalContext().getRequestMap().get("invoice");
 		System.out.println("Invoice:" + in);
-		tuoteEjb.save(in);
+		tuoteEjb.saveInvoice(in);
 		
 		FacesMessages.info("Successfully saved.");
 		
