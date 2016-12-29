@@ -52,7 +52,17 @@ public class CompanyController {
 		
 		return null;
 		
-			}
+	}
+	
+	public String saveCompany(Company customer) {
+		//tuoteEjb.save(customer);
+		
+		tuoteEjb.saveChanges(customer);
+		
+		FacesMessages.info("Successfully saved.");
+		
+		return "company?faces-redirect=true";
+	}
 
 	public List<Company> getCompanies() {
 		return tuoteEjb.getCompanies();

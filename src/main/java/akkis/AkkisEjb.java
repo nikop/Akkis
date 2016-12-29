@@ -169,6 +169,19 @@ public class AkkisEjb {
 		return invoices;
 	}
 
+	public Company getCompany(Long id) {
+		
+		try {
+			Company user = (Company) em.createNamedQuery("companyById")
+				.setParameter("id", id).getSingleResult();
+			
+			return user;
+		}
+		catch (javax.persistence.NoResultException ex)
+		{
+			return null;
+		}	
+	}
 
 	public Customer getCustomer(Long id) {
 		
@@ -181,8 +194,7 @@ public class AkkisEjb {
 		catch (javax.persistence.NoResultException ex)
 		{
 			return null;
-		}
-		
+		}	
 	}
 
 	public List<Product> getproducts() {
