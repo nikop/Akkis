@@ -30,45 +30,24 @@
 				<f:facet name="header">Business Id</f:facet>
                       #{ca.yTunnus} 
             </h:column>
+            <h:column>
+				<f:facet name="header"> </f:facet>
+                      <h:link outcome="companyEdit.xhtml" value="Edit">
+                      	<f:param name="id" value="#{ca.id}" />
+                      </h:link>
+        	</h:column>
 		</b:dataTable>
+		
+		<b:panel title="New Company" collapsible="false">
+			<h:form id="companyform">
 
-		<h:form id="companyform">
-			<table>
-				<tr>
-					<td>Company Name</td>
-					<td><h:inputText label="name" value="#{company.name}">
-						</h:inputText></td>
-				</tr>
-				<tr>
-					<td>Company Address</td>
-					<td><h:inputText label="name" value="#{company.address}">
-						</h:inputText></td>
-				</tr>
-				<tr>
-					<td>Company Phone Number</td>
-					<td><h:inputText label="name" value="#{company.phoneNumber}">
-						</h:inputText></td>
-				</tr>
-				<tr>
-					<td>Company web page</td>
-					<td><h:inputText label="name" value="#{company.webPage}">
-						</h:inputText></td>
-				</tr>
-				<tr>
-					<td>Company business Id</td>
-					<td><h:inputText label="name" value="#{company.yTunnus}">
-						</h:inputText></td>
-				</tr>
-				<tr>
-					<td><h:commandButton
-							action="#{companyController.initCompany()}"
-							value="Add initialized company" /></td>
-				</tr>
-				<tr>
-					<td><h:commandButton
-							action="#{companyController.saveCompany()}" value="Save company" /></td>
-				</tr>
-			</table>
-		</h:form>
+				<ui:include src="/companyForm.xhtml">
+					<ui:param name="company" value="#{company}" />
+				</ui:include>
+
+				<b:commandButton value="Add"
+					action="#{companyController.saveCompany()}" />
+			</h:form>
+		</b:panel>
 	</ui:define>
 </ui:composition>

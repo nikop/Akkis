@@ -12,7 +12,10 @@ import javax.faces.bean.RequestScoped;
 @ManagedBean
 @RequestScoped
 @Entity
-@NamedQuery(name = "searchAllCompanies", query = "SELECT c from Company c") 
+@NamedQueries({
+	@NamedQuery(name = "companyById", query = "SELECT c from Company c WHERE c.id = :id"),
+	@NamedQuery(name = "searchAllCompanies", query = "SELECT c from Company c") 
+})
 public class Company  implements Serializable {
 
 	@Id
