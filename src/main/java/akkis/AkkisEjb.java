@@ -94,12 +94,12 @@ public class AkkisEjb {
 	//	List<Invoice> invoices2 = new ArrayList<Invoice>();
 	//	invoices2.add(invoice1);
 		
-		Delivery deliverylist1 = new Delivery();
+	//	Delivery deliverylist1 = new Delivery();
 	//	Delivery deliverylist2 = new Delivery();
-		deliverylist1.setInvoices(invoices1);
+	//	deliverylist1.setInvoices(invoices1);
 	//	deliverylist2.setInvoices(invoices2);
 		
-		em.persist(deliverylist1);
+	//	em.persist(deliverylist1);
 	//	em.persist(deliverylist2);
 				
 		Product product = new Product();

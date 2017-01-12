@@ -45,44 +45,18 @@ public class Delivery implements Serializable {
 	public void setId(long id) {
 		this.id = id;
 	}
+	
+	private String name;	
 
-	/*
-	public void addRow() {
-		invoices.add(new Invoice());
+	public String getName() {
+		return name;
 	}
-	
-	
-		
-	public void addRow() {
-		invoice.setId(invoices.isEmpty() ? 1 : invoices.get(invoices.size() - 1).getId() + 1);
-		invoices.add(new Invoice());
-	//	invoice = new Invoice();
+
+
+	public void setName(String name) {
+		this.name = name;
 	}
-	
-	/*
-	public void edit(Invoice invoice) {
-		this.invoice = invoice;
-		edit = true;
-	}
-	
-	public void save() {
-		invoice = new Invoice();
-		edit = false;
-	}
-	
-	public void delete(Invoice invoice) {
-		deliveries.remove(invoice);
-	}
-	
-	public Invoice getInvoice() {
-		return invoice;
-	}
-	
-	public boolean isEdit() {
-		return edit;
-	}
-	*/
-	
+
 
 	public List<Invoice> getInvoices() {
 		return invoices;

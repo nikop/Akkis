@@ -1,6 +1,5 @@
 package akkis.controllers;
 
-
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -23,60 +22,56 @@ public class DeliveryController {
 
 	@EJB
 	private AkkisEjb tuoteEjb;
-	
+
 	@ManagedProperty(value = "#{delivery}")
 	private Delivery delivery;
-//	private Invoice invoice;
-	
-	
-	
+	// private Invoice invoice;
+
 	public DeliveryController() {
-		
+
 	}
-
-
 
 	public Delivery getDelivery() {
 		return delivery;
 	}
 
-
-
 	public void setDelivery(Delivery delivery) {
 		this.delivery = delivery;
 	}
-	
-public String saveDelivery() {
-		
+
+	public String saveDelivery() {
+
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		// JSF:ssa luodun beanin nimellä päästään olioon kiinni "fish"
 		// (faces-config.xml)
 		Delivery de = (Delivery) facesContext.getExternalContext().getRequestMap().get("delivery");
-	//	Delivery de = (Delivery) facesContext.getExternalContext().getSessionMap().get("delivery");
-		
-	//	de.addRow();
+		// Delivery de = (Delivery)
+		// facesContext.getExternalContext().getSessionMap().get("delivery");
+
+		// de.addRow();
 		System.out.println("Delivery:" + de);
 		tuoteEjb.save(de);
+
+		FacesMessages.info("Successfully saved.");
+
+		return null;
+	}
+	
+	public String saveDelivery(Delivery delivery) {
+			tuoteEjb.saveChanges(delivery);
 		
 		FacesMessages.info("Successfully saved.");
 		
-		return null;
-		
-			}
-
+		return "delivery?faces-redirect=true";
+	}
 
 	public List<Delivery> getDeliveries() {
 		return tuoteEjb.getDeliveries();
 	}
 
-	
 	public String initDelivery() {
 		tuoteEjb.init();
 		return null;
 	}
 
-
-	
-	
-	
 }

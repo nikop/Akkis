@@ -10,13 +10,11 @@
 
 	<ui:define name="content">
 		<h:form>
-			<b:dataTable 
-				value="#{deliveryController.deliveries}" var="item">
+			<b:dataTable value="#{deliveryController.deliveries}" var="item">
 				<h:column headerstyleClass="first">
 					<f:facet name="header">Delivery</f:facet>
 			    	#{item.id} 
-        
-		</h:column>
+				</h:column>
 				<h:column>
 					<f:facet name="header">Deliveries</f:facet>
 					<ol>
@@ -28,6 +26,17 @@
 			</b:dataTable>
 		</h:form>
 
+		<b:panel title="New Delivery" collapsible="false">
+			<h:form id="deliveryform">
+
+				<ui:include src="/deliveryForm.xhtml">
+					<ui:param name="delivery" value="#{delivery}" />
+				</ui:include>
+
+				<b:commandButton value="Add"
+					action="#{deliveryController.saveDelivery()}" />
+			</h:form>
+		</b:panel>
 
 
 		<h:form id="invoiceform">
