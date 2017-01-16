@@ -12,7 +12,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 
-@ViewScoped
+@RequestScoped
 @ManagedBean
 @Entity
 @NamedQuery(name = "searchAllDeliveries", query = "SELECT d from Delivery d") 

@@ -38,36 +38,5 @@
 			</h:form>
 		</b:panel>
 
-
-		<h:form id="invoiceform">
-			<table>
-				<tr>
-					<td>Invoice Sum</td>
-					<td><h:inputText label="name" value="#{invoice.sum}">
-						</h:inputText></td>
-				</tr>
-				<tr>
-					<td>Invoice Date</td>
-					<td><h:inputText label="name" value="#{invoice.date}">
-							<f:convertDateTime pattern="dd.MM.yyyy" />
-						</h:inputText></td>
-				</tr>
-				<tr>
-					<td>Invoice Time Period</td>
-					<td><h:inputText label="name" value="#{invoice.duePeriod}">
-						</h:inputText></td>
-				</tr>
-				<tr>
-					<td>Invoice Info text</td>
-					<td><h:inputText label="name" value="#{invoice.infoText}">
-						</h:inputText></td>
-				</tr>
-				<tr>
-					<td><h:commandButton
-							action="#{invoiceController.saveInvoice()}" value="Save invoice" /></td>
-				</tr>
-			</table>
-		</h:form>
-
 	</ui:define>
 </ui:composition>

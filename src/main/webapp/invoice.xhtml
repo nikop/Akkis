@@ -33,5 +33,17 @@
                       #{in.infoText} 
         </h:column>
 		</b:dataTable>
+		
+		<b:panel title="New Invoice" collapsible="false">
+			<h:form id="invoiceform">
+
+				<ui:include src="/invoiceForm.xhtml">
+					<ui:param name="invoice" value="#{invoice}" />
+				</ui:include>
+
+				<b:commandButton value="Add"
+					action="#{invoiceController.saveInvoice()}" />
+			</h:form>
+		</b:panel>
 	</ui:define>
 </ui:composition>

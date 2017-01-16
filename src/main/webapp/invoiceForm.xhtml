@@ -1,0 +1,29 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui">
+	
+	<b:inputText label="Date" value="#{invoice.date}">
+		<f:convertDateTime pattern="dd.MM.yyyy" />
+	</b:inputText>
+	
+	<b:inputText id="due" value="#{invoice.duePeriod}" label="Due Period"
+		required="true" renderLabel="true" />
+	
+	<b:inputText id="sum" value="#{invoice.sum}" label="Sum"
+		required="true" renderLabel="true" />
+		
+	<h:message for="sum" />
+	
+	<b:inputText id="info" value="#{invoice.infoText}" label="Info"
+		required="true" renderLabel="true" />
+	
+	<b:selectOneMenu value="#{invoice.delivery}" label="Delivery" id="delivery">
+		<f:selectItems value="#{deliveryController.deliveries}" var="d"
+			itemValue="#{d}" itemLabel="#{d.name}" />
+	</b:selectOneMenu>
+	
+	<h:message for="delivery" />
+
+</ui:composition>

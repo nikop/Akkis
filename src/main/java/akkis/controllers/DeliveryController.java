@@ -41,16 +41,7 @@ public class DeliveryController {
 
 	public String saveDelivery() {
 
-		FacesContext facesContext = FacesContext.getCurrentInstance();
-		// JSF:ssa luodun beanin nimellä päästään olioon kiinni "fish"
-		// (faces-config.xml)
-		Delivery de = (Delivery) facesContext.getExternalContext().getRequestMap().get("delivery");
-		// Delivery de = (Delivery)
-		// facesContext.getExternalContext().getSessionMap().get("delivery");
-
-		// de.addRow();
-		System.out.println("Delivery:" + de);
-		tuoteEjb.save(de);
+		tuoteEjb.save(delivery);
 
 		FacesMessages.info("Successfully saved.");
 
