@@ -60,34 +60,35 @@ public class AkkisEjb {
 		em.persist(company);
 		
 		
-//		Delivery delivery1 = new Delivery();
-//		em.persist(delivery1);
+		Delivery delivery1 = new Delivery();
+		delivery1.setName("Toimitus 1");
+		em.persist(delivery1);
 		
-//		Delivery delivery2 = new Delivery();
-//		em.persist(delivery2);
+		Delivery delivery2 = new Delivery();
+		delivery2.setName("Toimitus 2");
+		em.persist(delivery2);
 		
 		Date tanaan = new Date();
 		SimpleDateFormat fdate = new SimpleDateFormat("dd.MM.yyyy");
 		fdate.format(tanaan);
 			
 		Invoice invoice = new Invoice();
-	//	invoice.setDelivery(delivery1);
+		invoice.setDelivery(delivery1);
 		invoice.setSum(100);
 		invoice.setDate(tanaan);
 		invoice.setDuePeriod(14);
 		invoice.setInfoText("InfoText");
 		
-/*		
+		
 		Invoice invoice1 = new Invoice();
-//		invoice1.setDelivery(delivery2);
+		invoice1.setDelivery(delivery2);
 		invoice1.setSum(120);
 		invoice1.setDate(tanaan);
 		invoice1.setDuePeriod(10);
 		invoice1.setInfoText("InfoText2");
-	*/	
 		
 		em.persist(invoice);
-	//	em.persist(invoice1);
+		em.persist(invoice1);
 
 		List<Invoice> invoices1 = new ArrayList<Invoice>();
 		invoices1.add(invoice);
@@ -106,19 +107,7 @@ public class AkkisEjb {
 		product.setName("Tuote1");
 		product.setPrice(20.0);
 		
-		em.persist(product);
-		
-		
-	}
-
-	public void saveInvoice(Invoice in) {
-		
-		List<Invoice> invoices3 = new ArrayList<Invoice>();
-		invoices3.add(in);
-		Delivery deliverylist3 = new Delivery();
-		deliverylist3.setInvoices(invoices3);
-		em.persist(in);
-		em.persist(deliverylist3);
+		em.persist(product);	
 	}
 	
 	public void save(Object book) {
@@ -147,8 +136,6 @@ public class AkkisEjb {
 	public List<Customer> getCustomers() {
 		List<Customer> customers = null;
 		customers = em.createNamedQuery("searchAllCustomers").getResultList();
-		System.out.println("**List of the Customers**");
-		// TODO Auto-generated method stub
 		return customers;
 	}
 	
@@ -156,17 +143,50 @@ public class AkkisEjb {
 	public List<Company> getCompanies() {
 		List<Company> companies = null;
 		companies = em.createNamedQuery("searchAllCompanies").getResultList();
-		// TODO Auto-generated method stub
-		System.out.println("**List of the Companies**");
+
 		return companies;
 	}
 
 	public List<Invoice> getInvoices() {
 		List<Invoice> invoices = null;
 		invoices = em.createNamedQuery("searchAllInvoices").getResultList();
-		System.out.println("**List of the Invoices**");
-		// TODO Auto-generated method stub
+
 		return invoices;
+	}
+	
+	public List<Invoice> getInvoices(Delivery delivery) {
+		List<Invoice> invoices = null;
+		invoices = em.createNamedQuery("invoicesForDelivery")
+			.setParameter("delivery", delivery).getResultList();
+		return invoices;
+	}
+	
+	public Invoice getInvoice(Long id) {
+		
+		try {
+			Invoice user = (Invoice) em.createNamedQuery("invoiceById")
+				.setParameter("id", id).getSingleResult();
+			
+			return user;
+		}
+		catch (javax.persistence.NoResultException ex)
+		{
+			return null;
+		}	
+	}
+	
+	public Delivery getDelivery(Long id) {
+		
+		try {
+			Delivery user = (Delivery) em.createNamedQuery("deliveryById")
+				.setParameter("id", id).getSingleResult();
+			
+			return user;
+		}
+		catch (javax.persistence.NoResultException ex)
+		{
+			return null;
+		}	
 	}
 
 	public Company getCompany(Long id) {
@@ -200,10 +220,7 @@ public class AkkisEjb {
 	public List<Product> getproducts() {
 		List<Product> products = null;
 		products = em.createNamedQuery("searchAllProducts").getResultList();
-		System.out.println("**List of the Products**");
-		// TODO Auto-generated method stub
 		return products;
-
 	}
 	
 	public Product getProduct(Long id) {
@@ -226,8 +243,6 @@ public class AkkisEjb {
 	public List<Delivery> getDeliveries() {
 		List<Delivery> deliveries = null;
 		deliveries = em.createNamedQuery("searchAllDeliveries").getResultList();
-		System.out.println("**List of the Deliveries**");
-		// TODO Auto-generated method stub
 		return deliveries;
 	}
 

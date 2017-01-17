@@ -39,10 +39,10 @@
                       #{ca.responsibilitySeller} 
         	</h:column>
 			<h:column>
-				<f:facet name="header"> </f:facet>
-                      <h:link outcome="customerEdit.xhtml" value="Edit">
-                      	<f:param name="id" value="#{ca.id}" />
-                      </h:link>
+				<f:facet name="header">Actions</f:facet>
+                <h:link outcome="customerEdit.xhtml" value="Edit">
+                	<f:param name="id" value="#{ca.id}" />
+                </h:link>
         	</h:column>
 		</b:dataTable>
 

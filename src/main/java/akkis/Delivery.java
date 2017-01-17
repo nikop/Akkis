@@ -15,7 +15,10 @@ import javax.faces.bean.ViewScoped;
 @RequestScoped
 @ManagedBean
 @Entity
-@NamedQuery(name = "searchAllDeliveries", query = "SELECT d from Delivery d") 
+@NamedQueries({
+	@NamedQuery(name = "searchAllDeliveries", query = "SELECT d from Delivery d"),
+	@NamedQuery(name = "deliveryById", query = "SELECT d from Delivery d WHERE d.id = :id")
+})
 public class Delivery implements Serializable {
 	
 	@Id

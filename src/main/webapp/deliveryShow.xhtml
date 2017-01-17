@@ -1,20 +1,29 @@
 <ui:composition template="/template.xhtml"
 	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:b="http://bootsfaces.net/ui"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
-	<ui:param name="title" value="Invoice" />
+	<ui:define name="metadata">
+		<f:metadata>
+			<f:viewParam name="id" value="#{deliveryController.delivery}"
+				converter="#{deliveryConverter}" converterMessage="Unknown delivery"
+				required="true"
+				requiredMessage="Bad request, please use a link from within the system." />
+			</f:metadata>
+	</ui:define>
+
+	<ui:param name="title" value="Delivery - ${deliveryController.delivery.name}" />
 
 	<ui:define name="content">
-		<b:dataTable value="#{invoiceController.invoices}" var="in">
-			<h:column headerstyleClass="first">
-				<f:facet name="header">Delivery</f:facet>
-				 <h:link outcome="deliveryShow.xhtml" value="#{in.delivery.name}">
-                	<f:param name="id" value="#{in.delivery.id}" />
-                </h:link>			    	 
-            </h:column>
+	
+		<h2>${deliveryController.delivery.name}</h2>
+	
+		<h3>Invoices for this Delivery</h3>
+		
+		<b:dataTable value="#{invoiceController.getInvoices(deliveryController.delivery)}" var="in">
 			<h:column>
 				<f:facet name="header">Sum</f:facet>
                     #{in.sum}
@@ -40,17 +49,21 @@
                 </h:link>
         	</h:column>
 		</b:dataTable>
-
-		<b:panel title="New Invoice" collapsible="false">		
+		
+		<b:panel title="New Invoice" collapsible="false">
 			<h:form id="invoiceform">
 
+				<c:set var="delivery" target="#{invoice}" value="#{deliveryController.delivery}" />
+			
 				<ui:include src="/invoiceForm.xhtml">
 					<ui:param name="invoice" value="#{invoice}" />
+					<ui:param name="showDelivery" value="false" />
 				</ui:include>
 
 				<b:commandButton value="Add"
-					action="#{invoiceController.saveInvoice()}" />
+					action="#{invoiceController.saveInvoice(deliveryController.delivery)}" />
 			</h:form>
 		</b:panel>
+		
 	</ui:define>
 </ui:composition>

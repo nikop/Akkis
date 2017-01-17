@@ -17,7 +17,11 @@ import javax.faces.bean.RequestScoped;
 @ManagedBean
 @Entity
 @RequestScoped
-@NamedQuery(name = "searchAllInvoices", query = "SELECT i from Invoice i") 
+@NamedQueries({
+	@NamedQuery(name = "searchAllInvoices", query = "SELECT i from Invoice i"),
+	@NamedQuery(name = "invoiceById", query = "SELECT i from Invoice i WHERE i.id = :id"),
+	@NamedQuery(name = "invoicesForDelivery", query = "SELECT i from Invoice i WHERE i.delivery = :delivery"),
+})
 public class Invoice {
 
 	@Id
@@ -43,7 +47,8 @@ public class Invoice {
 	
 	
 	public Invoice() {
-		super();
+		
+		date = new Date();
 		
 	}
 	

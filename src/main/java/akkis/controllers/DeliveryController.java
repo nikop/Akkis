@@ -49,7 +49,7 @@ public class DeliveryController {
 	}
 	
 	public String saveDelivery(Delivery delivery) {
-			tuoteEjb.saveChanges(delivery);
+		tuoteEjb.saveChanges(delivery);
 		
 		FacesMessages.info("Successfully saved.");
 		
