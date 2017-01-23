@@ -4,9 +4,8 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:b="http://bootsfaces.net/ui">
 	
-	<b:inputText label="Date" value="#{invoice.date}">
-		<f:convertDateTime pattern="dd.MM.yyyy" />
-	</b:inputText>
+	<b:datepicker label="Date" value="#{invoice.date}">
+	</b:datepicker>
 	
 	<b:inputText id="due" value="#{invoice.duePeriod}" label="Due Period"
 		required="true" renderLabel="true" />

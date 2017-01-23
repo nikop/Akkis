@@ -50,18 +50,16 @@
         	</h:column>
 		</b:dataTable>
 		
-		<b:panel title="New Invoice" collapsible="false">
-			<h:form id="invoiceform">
+		<b:panel title="Add Product" collapsible="false">
+			<h:form id="productform">
 
-				<c:set var="delivery" target="#{invoice}" value="#{deliveryController.delivery}" />
-			
-				<ui:include src="/invoiceForm.xhtml">
-					<ui:param name="invoice" value="#{invoice}" />
-					<ui:param name="showDelivery" value="false" />
+		
+				<ui:include src="/deliveryProductForm.xhtml">
+					<ui:param name="deliveryProduct" value="#{deliveryProduct}" />
 				</ui:include>
 
 				<b:commandButton value="Add"
-					action="#{invoiceController.saveInvoice(deliveryController.delivery)}" />
+					action="#{deliveryController.delivery.addProduct(deliveryProduct)}" />
 			</h:form>
 		</b:panel>
 		

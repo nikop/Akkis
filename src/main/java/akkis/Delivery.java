@@ -8,6 +8,7 @@ import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
@@ -21,6 +22,9 @@ import javax.faces.bean.ViewScoped;
 })
 public class Delivery implements Serializable {
 	
+	@EJB
+    private AkkisEjb ejb;
+	
 	@Id
 	@SequenceGenerator(name = "id_seq_delivery", sequenceName = "Delivery_ID_SEQ")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_seq_delivery")
@@ -32,6 +36,7 @@ public class Delivery implements Serializable {
 //	private Invoice invoice = new Invoice();
 //	private boolean edit;
 	
+	private List<DeliveryProduct> products;	
 	
 	public Delivery() {
 		super();
@@ -69,8 +74,33 @@ public class Delivery implements Serializable {
 	public void setInvoices(List<Invoice> invoices) {
 		this.invoices = invoices;
 	}
-
 	
+	public List<DeliveryProduct> getProducts() {
+		return products;
+	}
+
+	public void addProduct(Product product)
+	{
+		DeliveryProduct dp = new DeliveryProduct();
+		dp.setProduct(product);
+		addProduct(dp);
+	}
+	
+	public void addProduct(DeliveryProduct dp)
+	{
+		dp.setDelivery(this);
+		products.add(dp);
+		
+		ejb.save(dp);
+		ejb.saveChanges(this);
+	}
+
+
+	public void setProducts(List<DeliveryProduct> products) {
+		this.products = products;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Delivery [id=" + id + ", invoices=" + invoices + "]";
