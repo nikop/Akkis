@@ -16,12 +16,13 @@
 		<b:navBar brand="Akkis" brandHref="index.xhtml" fixed="top"
 			inverse="true">
 			<b:navbarLinks>
-				<b:navLink value="Home" href="index.xhtml"></b:navLink>
-				<b:navLink value="Customer" href="customer.xhtml"></b:navLink>
-				<b:navLink value="Company" href="company.xhtml"></b:navLink>
-                <b:navLink value="Deliveries" href="delivery.xhtml"></b:navLink>
-                <b:navLink value="Invoice" href="invoice.xhtml"></b:navLink>
-                <b:navLink value="Product" href="product.xhtml"></b:navLink>
+				<b:navLink value="Home" active="#{tab=='home'}" href="index.xhtml"></b:navLink>
+				<b:navLink value="Users" active="#{tab=='users'}" href="users.xhtml"></b:navLink>
+				<b:navLink value="Customer" active="#{tab=='customer'}" href="customer.xhtml"></b:navLink>
+				<b:navLink value="Company" active="#{tab=='company'}" href="company.xhtml"></b:navLink>
+                <b:navLink value="Deliveries" active="#{tab=='deliveries'}" href="delivery.xhtml"></b:navLink>
+                <b:navLink value="Invoice" active="#{tab=='invoice'}" href="invoice.xhtml"></b:navLink>
+                <b:navLink value="Product" active="#{tab=='product'}" href="product.xhtml"></b:navLink>
         
             </b:navbarLinks>
             <h:form styleClass="navbar-form navbar-right" rendered="#{!loginUser.logged}">

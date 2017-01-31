@@ -9,7 +9,6 @@ import akkis.AkkisEjb;
 import akkis.Company;
 import akkis.Customer;
 import akkis.Product;
-import akkis.Tilaus;
 
 import java.sql.Timestamp;
 import java.util.List;

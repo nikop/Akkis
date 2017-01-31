@@ -1,0 +1,35 @@
+<ui:composition template="/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+	<ui:param name="title" value="Users" />
+    <ui:param name="tab" value="users" />
+
+	<ui:define name="content">
+		<b:dataTable value="#{userController.users}" var="user">
+			<h:column headerstyleClass="first">
+				<f:facet name="header">Name</f:facet>
+				#{user.name}
+            </h:column>
+			<h:column>
+				<f:facet name="header">Roles</f:facet>
+                #{user.roles}
+            </h:column>
+		</b:dataTable>
+		
+		<b:panel title="New User" collapsible="false">
+			<h:form id="userform">
+
+				<ui:include src="/userForm.xhtml">
+					<ui:param name="user" value="#{user}" />
+				</ui:include>
+
+				<b:commandButton value="Create User"
+					action="#{userController.saveUser(user)}" />
+			</h:form>
+		</b:panel>
+	</ui:define>
+</ui:composition>

@@ -8,7 +8,6 @@ import javax.faces.context.FacesContext;
 import akkis.AkkisEjb;
 import akkis.Customer;
 import akkis.Product;
-import akkis.Tilaus;
 import net.bootsfaces.utils.FacesMessages;
 
 import java.sql.Timestamp;

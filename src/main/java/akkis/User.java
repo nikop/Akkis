@@ -27,10 +27,15 @@ public class User implements Serializable {
 	private Long id;
 	
 	@Column(unique=true)
+	@Size(min = 3, max=25, message = "Must be between 3 and 25 characters")
 	private String username;
 	
+	@Size(min = 1, message = "Required")
 	private String password;
+	
+	@Size(min = 1, message = "Required")
 	private String name;
+	
 	private List<Role> roles;
 	
 	public User () {

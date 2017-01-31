@@ -118,6 +118,11 @@ public class AkkisEjb {
 		em.merge(book);
 	}
 	
+	public List<User> getUsers() {
+		List<User> users = em.createNamedQuery("searchAllUsers").getResultList();
+		return users;
+	}
+	
 	public User getUser(LoginUser loginUser) {
 		
 		try {

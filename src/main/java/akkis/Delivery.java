@@ -23,7 +23,7 @@ import javax.faces.bean.ViewScoped;
 public class Delivery implements Serializable {
 	
 	@EJB
-    private AkkisEjb ejb;
+    private transient AkkisEjb ejb;
 	
 	@Id
 	@SequenceGenerator(name = "id_seq_delivery", sequenceName = "Delivery_ID_SEQ")

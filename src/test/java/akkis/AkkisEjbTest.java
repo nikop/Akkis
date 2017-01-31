@@ -8,9 +8,6 @@ import org.mockito.runners.MockitoJUnitRunner;
 @RunWith(MockitoJUnitRunner.class)
 public class AkkisEjbTest {
 
-	@Mock
-	Tilaus mockTilaus;
-	
 	@Test
 	public void testInit() {
 		
