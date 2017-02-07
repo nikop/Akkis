@@ -17,7 +17,7 @@
 	<ui:param name="title" value="Invoice - Edit" />
     <ui:param name="tab" value="invoice" />
     
-    <ui:param name="pagePermission" value="#{loginUser.can(Role.EDIT_INVOICES)}" />
+    <ui:param name="pagePermission" value="#{loginUser.can('EDIT_INVOICES')}" />
 
 	<ui:define name="content">
 		<b:panel title="Edit Invoice #{invoiceController.invoice.id} - #{invoiceController.invoice.date}" collapsible="false">
