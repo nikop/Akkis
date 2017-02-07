@@ -8,6 +8,8 @@
 	<ui:param name="title" value="Customer" />
     <ui:param name="tab" value="customer" />
 
+    <ui:param name="pagePermission" value="#{loginUser.can(Role.VIEW_CUSTOMERS)}" />
+
 	<ui:define name="content">
 		<b:dataTable value="#{customerController.customers}" var="ca">
 			<h:column headerstyleClass="first">

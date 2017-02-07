@@ -16,6 +16,8 @@
 
 	<ui:param name="title" value="Customer - Edit" />
     <ui:param name="tab" value="customer" />
+    
+    <ui:param name="pagePermission" value="#{loginUser.can(Role.EDIT_CUSTOMERS)}" />
 
 	<ui:define name="content">
 

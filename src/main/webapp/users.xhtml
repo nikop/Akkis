@@ -7,12 +7,16 @@
 
 	<ui:param name="title" value="Users" />
     <ui:param name="tab" value="users" />
+    
+    <ui:param name="pagePermission" value="#{loginUser.can(Role.VIEW_USERS)}" />
 
 	<ui:define name="content">
 		<b:dataTable value="#{userController.users}" var="user">
 			<h:column headerstyleClass="first">
 				<f:facet name="header">Name</f:facet>
-				#{user.name}
+				<h:link outcome="userEdit.xhtml" value="#{user.name}">
+               		<f:param name="id" value="#{user.id}" />
+               	</h:link>				
             </h:column>
 			<h:column>
 				<f:facet name="header">Roles</f:facet>
@@ -21,15 +25,15 @@
 		</b:dataTable>
 		
 		<b:panel title="New User" collapsible="false">
-			<h:form id="userform">
+			<b:form id="userform">
 
 				<ui:include src="/userForm.xhtml">
 					<ui:param name="user" value="#{user}" />
 				</ui:include>
 
-				<b:commandButton value="Create User"
+				<b:commandButton ajax="true" update="@Form" value="Create User"
 					action="#{userController.saveUser(user)}" />
-			</h:form>
+			</b:form>
 		</b:panel>
 	</ui:define>
 </ui:composition>

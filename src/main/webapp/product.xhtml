@@ -8,6 +8,8 @@
 	<ui:param name="title" value="Product" />
     <ui:param name="tab" value="product" />
 
+    <ui:param name="pagePermission" value="#{loginUser.can(Role.VIEW_PRODUCTS)}" />
+
 	<ui:define name="content">
 		<b:dataTable value="#{productController.products}" var="pd">
 			<h:column headerstyleClass="first">
@@ -20,7 +22,7 @@
             </h:column>
 			<h:column>
 				<f:facet name="header"></f:facet>
-				<h:link outcome="productEdit.xhtml" value="Edit">
+				<h:link outcome="productEdit.xhtml" value="Edit" rendered="#{loginUser.can(Role.EDIT_PRODUCTS)}">
 					<f:param name="id" value="#{pd.id}" />
 				</h:link>
 			</h:column>

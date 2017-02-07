@@ -7,6 +7,8 @@
 
 	<ui:param name="title" value="Invoice" />
     <ui:param name="tab" value="invoice" />
+    
+    <ui:param name="pagePermission" value="#{loginUser.can(Role.VIEW_INVOICES)}" />
 
 	<ui:define name="content">
 		<b:dataTable value="#{invoiceController.invoices}" var="in">

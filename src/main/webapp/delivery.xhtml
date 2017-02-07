@@ -8,6 +8,8 @@
 	<ui:param name="title" value="Deliveries" />
     <ui:param name="tab" value="deliveries" />
 
+    <ui:param name="pagePermission" value="#{loginUser.can(Role.VIEW_DELIVERIES)}" />
+
 	<ui:define name="content">
 		<h:form>
 			<b:dataTable value="#{deliveryController.deliveries}" var="item">

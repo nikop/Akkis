@@ -12,18 +12,16 @@
 <h:body style="padding: 60px;">
 	<ui:insert name="metadata" />
 	<f:view>
-
 		<b:navBar brand="Akkis" brandHref="index.xhtml" fixed="top"
 			inverse="true">
 			<b:navbarLinks>
 				<b:navLink value="Home" active="#{tab=='home'}" href="index.xhtml"></b:navLink>
-				<b:navLink value="Users" active="#{tab=='users'}" href="users.xhtml"></b:navLink>
-				<b:navLink value="Customer" active="#{tab=='customer'}" href="customer.xhtml"></b:navLink>
-				<b:navLink value="Company" active="#{tab=='company'}" href="company.xhtml"></b:navLink>
-                <b:navLink value="Deliveries" active="#{tab=='deliveries'}" href="delivery.xhtml"></b:navLink>
-                <b:navLink value="Invoice" active="#{tab=='invoice'}" href="invoice.xhtml"></b:navLink>
-                <b:navLink value="Product" active="#{tab=='product'}" href="product.xhtml"></b:navLink>
-        
+				<b:navLink value="Users" rendered="#{loginUser.can(Role.VIEW_USERS)}" active="#{tab=='users'}" href="users.xhtml"></b:navLink>
+				<b:navLink value="Customer" rendered="#{loginUser.can(Role.VIEW_CUSTOMERS)}" active="#{tab=='customer'}" href="customer.xhtml"></b:navLink>
+				<b:navLink value="Company" rendered="#{loginUser.can(Role.VIEW_COMPANIES)}" active="#{tab=='company'}" href="company.xhtml"></b:navLink>
+                <b:navLink value="Deliveries" rendered="#{loginUser.can(Role.VIEW_DELIVERIES)}" active="#{tab=='deliveries'}" href="delivery.xhtml"></b:navLink>
+                <b:navLink value="Invoice" rendered="#{loginUser.can(Role.VIEW_INVOICES)}" active="#{tab=='invoice'}" href="invoice.xhtml"></b:navLink>
+                <b:navLink value="Product" rendered="#{loginUser.can(Role.VIEW_PRODUCTS)}" active="#{tab=='product'}" href="product.xhtml"></b:navLink>        
             </b:navbarLinks>
             <h:form styleClass="navbar-form navbar-right" rendered="#{!loginUser.logged}">
                 <div class="form-group">
@@ -48,10 +46,17 @@
 		</b:navBar>
 		<b:container>
 	       	<b:messages id="messages" />
-			<ui:insert name="content">
-				<h1>New content here</h1>
-				<p>Blah blah</p>
-			</ui:insert>
+	       	
+	       	<h:panelGroup rendered="#{pagePermission == false}">
+	       		No Permission
+	       	</h:panelGroup>
+	       	
+	       	<h:panelGroup rendered="#{pagePermission != false}">
+				<ui:insert name="content">
+					<h1>New content here</h1>
+					<p>Blah blah</p>
+				</ui:insert>
+			</h:panelGroup>
 		</b:container>
 	</f:view>
 </h:body>
