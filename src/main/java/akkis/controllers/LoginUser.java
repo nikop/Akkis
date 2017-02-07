@@ -48,19 +48,16 @@ public class LoginUser implements Serializable {
 		return user != null;
 	}
 	
-	public boolean can(Permission permission)
+	public boolean can(String role)
+	{
+		return can(Role.valueOf(role));
+	}
+	
+	public boolean can(Role role)
 	{
 		if (!isLogged())
 			return false;
 		
-		if (user.hasRole(Role.ADMIN))
-			return true;
-		
-		switch (permission) {
-			case VIEW_CUSTOMERS:
-				return user.hasRole(Role.SELLER);
-			default:
-				return false;
-		}
+		return user.hasRole(Role.ADMIN) || user.hasRole(role);
 	}
 }

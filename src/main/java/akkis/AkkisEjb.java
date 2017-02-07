@@ -40,6 +40,24 @@ public class AkkisEjb {
 		
 		em.persist(user1);
 		
+		
+		User user2 = new User();
+		
+		ArrayList<Role> user2roles = new ArrayList<Role>();
+		user2roles.add(Role.VIEW_COMPANIES);
+		user2roles.add(Role.VIEW_CUSTOMERS);
+		user2roles.add(Role.VIEW_DELIVERIES);
+		user2roles.add(Role.VIEW_INVOICES);
+		user2roles.add(Role.VIEW_PRODUCTS);
+		user2roles.add(Role.VIEW_USERS);
+		
+		user2.setUsername("boss");
+		user2.setName("Boss");
+		user2.setPassword("salasana");
+		user2.setRoles((List<Role>) user2roles);
+		
+		em.persist(user2);
+		
 		Customer customer = new Customer();
 		customer.setName("Pekka");
 		customer.setAddress("Asemakatu 4");
@@ -121,6 +139,20 @@ public class AkkisEjb {
 	public List<User> getUsers() {
 		List<User> users = em.createNamedQuery("searchAllUsers").getResultList();
 		return users;
+	}
+	
+	public User getUser(Long id) {
+		
+		try {
+			User user = (User) em.createNamedQuery("userById")
+				.setParameter("id", id).getSingleResult();
+			
+			return user;
+		}
+		catch (javax.persistence.NoResultException ex)
+		{
+			return null;
+		}	
 	}
 	
 	public User getUser(LoginUser loginUser) {
