@@ -18,6 +18,12 @@
 	<b:inputText id="info" value="#{invoice.infoText}" label="Info"
 		required="true" renderLabel="true" />
 	
+	<b:selectOneMenu value="#{invoice.status}" label="Status:" id="status">
+		<f:selectItems value="#{data.invoiceStatuses}" var="status"
+			itemValue="#{status}" itemLabel="#{status.label}" />
+	</b:selectOneMenu>
+	<h:message for="status" />
+	
 	<b:selectOneMenu value="#{invoice.delivery}" label="Delivery" id="delivery">
 		<f:selectItems value="#{deliveryController.deliveries}" var="d"
 			itemValue="#{d}" itemLabel="#{d.name}" />

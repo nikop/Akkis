@@ -11,6 +11,9 @@ import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
+
+import akkis.types.InvoiceStatus;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
@@ -45,11 +48,10 @@ public class Invoice {
 	@Size(min = 4, message = "Write Info text, at least 4 characters")
 	private String infoText; 
 	
+	private InvoiceStatus status;
 	
-	public Invoice() {
-		
-		date = new Date();
-		
+	public Invoice() {	
+		date = new Date();	
 	}
 	
 
@@ -91,20 +93,24 @@ public class Invoice {
 
 	public void setInfoText(String infoText) {
 		this.infoText = infoText;
-	}
-
-	
+	}	
 	
 	public Delivery getDelivery() {
 		return delivery;
 	}
 
-
-
 	public void setDelivery(Delivery delivery) {
 		this.delivery = delivery;
 	}
 
+	public InvoiceStatus getStatus() {
+		return status;
+	}
+
+
+	public void setStatus(InvoiceStatus status) {
+		this.status = status;
+	}
 
 
 	@Override
