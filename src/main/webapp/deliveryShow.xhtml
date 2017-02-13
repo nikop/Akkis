@@ -51,16 +51,32 @@
         	</h:column>
 		</b:dataTable>
 		
+		<h3>Products</h3>
+		
+		<b:dataTable value="#{deliveryController.delivery.products}" var="p">
+			<h:column>
+				<f:facet name="header">Name</f:facet>
+                #{p.product.name}
+            </h:column>
+			<h:column>
+				<f:facet name="header">Price</f:facet>
+                #{p.product.price}
+            </h:column>
+		</b:dataTable>
+		
+		<h:form id="commands">
+			<b:commandButton value="Create Invoice" action="#{deliveryController.createInvoice()}" />
+		</h:form>
+		
 		<b:panel title="Add Product" collapsible="false">
 			<h:form id="productform">
-
 		
 				<ui:include src="/deliveryProductForm.xhtml">
 					<ui:param name="deliveryProduct" value="#{deliveryProduct}" />
 				</ui:include>
 
 				<b:commandButton value="Add"
-					action="#{deliveryController.delivery.addProduct(deliveryProduct)}" />
+					action="#{deliveryController.addProductToDelivery(deliveryProduct)}" />
 			</h:form>
 		</b:panel>
 		

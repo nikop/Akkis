@@ -7,6 +7,9 @@ import javax.faces.context.FacesContext;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
+
+import akkis.converters.ProductConverter;
+
 import org.mockito.Mock;
 
 @RunWith(MockitoJUnitRunner.class)

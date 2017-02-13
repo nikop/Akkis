@@ -3,11 +3,16 @@ package akkis;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
+
+import akkis.types.InvoiceStatus;
+
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -22,27 +27,20 @@ import javax.faces.bean.ViewScoped;
 })
 public class Delivery implements Serializable {
 	
-	@EJB
-    private transient AkkisEjb ejb;
-	
 	@Id
 	@SequenceGenerator(name = "id_seq_delivery", sequenceName = "Delivery_ID_SEQ")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_seq_delivery")
 
 	private long id;
 	
-	//@OneToMany(fetch = FetchType.EAGER)
-	private List<Invoice> invoices;
-//	private Invoice invoice = new Invoice();
-//	private boolean edit;
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, mappedBy="delivery")
+	private List<Invoice> invoices;	
 	
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, mappedBy="delivery")
 	private List<DeliveryProduct> products;	
 	
 	public Delivery() {
 		super();
-	//	invoices = new ArrayList<Invoice>();
-	//	invoices.add(invoice);
-	//	invoice = new Invoice();
 	}
 
 	
@@ -65,11 +63,9 @@ public class Delivery implements Serializable {
 		this.name = name;
 	}
 
-
 	public List<Invoice> getInvoices() {
 		return invoices;
 	}
-
 
 	public void setInvoices(List<Invoice> invoices) {
 		this.invoices = invoices;
@@ -81,23 +77,40 @@ public class Delivery implements Serializable {
 
 	public void addProduct(Product product)
 	{
-		DeliveryProduct dp = new DeliveryProduct();
-		dp.setProduct(product);
-		addProduct(dp);
+		addProduct(new DeliveryProduct(product));
 	}
 	
 	public void addProduct(DeliveryProduct dp)
 	{
 		dp.setDelivery(this);
 		products.add(dp);
-		
-		ejb.save(dp);
-		ejb.saveChanges(this);
 	}
 
 
 	public void setProducts(List<DeliveryProduct> products) {
 		this.products = products;
+	}
+	
+	public void createInvoice() {
+		
+		Invoice invoice = new Invoice();
+		invoice.setDate(new Date());
+		invoice.setDuePeriod(14);
+		invoice.setDelivery(this);
+		invoice.setInfoText(String.format("Invoice for %d products on %s", products.size(), invoice.getDate()));
+		
+		double sum = 0;
+		
+		for (Iterator<DeliveryProduct> iterator = products.iterator(); iterator.hasNext();) {
+			DeliveryProduct dp = iterator.next();
+			
+			sum += dp.getProduct().getPrice();
+		}
+		
+		invoice.setSum(sum);
+		invoice.setStatus(InvoiceStatus.OPEN);
+		
+		invoices.add(invoice);
 	}
 
 

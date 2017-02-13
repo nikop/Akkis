@@ -24,7 +24,7 @@
             </h:column>
 		</b:dataTable>
 		
-		<b:panel title="New User" collapsible="false">
+		<b:panel title="New User" collapsible="false" rendered="#{loginUser.can('EDIT_USERS')}">
 			<b:form id="userform">
 
 				<ui:include src="/userForm.xhtml">

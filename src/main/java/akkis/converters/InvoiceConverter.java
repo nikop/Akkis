@@ -1,4 +1,4 @@
-package akkis;
+package akkis.converters;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -8,6 +8,9 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 import javax.inject.Named;
+
+import akkis.AkkisEjb;
+import akkis.Invoice;
 
 @ManagedBean
 @RequestScoped

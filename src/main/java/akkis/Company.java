@@ -35,8 +35,6 @@ public class Company  implements Serializable {
 	@Size(min = 8, max = 33, message = "Write Company business id")
 	private String yTunnus;
 	
-	//private ArrayList<Company> companies = new ArrayList<Company>();
-	
 	public Company () {
 		
 	}
@@ -88,38 +86,6 @@ public class Company  implements Serializable {
 	public void setyTunnus(String yTunnus) {
 		this.yTunnus = yTunnus;
 	}
-	/*
-	private boolean editable;
-
-	public boolean isEditable() {
-		return editable;
-	}
-	public void setEditable(boolean editable) {
-		this.editable = editable;
-	}
-	
-	public String editCompany(Company company) {
-		company.setEditable(true);
-		return null;
-	}
-	
-	// save companies which has been edited
-	public String saveEditableCompanies(){
-	      //set "canEdit" of all employees to false 
-	      for (Company company : companies){
-	         company.setEditable(false);
-	      }		
-	      return null;
-	   }
-	
-	public String editAllCompanies() {
-		//set "editable" to true for all fields
-		for (Company ca : companies){
-			ca.setEditable(true);
-		}
-		return null;
-	}
-*/
 	
 	@Override
 	public String toString() {

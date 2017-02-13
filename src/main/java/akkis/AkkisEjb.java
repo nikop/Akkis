@@ -18,7 +18,6 @@ import javax.ejb.Stateless;
 @Stateless
 public class AkkisEjb {
 	
-	
 	@PersistenceContext(unitName = "jpa_akkis") // Name in persistence.xml
 	private EntityManager em;
 
@@ -87,8 +86,6 @@ public class AkkisEjb {
 		em.persist(delivery2);
 		
 		Date tanaan = new Date();
-		SimpleDateFormat fdate = new SimpleDateFormat("dd.MM.yyyy");
-		fdate.format(tanaan);
 			
 		Invoice invoice = new Invoice();
 		invoice.setDelivery(delivery1);
@@ -96,6 +93,9 @@ public class AkkisEjb {
 		invoice.setDate(tanaan);
 		invoice.setDuePeriod(14);
 		invoice.setInfoText("InfoText");
+		invoice.addRow(
+			new InvoiceRow("Example Item", 100)
+		);
 		
 		
 		Invoice invoice1 = new Invoice();
@@ -104,23 +104,13 @@ public class AkkisEjb {
 		invoice1.setDate(tanaan);
 		invoice1.setDuePeriod(10);
 		invoice1.setInfoText("InfoText2");
+		invoice1.addRow(
+			new InvoiceRow("Example Item", 120)
+		);
 		
 		em.persist(invoice);
 		em.persist(invoice1);
 
-		List<Invoice> invoices1 = new ArrayList<Invoice>();
-		invoices1.add(invoice);
-	//	List<Invoice> invoices2 = new ArrayList<Invoice>();
-	//	invoices2.add(invoice1);
-		
-	//	Delivery deliverylist1 = new Delivery();
-	//	Delivery deliverylist2 = new Delivery();
-	//	deliverylist1.setInvoices(invoices1);
-	//	deliverylist2.setInvoices(invoices2);
-		
-	//	em.persist(deliverylist1);
-	//	em.persist(deliverylist2);
-				
 		Product product = new Product();
 		product.setName("Tuote1");
 		product.setPrice(20.0);
@@ -254,7 +244,7 @@ public class AkkisEjb {
 		}	
 	}
 
-	public List<Product> getproducts() {
+	public List<Product> getProducts() {
 		List<Product> products = null;
 		products = em.createNamedQuery("searchAllProducts").getResultList();
 		return products;

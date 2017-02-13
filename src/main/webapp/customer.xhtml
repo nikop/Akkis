@@ -49,7 +49,7 @@
         	</h:column>
 		</b:dataTable>
 
-		<b:panel title="New Customer" collapsible="false">
+		<b:panel title="New Customer" collapsible="false" rendered="#{loginUser.can('EDIT_CUSTOMERS')}">
 			<h:form id="customerform">
 
 				<ui:include src="/customerForm.xhtml">

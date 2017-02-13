@@ -31,7 +31,7 @@
 			</b:dataTable>
 		</h:form>
 
-		<b:panel title="New Delivery" collapsible="false">
+		<b:panel title="New Delivery" collapsible="false" rendered="#{loginUser.can('EDIT_DELIVERIES')}">
 			<h:form id="deliveryform">
 
 				<ui:include src="/deliveryForm.xhtml">

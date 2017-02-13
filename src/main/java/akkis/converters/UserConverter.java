@@ -1,4 +1,4 @@
-package akkis;
+package akkis.converters;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -9,9 +9,12 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 import javax.inject.Named;
 
+import akkis.AkkisEjb;
+import akkis.User;
+
 @ManagedBean
 @RequestScoped
-public class CustomerConverter implements Converter {
+public class UserConverter implements Converter {
 
     @EJB
     private AkkisEjb ejb;
@@ -24,9 +27,9 @@ public class CustomerConverter implements Converter {
 
         try {
             Long id = Long.valueOf(value);
-            return ejb.getCustomer(id);
+            return ejb.getUser(id);
         } catch (NumberFormatException e) {
-            throw new ConverterException("The value is not a valid Customer ID: " + value, e);
+            throw new ConverterException("The value is not a valid ID: " + value, e);
         }
     }
 
@@ -36,11 +39,11 @@ public class CustomerConverter implements Converter {
             return "";
         }
 
-        if (value instanceof Customer) {
-            Long id = ((Customer) value).getId();
+        if (value instanceof User) {
+            Long id = ((User) value).getId();
             return (id != null) ? String.valueOf(id) : null;
         } else {
-            throw new ConverterException("The value is not a valid Customer instance: " + value);
+            throw new ConverterException("The value is not a valid instance: " + value);
         }
     }
 }

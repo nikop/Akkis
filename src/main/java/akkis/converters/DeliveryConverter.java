@@ -1,4 +1,4 @@
-package akkis;
+package akkis.converters;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -9,9 +9,12 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 import javax.inject.Named;
 
+import akkis.AkkisEjb;
+import akkis.Delivery;
+
 @ManagedBean
 @RequestScoped
-public class CompanyConverter implements Converter {
+public class DeliveryConverter implements Converter {
 
     @EJB
     private AkkisEjb ejb;
@@ -24,9 +27,9 @@ public class CompanyConverter implements Converter {
 
         try {
             Long id = Long.valueOf(value);
-            return ejb.getCompany(id);
+            return ejb.getDelivery(id);
         } catch (NumberFormatException e) {
-            throw new ConverterException("The value is not a valid Company ID: " + value, e);
+            throw new ConverterException("The value is not a valid ID: " + value, e);
         }
     }
 
@@ -36,11 +39,11 @@ public class CompanyConverter implements Converter {
             return "";
         }
 
-        if (value instanceof Company) {
-            Long id = ((Company) value).getId();
+        if (value instanceof Delivery) {
+            Long id = ((Delivery) value).getId();
             return (id != null) ? String.valueOf(id) : null;
         } else {
-            throw new ConverterException("The value is not a valid Company instance: " + value);
+            throw new ConverterException("The value is not a valid instance: " + value);
         }
     }
 }

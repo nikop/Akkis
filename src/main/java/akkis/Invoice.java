@@ -30,7 +30,6 @@ public class Invoice {
 	@Id
 	@SequenceGenerator(name = "id_seq_invoice", sequenceName = "Invoice_ID_SEQ")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_seq_invoice")
-
 	private long id;
 	
 	@ManyToOne
@@ -50,10 +49,12 @@ public class Invoice {
 	
 	private InvoiceStatus status;
 	
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST, mappedBy="invoice")
+	private List<InvoiceRow> rows = new ArrayList<InvoiceRow>();	
+	
 	public Invoice() {	
 		date = new Date();	
-	}
-	
+	}	
 
 	public long getId() {
 		return id;
@@ -107,18 +108,20 @@ public class Invoice {
 		return status;
 	}
 
-
 	public void setStatus(InvoiceStatus status) {
 		this.status = status;
 	}
-
+	
+	public void addRow(InvoiceRow row)
+	{
+		row.setInvoice(this);
+		rows.add(row);
+	}
 
 	@Override
 	public String toString() {
 		return "Invoice [id=" + id + ", sum=" + sum + ", date=" + date
 				+ ", duePeriod=" + duePeriod + ", infoText=" + infoText + "]";
 	}
-	
-	
 	
 }

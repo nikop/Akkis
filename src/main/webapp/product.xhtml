@@ -29,7 +29,7 @@
 
 		</b:dataTable>
 
-		<b:panel title="New Product" collapsible="false">
+		<b:panel title="New Product" collapsible="false" rendered="#{loginUser.can('EDIT_PRODUCTS')}">
 			<h:form id="productform">
 
 				<ui:include src="/productForm.xhtml">

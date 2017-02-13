@@ -16,7 +16,7 @@
 		required="true" renderLabel="true" />
 	<h:message for="name" />
 	
-	<h:selectManyCheckbox value="#{user.roles}" id="roles" required="true" converter="roleConverter">
+	<h:selectManyCheckbox value="#{user.roles}" id="roles" required="true" converter="roleConverter" layout="pageDirection">
          <f:selectItems value="#{data.roles}" var="d"
 			itemValue="#{d}" itemLabel="#{d.label}" />
     </h:selectManyCheckbox>

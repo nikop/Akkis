@@ -39,10 +39,7 @@ public class Customer implements Serializable {
 	private User responsibilitySeller;
 	
 	public Customer() {
-	
-		
 	}
-
 
 	public Long getId() {
 		return id;
@@ -122,8 +119,5 @@ public class Customer implements Serializable {
 	public void setResponsibilitySeller(User responsibilitySeller) {
 		this.responsibilitySeller = responsibilitySeller;
 	}
-	
-	
-
 
 }

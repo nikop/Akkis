@@ -40,7 +40,7 @@
         	</h:column>
 		</b:dataTable>
 		
-		<b:panel title="New Company" collapsible="false">
+		<b:panel title="New Company" collapsible="false" rendered="#{loginUser.can('EDIT_COMPANIES')}">
 			<h:form id="companyform">
 
 				<ui:include src="/companyForm.xhtml">

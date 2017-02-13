@@ -63,15 +63,7 @@ public class ProductController {
 	}
 
 	public List<Product> getProducts() {
-		return tuoteEjb.getproducts();
+		return tuoteEjb.getProducts();
 	}
- 
-	
-	public String initProduct() {
-		tuoteEjb.init();
-		return null;
-	}
-
-
 
 }

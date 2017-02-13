@@ -44,7 +44,7 @@
         	</h:column>
 		</b:dataTable>
 
-		<b:panel title="New Invoice" collapsible="false">		
+		<b:panel title="New Invoice" collapsible="false" rendered="#{loginUser.can('EDIT_INVOICES')}">		
 			<h:form id="invoiceform">
 
 				<ui:include src="/invoiceForm.xhtml">

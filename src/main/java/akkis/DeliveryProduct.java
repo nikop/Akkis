@@ -32,6 +32,10 @@ public class DeliveryProduct {
 		
 	}
 
+	public DeliveryProduct(Product p) {
+		product = p;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -61,7 +65,5 @@ public class DeliveryProduct {
 		return "DeliveryProduct [id=" + id + ", product=" + product
 				+ ", delivery=" + delivery + "]";
 	}
-    
-	
-	
+
 }
