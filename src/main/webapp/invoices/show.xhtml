@@ -17,18 +17,29 @@
 	<ui:param name="title" value="Invoice - Edit" />
     <ui:param name="tab" value="invoice" />
     
-    <ui:param name="pagePermission" value="EDIT_INVOICES" />
+    <ui:param name="pagePermission" value="VIEW_INVOICES" />
 
 	<ui:define name="content">
-		<b:panel title="Edit Invoice #{invoiceController.invoice.id} - #{invoiceController.invoice.date}" collapsible="false">
-		<b:form id="invoieform">
+	
+		<h2>Invoice ##{invoiceController.invoice.id}</h2>	
+	
+		<b:form id="invoiceActions" rendered="#{loginUser.can('EDIT_INVOICES')}">
 		
-			<ui:include src="/invoiceForm.xhtml">
-				<ui:param name="invoice" value="#{invoiceController.invoice}" />
-			</ui:include>
-			
-			<b:commandButton value="Save" action="#{invoiceController.saveInvoice(invoiceController.invoice)}" />
+			<b:button outcome="invoiceEdit" value="Edit">
+		        <f:param name="id" value="#{invoiceController.invoice.id}" />
+		    </b:button>
+		
 		</b:form>
-		</b:panel>
+		
+		<b:dataTable value="#{invoiceController.invoice.rows}" var="r" paginated="false" searching="false">
+			<h:column headerstyleClass="first">
+				<f:facet name="header">Item</f:facet>
+				#{r.text}
+            </h:column>
+			<h:column>
+				<f:facet name="header">Price</f:facet>
+                #{r.rowTotal}
+            </h:column>
+		</b:dataTable>
 	</ui:define>
 </ui:composition>

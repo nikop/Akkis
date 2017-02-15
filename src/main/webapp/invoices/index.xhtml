@@ -11,16 +11,27 @@
     <ui:param name="pagePermission" value="VIEW_INVOICES" />
 
 	<ui:define name="content">
+	
+		<h2>Invoices</h2>
+		
+		<b:buttonGroup styleClass="btn-pad">
+		    <b:button icon="plus-sign" value="New" outcome="new" size="sm" />
+		</b:buttonGroup>
+	
 		<b:dataTable value="#{invoiceController.invoices}" var="in">
 			<h:column>
 				<f:facet name="header">#</f:facet>
-				<h:link outcome="invoiceShow.xhtml" value="#{in.id}">
+				<h:link outcome="show.xhtml" value="#{in.id}">
                 	<f:param name="id" value="#{in.id}" />
                 </h:link>
 			</h:column>
 			<h:column>
+				<f:facet name="header">Status</f:facet>
+				#{in.status.label}
+			</h:column>
+			<h:column>
 				<f:facet name="header">Delivery</f:facet>
-				 <h:link outcome="deliveryShow.xhtml" value="#{in.delivery.name}">
+				 <h:link outcome="/deliveryShow.xhtml" value="#{in.delivery.name}" rendered="#{in.delivery != null}">
                 	<f:param name="id" value="#{in.delivery.id}" />
                 </h:link>			    	 
             </h:column>
@@ -44,22 +55,10 @@
         	</h:column>
             <h:column>
 				<f:facet name="header">Actions</f:facet>
-                <h:link outcome="invoiceEdit.xhtml" value="Edit">
+                <h:link outcome="edit.xhtml" value="Edit">
                 	<f:param name="id" value="#{in.id}" />
                 </h:link>
         	</h:column>
 		</b:dataTable>
-
-		<b:panel title="New Invoice" collapsible="false" rendered="#{loginUser.can('EDIT_INVOICES')}">		
-			<h:form id="invoiceform">
-
-				<ui:include src="/invoiceForm.xhtml">
-					<ui:param name="invoice" value="#{invoice}" />
-				</ui:include>
-
-				<b:commandButton value="Add"
-					action="#{invoiceController.saveInvoice()}" />
-			</h:form>
-		</b:panel>
 	</ui:define>
 </ui:composition>

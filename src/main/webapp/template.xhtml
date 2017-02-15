@@ -12,16 +12,16 @@
 <h:body style="padding: 60px;">
 	<ui:insert name="metadata" />
 	<f:view>
-		<b:navBar brand="Akkis" brandHref="index.xhtml" fixed="top"
+		<b:navBar brand="Akkis" brandHref="/akkis" fixed="top"
 			inverse="true">
 			<b:navbarLinks>
 				<b:navLink value="Home" active="#{tab=='home'}" href="index.xhtml"></b:navLink>
-				<b:navLink value="Users" rendered="#{loginUser.can('VIEW_USERS')}" active="#{tab=='users'}" href="users.xhtml"></b:navLink>
-				<b:navLink value="Customer" rendered="#{loginUser.can('VIEW_CUSTOMERS')}" active="#{tab=='customer'}" href="customer.xhtml"></b:navLink>
-				<b:navLink value="Company" rendered="#{loginUser.can('VIEW_COMPANIES')}" active="#{tab=='company'}" href="company.xhtml"></b:navLink>
-                <b:navLink value="Deliveries" rendered="#{loginUser.can('VIEW_DELIVERIES')}" active="#{tab=='deliveries'}" href="delivery.xhtml"></b:navLink>
-                <b:navLink value="Invoice" rendered="#{loginUser.can('VIEW_INVOICES')}" active="#{tab=='invoice'}" href="invoice.xhtml"></b:navLink>
-                <b:navLink value="Product" rendered="#{loginUser.can('VIEW_PRODUCTS')}" active="#{tab=='product'}" href="product.xhtml"></b:navLink>        
+				<b:navLink value="Users" rendered="#{loginUser.can('VIEW_USERS')}" active="#{tab=='users'}" outcome="/users"></b:navLink>
+				<b:navLink value="Customers" rendered="#{loginUser.can('VIEW_CUSTOMERS')}" active="#{tab=='customer'}" outcome="/customer.xhtml"></b:navLink>
+				<b:navLink value="Companies" rendered="#{loginUser.can('VIEW_COMPANIES')}" active="#{tab=='company'}" outcome="/company.xhtml"></b:navLink>
+                <b:navLink value="Deliveries" rendered="#{loginUser.can('VIEW_DELIVERIES')}" active="#{tab=='deliveries'}" outcome="/delivery.xhtml"></b:navLink>
+                <b:navLink value="Invoices" rendered="#{loginUser.can('VIEW_INVOICES')}" active="#{tab=='invoice'}" outcome="/invoices/index"></b:navLink>
+                <b:navLink value="Products" rendered="#{loginUser.can('VIEW_PRODUCTS')}" active="#{tab=='product'}" outcome="/product.xhtml"></b:navLink>        
             </b:navbarLinks>
             <h:form styleClass="navbar-form navbar-right" rendered="#{!loginUser.logged}">
                 <div class="form-group">

@@ -38,6 +38,7 @@ public class Invoice {
 	@DecimalMin("0.01")
 	@DecimalMax("99999.99")
 	private double sum;
+	
 	private Date date;
 	
 	@Min(1)
@@ -53,7 +54,9 @@ public class Invoice {
 	private List<InvoiceRow> rows = new ArrayList<InvoiceRow>();	
 	
 	public Invoice() {	
-		date = new Date();	
+		date = new Date();
+		status = InvoiceStatus.NOT_SENT;
+		duePeriod = 14;
 	}	
 
 	public long getId() {

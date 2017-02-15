@@ -37,15 +37,12 @@ public class InvoiceController {
 		this.invoice = invoice;
 	}
 
-	public String saveInvoice() {
-		FacesContext facesContext = FacesContext.getCurrentInstance();
-
-		Invoice in = (Invoice) facesContext.getExternalContext().getRequestMap().get("invoice");
-		tuoteEjb.save(in);
+	public String saveNewInvoice(Invoice invoice) {
+		tuoteEjb.save(invoice);
 		
 		FacesMessages.info("Successfully saved.");
 		
-		return null;
+		return "/invoices/index";
 	}
 	
 	public String saveInvoice(Delivery delivery) {

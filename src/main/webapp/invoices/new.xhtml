@@ -1,0 +1,25 @@
+<ui:composition template="/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+	<ui:param name="title" value="Invoice" />
+    <ui:param name="tab" value="invoice" />
+    
+    <ui:param name="pagePermission" value="EDIT_INVOICES" />
+
+	<ui:define name="content">
+		<h2>New Invoice</h2>
+		<h:form id="invoiceform">
+
+			<ui:include src="invoiceForm.xhtml">
+				<ui:param name="invoice" value="#{invoice}" />
+			</ui:include>
+
+			<b:commandButton value="Add"
+				action="#{invoiceController.saveNewInvoice(invoice)}" />
+		</h:form>
+	</ui:define>
+</ui:composition>

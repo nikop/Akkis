@@ -17,6 +17,8 @@
 
 	<ui:param name="title" value="Delivery - ${deliveryController.delivery.name}" />
     <ui:param name="tab" value="deliveries" />
+    
+    <ui:param name="pagePermission" value="VIEW_DELIVERIES" />
 
 	<ui:define name="content">
 	
@@ -65,7 +67,7 @@
 		</b:dataTable>
 		
 		<h:form id="commands">
-			<b:commandButton value="Create Invoice" action="#{deliveryController.createInvoice()}" />
+			<b:commandButton value="Create Invoice" action="#{deliveryController.createInvoice()}" rendered="#{loginUser.can('EDIT_DELIVERIES')}" />
 		</h:form>
 		
 		<b:panel title="Add Product" collapsible="false">
