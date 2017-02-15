@@ -44,13 +44,8 @@ public class User implements Serializable {
 	}
 
 	public boolean hasRole(Role role) {
-		 
-		 System.out.println(roles);
-		 System.out.println(role);
-		 System.out.println(roles.contains(role));
-		 
 		 return roles.contains(role);
-	 }
+	}
 	
 	public Long getId() {
 		return id;

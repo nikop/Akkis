@@ -47,11 +47,11 @@
 		<b:container>
 	       	<b:messages id="messages" />
 	       	
-	       	<h:panelGroup rendered="#{pagePermission == false}">
+	       	<h:panelGroup rendered="#{pagePermission != null ? !loginUser.can(pagePermission) : false}">
 	       		You do not have permission to access this page.       		
 	       	</h:panelGroup>
 	       	
-	       	<h:panelGroup rendered="#{pagePermission != false}">
+	       	<h:panelGroup rendered="#{pagePermission != null ? loginUser.can(pagePermission) : true}">
 				<ui:insert name="content">
 				</ui:insert>
 			</h:panelGroup>

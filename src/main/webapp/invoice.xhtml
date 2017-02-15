@@ -8,11 +8,17 @@
 	<ui:param name="title" value="Invoice" />
     <ui:param name="tab" value="invoice" />
     
-    <ui:param name="pagePermission" value="#{loginUser.can('VIEW_INVOICES')}" />
+    <ui:param name="pagePermission" value="VIEW_INVOICES" />
 
 	<ui:define name="content">
 		<b:dataTable value="#{invoiceController.invoices}" var="in">
-			<h:column headerstyleClass="first">
+			<h:column>
+				<f:facet name="header">#</f:facet>
+				<h:link outcome="invoiceShow.xhtml" value="#{in.id}">
+                	<f:param name="id" value="#{in.id}" />
+                </h:link>
+			</h:column>
+			<h:column>
 				<f:facet name="header">Delivery</f:facet>
 				 <h:link outcome="deliveryShow.xhtml" value="#{in.delivery.name}">
                 	<f:param name="id" value="#{in.delivery.id}" />

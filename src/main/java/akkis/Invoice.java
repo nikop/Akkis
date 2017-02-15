@@ -118,6 +118,14 @@ public class Invoice {
 		rows.add(row);
 	}
 
+	public List<InvoiceRow> getRows() {
+		return rows;
+	}
+
+	public void setRows(List<InvoiceRow> rows) {
+		this.rows = rows;
+	}
+
 	@Override
 	public String toString() {
 		return "Invoice [id=" + id + ", sum=" + sum + ", date=" + date

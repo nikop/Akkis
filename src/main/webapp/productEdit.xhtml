@@ -17,7 +17,7 @@
 	<ui:param name="title" value="Product - Edit" />
     <ui:param name="tab" value="product" />
     
-    <ui:param name="pagePermission" value="#{loginUser.can('EDIT_PRODUCTS')}" />
+    <ui:param name="pagePermission" value="EDIT_PRODUCTS" />
 
 	<ui:define name="content">
 		<b:panel title="Edit Product #{productController.product.id} - #{productController.product.name}" collapsible="false">

@@ -8,7 +8,7 @@
 	<ui:param name="title" value="Product" />
     <ui:param name="tab" value="product" />
 
-    <ui:param name="pagePermission" value="#{loginUser.can('VIEW_PRODUCTS')}" />
+    <ui:param name="pagePermission" value="VIEW_PRODUCTS" />
 
 	<ui:define name="content">
 		<b:dataTable value="#{productController.products}" var="pd">
@@ -18,7 +18,7 @@
             </h:column>
 			<h:column>
 				<f:facet name="header">Price</f:facet>
-                    #{pd.price}
+                #{pd.price}
             </h:column>
 			<h:column>
 				<f:facet name="header"></f:facet>

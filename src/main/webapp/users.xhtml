@@ -8,7 +8,7 @@
 	<ui:param name="title" value="Users" />
     <ui:param name="tab" value="users" />
     
-    <ui:param name="pagePermission" value="#{loginUser.can('VIEW_USERS')}" />
+    <ui:param name="pagePermission" value="VIEW_USERS" />
 
 	<ui:define name="content">
 		<b:dataTable value="#{userController.users}" var="user">
