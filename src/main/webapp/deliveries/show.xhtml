@@ -47,7 +47,7 @@
         	</h:column>
             <h:column>
 				<f:facet name="header">Actions</f:facet>
-                <h:link outcome="invoiceEdit.xhtml" value="Edit">
+                <h:link outcome="/invoices/edit" value="Edit">
                 	<f:param name="id" value="#{in.id}" />
                 </h:link>
         	</h:column>
@@ -66,20 +66,20 @@
             </h:column>
 		</b:dataTable>
 		
-		<h:form id="commands">
+		<b:form id="commands">
 			<b:commandButton value="Create Invoice" action="#{deliveryController.createInvoice()}" rendered="#{loginUser.can('EDIT_DELIVERIES')}" />
-		</h:form>
+		</b:form>
 		
 		<b:panel title="Add Product" collapsible="false">
-			<h:form id="productform">
+			<b:form id="productform">
 		
-				<ui:include src="/deliveryProductForm.xhtml">
+				<ui:include src="deliveryProductForm.xhtml">
 					<ui:param name="deliveryProduct" value="#{deliveryProduct}" />
 				</ui:include>
 
 				<b:commandButton value="Add"
 					action="#{deliveryController.addProductToDelivery(deliveryProduct)}" />
-			</h:form>
+			</b:form>
 		</b:panel>
 		
 	</ui:define>

@@ -28,13 +28,6 @@ public class LoginController {
 	public void setLoginUser(LoginUser loginUser) {
 		this.loginUser = loginUser;
 	}
-
-	public String init()
-	{
-		tuoteEjb.init();
-		
-		return "index";
-	}
 	
 	public String login()
 	{
@@ -58,6 +51,13 @@ public class LoginController {
 		FacesMessages.info("Successfully logged out.");
 		
 		loginUser.setUser(null);
+		return "index";
+	}
+	
+	public String init()
+	{
+		tuoteEjb.init();
+		
 		return "index";
 	}
 }

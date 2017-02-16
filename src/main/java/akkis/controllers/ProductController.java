@@ -52,14 +52,12 @@ public class ProductController {
 		return null;
 	}
 	
-	public String saveProduct(Product product) {
-		//tuoteEjb.save(customer);
-		
-		tuoteEjb.saveChanges(product);
+	public String saveProduct(Product product) {		
+		tuoteEjb.update(product);
 		
 		FacesMessages.info("Successfully saved.");
 		
-		return "product?faces-redirect=true";
+		return "/products/index?faces-redirect=true";
 	}
 
 	public List<Product> getProducts() {

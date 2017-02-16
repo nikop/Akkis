@@ -11,6 +11,12 @@
     <ui:param name="pagePermission" value="VIEW_CUSTOMERS" />
 
 	<ui:define name="content">
+		<h2>Customers</h2>
+		
+		<b:buttonGroup styleClass="btn-pad">
+		    <b:button icon="plus-sign" value="New" outcome="new" size="sm" />
+		</b:buttonGroup>
+		
 		<b:dataTable value="#{customerController.customers}" var="ca">
 			<h:column headerstyleClass="first">
 				<f:facet name="header">Name</f:facet>
@@ -43,22 +49,10 @@
         	</h:column>
 			<h:column>
 				<f:facet name="header">Actions</f:facet>
-                <h:link outcome="customerEdit.xhtml" value="Edit">
+                <h:link outcome="edit.xhtml" value="Edit">
                 	<f:param name="id" value="#{ca.id}" />
                 </h:link>
         	</h:column>
 		</b:dataTable>
-
-		<b:panel title="New Customer" collapsible="false" rendered="#{loginUser.can('EDIT_CUSTOMERS')}">
-			<h:form id="customerform">
-
-				<ui:include src="/customerForm.xhtml">
-					<ui:param name="customer" value="#{customer}" />
-				</ui:include>
-
-				<b:commandButton value="Add New"
-					action="#{customerController.saveCustomer()}" />
-			</h:form>
-		</b:panel>
 	</ui:define>
 </ui:composition>

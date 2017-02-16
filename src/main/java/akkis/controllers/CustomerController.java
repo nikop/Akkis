@@ -46,26 +46,21 @@ public class CustomerController {
 		
 		FacesMessages.info("Successfully saved.");
 		
-		return "customer?faces-redirect=true";
+		return "/customers/index?faces-redirect=true";
 	}
 	
 	public String saveCustomer(Customer customer) {
 		//tuoteEjb.save(customer);
 		
-		tuoteEjb.saveChanges(customer);
+		tuoteEjb.update(customer);
 		
 		FacesMessages.info("Successfully saved.");
 		
-		return "customer?faces-redirect=true";
+		return "/customers/index?faces-redirect=true";
 	}
 
 	public List<Customer> getCustomers() {
 		return tuoteEjb.getCustomers();
 	}
 
-	
-	public String initCustomer() {
-		tuoteEjb.init();
-		return null;
-	}
 }

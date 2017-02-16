@@ -14,22 +14,20 @@
 		</f:metadata>
     </ui:define>
     
-	<ui:param name="title" value="Invoice - Edit" />
+	<ui:param name="title" value="Invoice ##{invoiceController.invoice.id}" />
     <ui:param name="tab" value="invoice" />
     
     <ui:param name="pagePermission" value="VIEW_INVOICES" />
 
 	<ui:define name="content">
 	
-		<h2>Invoice ##{invoiceController.invoice.id}</h2>	
-	
-		<b:form id="invoiceActions" rendered="#{loginUser.can('EDIT_INVOICES')}">
+		<h2>Invoice ##{invoiceController.invoice.id}</h2>
 		
-			<b:button outcome="invoiceEdit" value="Edit">
-		        <f:param name="id" value="#{invoiceController.invoice.id}" />
-		    </b:button>
-		
-		</b:form>
+		<b:buttonGroup styleClass="btn-pad">
+		    <b:button icon="pencil" value="Edit" outcome="edit" size="sm">
+		    	 <f:param name="id" value="#{invoiceController.invoice.id}" />
+		   	</b:button>
+		</b:buttonGroup>
 		
 		<b:dataTable value="#{invoiceController.invoice.rows}" var="r" paginated="false" searching="false">
 			<h:column headerstyleClass="first">

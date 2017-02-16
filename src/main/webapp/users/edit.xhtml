@@ -15,22 +15,22 @@
 	</ui:define>
 
 	<ui:param name="title" value="User - Edit" />
-    <ui:param name="tab" value="user" />
+    <ui:param name="tab" value="users" />
     
     <ui:param name="pagePermission" value="EDIT_USERS" />
 
 	<ui:define name="content">
 
 		<b:panel title="Edit User" collapsible="false">
-			<h:form id="userform">
+			<b:form id="userform">
 
-				<ui:include src="/userForm.xhtml">
+				<ui:include src="form.xhtml">
 					<ui:param name="user" value="#{userController.user}" />
 				</ui:include>
 
 				<b:commandButton value="Save"
 					action="#{userController.updateUser(userController.user)}" />
-			</h:form>
+			</b:form>
 		</b:panel>
 	</ui:define>
 </ui:composition>

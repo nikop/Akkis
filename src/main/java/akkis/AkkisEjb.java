@@ -122,7 +122,7 @@ public class AkkisEjb {
 		em.persist(book);
 	}
 	
-	public void saveChanges(Object book) {
+	public void update(Object book) {
 		em.merge(book);
 	}
 	

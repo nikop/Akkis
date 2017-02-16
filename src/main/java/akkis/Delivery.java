@@ -105,13 +105,14 @@ public class Delivery implements Serializable {
 			DeliveryProduct dp = iterator.next();
 			InvoiceRow r = new InvoiceRow();
 			
+			r.setInvoice(invoice);
 			r.setText(dp.getProduct().getName());
 			r.setAmount(1);
 			r.setUnitPrice(dp.getProduct().getPrice());
 			
 			invoice.addRow(r);
 			
-			sum += dp.getProduct().getPrice();
+			sum += r.getRowTotal();
 		}
 		
 		invoice.setSum(sum);

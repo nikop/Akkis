@@ -31,7 +31,7 @@
 			</h:column>
 			<h:column>
 				<f:facet name="header">Delivery</f:facet>
-				 <h:link outcome="/deliveryShow.xhtml" value="#{in.delivery.name}" rendered="#{in.delivery != null}">
+				 <h:link outcome="/deliveries/show" value="#{in.delivery.name}" rendered="#{in.delivery != null}">
                 	<f:param name="id" value="#{in.delivery.id}" />
                 </h:link>			    	 
             </h:column>
@@ -55,7 +55,7 @@
         	</h:column>
             <h:column>
 				<f:facet name="header">Actions</f:facet>
-                <h:link outcome="edit.xhtml" value="Edit">
+                <h:link outcome="edit" value="Edit">
                 	<f:param name="id" value="#{in.id}" />
                 </h:link>
         	</h:column>

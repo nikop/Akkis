@@ -11,6 +11,12 @@
     <ui:param name="pagePermission" value="VIEW_COMPANIES" />
 
 	<ui:define name="content">
+		<h2>Companies</h2>
+		
+		<b:buttonGroup styleClass="btn-pad">
+		    <b:button icon="plus-sign" value="New" outcome="new" size="sm" />
+		</b:buttonGroup>
+		
 		<b:dataTable value="#{companyController.companies}" var="ca">
 			<h:column headerstyleClass="first">
 				<f:facet name="header">Name</f:facet>
@@ -34,22 +40,10 @@
             </h:column>
             <h:column>
 				<f:facet name="header">Actions</f:facet>
-                <h:link outcome="companyEdit.xhtml" value="Edit">
+                <h:link outcome="edit.xhtml" value="Edit">
                 	<f:param name="id" value="#{ca.id}" />
                 </h:link>
         	</h:column>
 		</b:dataTable>
-		
-		<b:panel title="New Company" collapsible="false" rendered="#{loginUser.can('EDIT_COMPANIES')}">
-			<h:form id="companyform">
-
-				<ui:include src="/companyForm.xhtml">
-					<ui:param name="company" value="#{company}" />
-				</ui:include>
-
-				<b:commandButton value="Add"
-					action="#{companyController.saveCompany()}" />
-			</h:form>
-		</b:panel>
 	</ui:define>
 </ui:composition>

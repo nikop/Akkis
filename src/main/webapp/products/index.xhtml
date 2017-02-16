@@ -11,6 +11,12 @@
     <ui:param name="pagePermission" value="VIEW_PRODUCTS" />
 
 	<ui:define name="content">
+		<h2>Products</h2>
+		
+		<b:buttonGroup styleClass="btn-pad">
+		    <b:button icon="plus-sign" value="New" outcome="new" size="sm" />
+		</b:buttonGroup>	
+		
 		<b:dataTable value="#{productController.products}" var="pd">
 			<h:column headerstyleClass="first">
 				<f:facet name="header">Name</f:facet>
@@ -22,23 +28,12 @@
             </h:column>
 			<h:column>
 				<f:facet name="header"></f:facet>
-				<h:link outcome="productEdit.xhtml" value="Edit" rendered="#{loginUser.can('EDIT_PRODUCTS')}">
+				<h:link outcome="edit" value="Edit" rendered="#{loginUser.can('EDIT_PRODUCTS')}">
 					<f:param name="id" value="#{pd.id}" />
 				</h:link>
 			</h:column>
 
 		</b:dataTable>
 
-		<b:panel title="New Product" collapsible="false" rendered="#{loginUser.can('EDIT_PRODUCTS')}">
-			<h:form id="productform">
-
-				<ui:include src="/productForm.xhtml">
-					<ui:param name="product" value="#{productController.product}" />
-				</ui:include>
-
-				<b:commandButton value="Add New"
-					action="#{productController.saveProduct()}" />
-			</h:form>
-		</b:panel>
 	</ui:define>
 </ui:composition>

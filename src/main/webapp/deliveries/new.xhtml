@@ -5,21 +5,24 @@
 	xmlns:b="http://bootsfaces.net/ui"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
-	<ui:param name="title" value="Invoice" />
-    <ui:param name="tab" value="invoice" />
-    
-    <ui:param name="pagePermission" value="EDIT_INVOICES" />
+	<ui:param name="title" value="Deliveries" />
+    <ui:param name="tab" value="deliveries" />
+
+    <ui:param name="pagePermission" value="EDIT_DELIVERIES" />
 
 	<ui:define name="content">
-		<h2>New Invoice</h2>
-		<b:form id="invoiceform">
+	
+		<h2>New Delivery</h2>
+		
+		<b:form id="deliveryform">
 
-			<ui:include src="invoiceForm.xhtml">
-				<ui:param name="invoice" value="#{invoice}" />
+			<ui:include src="form.xhtml">
+				<ui:param name="delivery" value="#{delivery}" />
 			</ui:include>
 
 			<b:commandButton value="Add"
-				action="#{invoiceController.saveNewInvoice(invoice)}" />
+				action="#{deliveryController.saveDelivery()}" />
 		</b:form>
+
 	</ui:define>
 </ui:composition>

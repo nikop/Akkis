@@ -50,7 +50,7 @@ public class DeliveryController {
 	}
 	
 	public String saveDelivery(Delivery delivery) {
-		tuoteEjb.saveChanges(delivery);
+		tuoteEjb.update(delivery);
 		
 		FacesMessages.info("Successfully saved.");
 		
@@ -73,11 +73,11 @@ public class DeliveryController {
 		
 		delivery.addProduct(dp);
 		
-		tuoteEjb.saveChanges(delivery);
+		tuoteEjb.update(delivery);
 		
 		FacesMessages.info("Successfully saved.");
 		
-		return "deliveryShow?id=" + delivery.getId() + "&faces-redirect=true";
+		return "/deliveries/show?id=" + delivery.getId() + "&faces-redirect=true";
 	}
 	
 	public String createInvoice()
@@ -90,7 +90,7 @@ public class DeliveryController {
 	{
 	
 		delivery.createInvoice();
-		tuoteEjb.saveChanges(delivery);
+		tuoteEjb.update(delivery);
 		
 		FacesMessages.info("Invoice created!");
 		
@@ -101,11 +101,6 @@ public class DeliveryController {
 
 	public List<Delivery> getDeliveries() {
 		return tuoteEjb.getDeliveries();
-	}
-
-	public String initDelivery() {
-		tuoteEjb.init();
-		return null;
 	}
 
 }

@@ -15,15 +15,15 @@
 		<b:navBar brand="Akkis" brandHref="/akkis" fixed="top"
 			inverse="true">
 			<b:navbarLinks>
-				<b:navLink value="Home" active="#{tab=='home'}" href="index.xhtml"></b:navLink>
-				<b:navLink value="Users" rendered="#{loginUser.can('VIEW_USERS')}" active="#{tab=='users'}" outcome="/users"></b:navLink>
-				<b:navLink value="Customers" rendered="#{loginUser.can('VIEW_CUSTOMERS')}" active="#{tab=='customer'}" outcome="/customer.xhtml"></b:navLink>
-				<b:navLink value="Companies" rendered="#{loginUser.can('VIEW_COMPANIES')}" active="#{tab=='company'}" outcome="/company.xhtml"></b:navLink>
-                <b:navLink value="Deliveries" rendered="#{loginUser.can('VIEW_DELIVERIES')}" active="#{tab=='deliveries'}" outcome="/delivery.xhtml"></b:navLink>
+				<b:navLink value="Home" active="#{tab=='home'}" outcome="/index"></b:navLink>
+				<b:navLink value="Users" rendered="#{loginUser.can('VIEW_USERS')}" active="#{tab=='users'}" outcome="/users/index"></b:navLink>
+				<b:navLink value="Customers" rendered="#{loginUser.can('VIEW_CUSTOMERS')}" active="#{tab=='customer'}" outcome="/customers/index"></b:navLink>
+				<b:navLink value="Companies" rendered="#{loginUser.can('VIEW_COMPANIES')}" active="#{tab=='company'}" outcome="/companies/index"></b:navLink>
+                <b:navLink value="Deliveries" rendered="#{loginUser.can('VIEW_DELIVERIES')}" active="#{tab=='deliveries'}" outcome="/deliveries/index"></b:navLink>
                 <b:navLink value="Invoices" rendered="#{loginUser.can('VIEW_INVOICES')}" active="#{tab=='invoice'}" outcome="/invoices/index"></b:navLink>
-                <b:navLink value="Products" rendered="#{loginUser.can('VIEW_PRODUCTS')}" active="#{tab=='product'}" outcome="/product.xhtml"></b:navLink>        
+                <b:navLink value="Products" rendered="#{loginUser.can('VIEW_PRODUCTS')}" active="#{tab=='product'}" outcome="/products/index"></b:navLink>        
             </b:navbarLinks>
-            <h:form styleClass="navbar-form navbar-right" rendered="#{!loginUser.logged}">
+            <b:form styleClass="navbar-form navbar-right" rendered="#{!loginUser.logged}">
                 <div class="form-group">
                     <b:inputText placeholder="Username" value="#{loginUser.username}" fieldSize="sm"/>
                 </div>
@@ -34,12 +34,12 @@
                 <b:commandButton value="Sign in" look="success"
 					icon="chevron-right" iconAlign="right"
 					action="#{loginController.login}" />
-			</h:form>
-			<h:form styleClass="navbar-form navbar-right"
+			</b:form>
+			<b:form styleClass="navbar-form navbar-right"
 				rendered="#{loginUser.logged}">
 				<b:commandButton value="Logout" look="success" icon="chevron-right"
 					iconAlign="right" action="#{loginController.logout}" />
-			</h:form>
+			</b:form>
 			<h:panelGroup class="navbar-text navbar-right" rendered="#{loginUser.logged}">
 				#{loginUser.user.name}
 			</h:panelGroup>
@@ -48,7 +48,7 @@
 	       	<b:messages id="messages" />
 	       	
 	       	<h:panelGroup rendered="#{pagePermission != null ? !loginUser.can(pagePermission) : false}">
-	       		You do not have permission to access this page.       		
+	       		<div class="alert alert-danger">You do not have permission to access this page.</div>	
 	       	</h:panelGroup>
 	       	
 	       	<h:panelGroup rendered="#{pagePermission != null ? loginUser.can(pagePermission) : true}">

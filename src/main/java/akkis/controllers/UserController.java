@@ -49,7 +49,7 @@ public class UserController {
 	}
 	
 	public String updateUser(User user) {		
-		tuoteEjb.saveChanges(user);
+		tuoteEjb.update(user);
 		
 		FacesMessages.info("Successfully saved.");
 		

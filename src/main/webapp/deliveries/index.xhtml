@@ -11,11 +11,17 @@
     <ui:param name="pagePermission" value="VIEW_DELIVERIES" />
 
 	<ui:define name="content">
-		<h:form>
+		<h2>Deliveries</h2>
+		
+		<b:buttonGroup styleClass="btn-pad">
+		    <b:button icon="plus-sign" value="New" outcome="new" size="sm" />
+		</b:buttonGroup>	
+		
+		<b:form>
 			<b:dataTable value="#{deliveryController.deliveries}" var="item">
 				<h:column headerstyleClass="first">
 					<f:facet name="header">Delivery</f:facet>
-					<h:link outcome="deliveryShow.xhtml" value="#{item.name}">
+					<h:link outcome="show.xhtml" value="#{item.name}">
                 		<f:param name="id" value="#{item.id}" />
                 	</h:link>
 			    	 
@@ -29,19 +35,6 @@
 					</ol>
 				</h:column>
 			</b:dataTable>
-		</h:form>
-
-		<b:panel title="New Delivery" collapsible="false" rendered="#{loginUser.can('EDIT_DELIVERIES')}">
-			<h:form id="deliveryform">
-
-				<ui:include src="/deliveryForm.xhtml">
-					<ui:param name="delivery" value="#{delivery}" />
-				</ui:include>
-
-				<b:commandButton value="Add"
-					action="#{deliveryController.saveDelivery()}" />
-			</h:form>
-		</b:panel>
-
+		</b:form>
 	</ui:define>
 </ui:composition>

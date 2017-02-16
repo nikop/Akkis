@@ -9,12 +9,8 @@
     <ui:param name="tab" value="home" />
 
     <ui:define name="content">
-		<h:form id="adminform">
-			<table>
-				<tr>
-					<td><h:commandButton action="#{loginController.init()}" value="Lisää oletusdata" /></td>
-				</tr>
-			</table>
-		</h:form>
+		<b:form id="adminform">
+			<b:commandButton action="#{loginController.init()}" value="Lisää oletusdata" />
+		</b:form>
     </ui:define>
 </ui:composition>

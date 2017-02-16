@@ -22,7 +22,7 @@
 	<ui:define name="content">
 
 		<b:panel title="New Customer" collapsible="false">
-			<h:form id="customerform">
+			<b:form id="customerform">
 
 				<ui:include src="/customerForm.xhtml">
 					<ui:param name="customer" value="#{customerController.customer}" />
@@ -30,7 +30,7 @@
 
 				<b:commandButton value="Save"
 					action="#{customerController.saveCustomer(customerController.customer)}" />
-			</h:form>
+			</b:form>
 		</b:panel>
 	</ui:define>
 </ui:composition>

@@ -60,7 +60,7 @@ public class InvoiceController {
 	}
 	
 	public String saveInvoice(Invoice invoice) {
-		tuoteEjb.saveChanges(invoice);
+		tuoteEjb.update(invoice);
 		
 		FacesMessages.info("Successfully saved.");
 		

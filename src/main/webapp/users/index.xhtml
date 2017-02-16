@@ -11,10 +11,16 @@
     <ui:param name="pagePermission" value="VIEW_USERS" />
 
 	<ui:define name="content">
+		<h2>Users</h2>
+		
+		<b:buttonGroup styleClass="btn-pad">
+		    <b:button icon="plus-sign" value="New" outcome="new" size="sm" />
+		</b:buttonGroup>
+		
 		<b:dataTable value="#{userController.users}" var="user">
 			<h:column headerstyleClass="first">
 				<f:facet name="header">Name</f:facet>
-				<h:link outcome="userEdit.xhtml" value="#{user.name}">
+				<h:link outcome="edit.xhtml" value="#{user.name}">
                		<f:param name="id" value="#{user.id}" />
                	</h:link>				
             </h:column>
@@ -23,17 +29,5 @@
                 #{user.roles}
             </h:column>
 		</b:dataTable>
-		
-		<b:panel title="New User" collapsible="false" rendered="#{loginUser.can('EDIT_USERS')}">
-			<b:form id="userform">
-
-				<ui:include src="/userForm.xhtml">
-					<ui:param name="user" value="#{user}" />
-				</ui:include>
-
-				<b:commandButton ajax="true" update="@Form" value="Create User"
-					action="#{userController.saveUser(user)}" />
-			</b:form>
-		</b:panel>
 	</ui:define>
 </ui:composition>

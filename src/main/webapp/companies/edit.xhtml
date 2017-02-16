@@ -22,15 +22,15 @@
 	<ui:define name="content">
 
 		<b:panel title="Edit Company" collapsible="false">
-			<h:form id="companyform">
+			<b:form id="companyform">
 
-				<ui:include src="/companyForm.xhtml">
+				<ui:include src="form.xhtml">
 					<ui:param name="company" value="#{companyController.company}" />
 				</ui:include>
 
 				<b:commandButton value="Save"
-					action="#{companyController.saveCompany(companyController.company)}" />
-			</h:form>
+					action="#{companyController.updateCompany(companyController.company)}" />
+			</b:form>
 		</b:panel>
 	</ui:define>
 </ui:composition>
