@@ -22,8 +22,7 @@
 					<ui:param name="user" value="#{user}" />
 				</ui:include>
 
-				<b:commandButton ajax="true" update="@Form" value="Create User"
-					action="#{userController.saveUser(user)}" />
+				<b:commandButton value="Create User" action="#{userController.saveUser(user)}" />
 			</b:form>
 		</b:panel>
 	</ui:define>

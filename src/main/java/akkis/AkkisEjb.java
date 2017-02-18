@@ -191,10 +191,24 @@ public class AkkisEjb {
 	public Invoice getInvoice(Long id) {
 		
 		try {
-			Invoice user = (Invoice) em.createNamedQuery("invoiceById")
+			Invoice invoice = (Invoice) em.createNamedQuery("invoiceById")
 				.setParameter("id", id).getSingleResult();
 			
-			return user;
+			return invoice;
+		}
+		catch (javax.persistence.NoResultException ex)
+		{
+			return null;
+		}	
+	}
+	
+	public InvoiceRow getInvoiceRow(Long id) {
+		
+		try {
+			InvoiceRow invoiceRow = (InvoiceRow) em.createNamedQuery("invoiceRowById")
+				.setParameter("id", id).getSingleResult();
+			
+			return invoiceRow;
 		}
 		catch (javax.persistence.NoResultException ex)
 		{
@@ -205,10 +219,10 @@ public class AkkisEjb {
 	public Delivery getDelivery(Long id) {
 		
 		try {
-			Delivery user = (Delivery) em.createNamedQuery("deliveryById")
+			Delivery delivery = (Delivery) em.createNamedQuery("deliveryById")
 				.setParameter("id", id).getSingleResult();
 			
-			return user;
+			return delivery;
 		}
 		catch (javax.persistence.NoResultException ex)
 		{
@@ -219,10 +233,10 @@ public class AkkisEjb {
 	public Company getCompany(Long id) {
 		
 		try {
-			Company user = (Company) em.createNamedQuery("companyById")
+			Company company = (Company) em.createNamedQuery("companyById")
 				.setParameter("id", id).getSingleResult();
 			
-			return user;
+			return company;
 		}
 		catch (javax.persistence.NoResultException ex)
 		{

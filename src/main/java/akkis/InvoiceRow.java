@@ -10,12 +10,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
+import javax.validation.constraints.Min;
 
 @ManagedBean
 @Entity
 @RequestScoped
 @NamedQueries({
 	@NamedQuery(name = "invoiceRowsForInvoice", query = "SELECT i from InvoiceRow i WHERE i.invoice = :invoice"),
+	@NamedQuery(name = "invoiceRowById", query = "SELECT i from InvoiceRow i WHERE i.id = :id"),
+
 })
 public class InvoiceRow {
 
@@ -29,12 +32,14 @@ public class InvoiceRow {
 	
 	private String text;
 	
+	@Min(1)
 	private int amount;
 	
 	private double unitPrice;
 	
 	public InvoiceRow()
 	{
+		amount = 1;
 	}
 	
 	public InvoiceRow(String rowText, double price)

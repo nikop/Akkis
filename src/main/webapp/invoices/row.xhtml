@@ -1,0 +1,31 @@
+<ui:composition template="/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	
+	<ui:define name="metadata">
+		<f:metadata>
+		    <f:viewParam name="id" value="#{invoiceController.invoiceRow}" 
+		        converter="#{invoiceRowConverter}" converterMessage="Unknown"
+		    />
+		</f:metadata>
+    </ui:define>
+    
+	<ui:param name="title" value="Invoice - Edit" />
+    <ui:param name="tab" value="invoice" />
+    
+    <ui:param name="pagePermission" value="EDIT_INVOICES" />
+
+	<ui:define name="content">
+		<b:form id="invoieform">
+			<ui:include src="rowForm.xhtml">
+				<ui:param name="invoiceRow" value="#{invoiceController.invoiceRow}" />
+			</ui:include>
+			
+			<b:commandButton
+				value="Save" action="#{invoiceController.update(invoiceController.invoiceRow)}" />
+		</b:form>
+	</ui:define>
+</ui:composition>

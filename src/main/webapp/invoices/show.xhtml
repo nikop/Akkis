@@ -32,12 +32,29 @@
 		<b:dataTable value="#{invoiceController.invoice.rows}" var="r" paginated="false" searching="false">
 			<h:column headerstyleClass="first">
 				<f:facet name="header">Item</f:facet>
-				#{r.text}
+				<h:link outcome="row.xhtml" value="#{r.text}">
+                	<f:param name="id" value="#{r.id}" />
+                </h:link>
+            </h:column>
+            <h:column>
+				<f:facet name="header">Price</f:facet>
+                #{r.amount} x #{r.unitPrice}
             </h:column>
 			<h:column>
-				<f:facet name="header">Price</f:facet>
+				<f:facet name="header">Sum</f:facet>
                 #{r.rowTotal}
             </h:column>
 		</b:dataTable>
+		
+		<h3>Add Item</h3>
+		
+		<b:form id="rowform">
+			<ui:include src="rowForm.xhtml">
+				<ui:param name="invoiceRow" value="#{invoiceRow}" />
+			</ui:include>
+			
+			<b:commandButton value="Add" action="#{invoiceController.save(invoiceController.invoice, invoiceRow)}" />
+		</b:form>
+		
 	</ui:define>
 </ui:composition>

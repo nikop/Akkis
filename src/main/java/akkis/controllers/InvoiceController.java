@@ -8,6 +8,7 @@ import javax.faces.context.FacesContext;
 import akkis.AkkisEjb;
 import akkis.Delivery;
 import akkis.Invoice;
+import akkis.InvoiceRow;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -24,6 +25,9 @@ public class InvoiceController {
 	
 	@ManagedProperty(value = "#{invoice}")
 	private Invoice invoice;
+	
+	@ManagedProperty(value = "#{invoiceRow}")
+	private InvoiceRow invoiceRow;
 
 	public InvoiceController() {
 		
@@ -35,6 +39,14 @@ public class InvoiceController {
 
 	public void setInvoice(Invoice invoice) {
 		this.invoice = invoice;
+	}
+
+	public InvoiceRow getInvoiceRow() {
+		return invoiceRow;
+	}
+
+	public void setInvoiceRow(InvoiceRow invoiceRow) {
+		this.invoiceRow = invoiceRow;
 	}
 
 	public String saveNewInvoice(Invoice invoice) {
@@ -65,6 +77,25 @@ public class InvoiceController {
 		FacesMessages.info("Successfully saved.");
 		
 		return null;
+	}
+	
+	public String save(Invoice invoice, InvoiceRow invoiceRow) {
+		
+		invoice.addRow(invoiceRow);
+		
+		tuoteEjb.update(invoice);
+		
+		FacesMessages.info("Successfully saved.");
+		
+		return "/invoices/show?faces-redirect=true&id=" + invoice.getId();
+	}
+	
+	public String update(InvoiceRow invoiceRow) {
+		tuoteEjb.update(invoiceRow);
+		
+		FacesMessages.info("Successfully saved.");
+		
+		return "/invoices/show?faces-redirect=true&id=" + invoiceRow.getInvoice().getId();
 	}
 
 	public List<Invoice> getInvoices() {
