@@ -49,7 +49,7 @@ public class AkkisViewHandler extends ViewHandlerWrapper {
                     .getRequestParameterMap().keySet()) {
                 UIComponent component = context.getViewRoot().findComponent(
                         name);
-                if (component != null || "javax.faces.ViewState".equals(name) || name.startsWith("input_")) {
+                if (component != null || name.startsWith("input_") || name.startsWith("javax.faces.") || name.startsWith("j_")) {
                     ignoreParmasMarker.add(name);
                 }
             }
@@ -72,7 +72,7 @@ public class AkkisViewHandler extends ViewHandlerWrapper {
         }
 
         return originalActionURL + parameterString;
-}
+	}
 	
 	@Override
 	public ViewHandler getWrapped() {

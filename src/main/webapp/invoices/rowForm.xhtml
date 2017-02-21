@@ -4,6 +4,8 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:b="http://bootsfaces.net/ui">
 	
+	<b:messages styleClass="msgs" redisplay="false" for="@parent" recursive="true" id="formerrors"/>
+	
 	<b:inputText id="info" value="#{invoiceRow.text}" label="Item"
 		required="true" renderLabel="true" />
 	

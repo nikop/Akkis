@@ -23,16 +23,39 @@
 	
 		<h2>Invoice ##{invoiceController.invoice.id}</h2>
 		
-		<b:buttonGroup styleClass="btn-pad">
-		    <b:button icon="pencil" value="Edit" outcome="edit" size="sm">
-		    	 <f:param name="id" value="#{invoiceController.invoice.id}" />
-		   	</b:button>
-		</b:buttonGroup>
+		<h:form>
+			<b:buttonGroup styleClass="btn-pad">
+			    <b:button icon="pencil" value="Edit" outcome="edit" size="sm" rendered="#{loginUser.can('EDIT_INVOICES')}">
+			    	 <f:param name="id" value="#{invoiceController.invoice.id}" />
+			   	</b:button>
+			   	<b:commandButton id="open" icon="ok" value="Finish" action="#{invoiceController.markOpen(invoiceController.invoice)}" size="sm" rendered="#{invoiceController.invoice.canAddItems()}">
+			   	</b:commandButton>
+			   	<b:commandButton id="paid" icon="ok" value="Mark as Paid" action="#{invoiceController. markPaid(invoiceController.invoice)}" size="sm" rendered="#{invoiceController.invoice.isOpen()}">
+			   	</b:commandButton>
+			   	<b:commandButton id="void" icon="remove" value="Void" action="#{invoiceController.markVoid(invoiceController.invoice)}" size="sm" rendered="#{invoiceController.invoice.isOpen()}">
+			   	</b:commandButton>
+			</b:buttonGroup>
+		</h:form>
+		
+		<b:row>
+		    <b:column medium-screen="1">
+		      <strong><h:outputText value="Status"/></strong>
+		    </b:column>
+		    <b:column medium-screen="1">
+		     	#{invoiceController.invoice.status.label}
+		    </b:column>
+		    <b:column medium-screen="1">
+		      <strong><h:outputText value="Sum"/></strong>
+		    </b:column>
+		    <b:column medium-screen="1">
+		     	#{invoiceController.invoice.sum}
+		    </b:column>
+	  	</b:row>
 		
 		<b:dataTable value="#{invoiceController.invoice.rows}" var="r" paginated="false" searching="false">
 			<h:column headerstyleClass="first">
 				<f:facet name="header">Item</f:facet>
-				<h:link outcome="row.xhtml" value="#{r.text}">
+				<h:link outcome="row.xhtml" value="#{r.text}" disabled="#{!loginUser.can('EDIT_INVOICES') || !invoiceController.invoice.canAddItems()}">
                 	<f:param name="id" value="#{r.id}" />
                 </h:link>
             </h:column>
@@ -46,14 +69,15 @@
             </h:column>
 		</b:dataTable>
 		
-		<h3>Add Item</h3>
 		
-		<b:form id="rowform">
+		<b:form id="rowform" rendered="#{loginUser.can('EDIT_INVOICES') and invoiceController.invoice.canAddItems()}">
+			<h3>Add Item</h3>
+		
 			<ui:include src="rowForm.xhtml">
 				<ui:param name="invoiceRow" value="#{invoiceRow}" />
 			</ui:include>
 			
-			<b:commandButton value="Add" action="#{invoiceController.save(invoiceController.invoice, invoiceRow)}" />
+			<b:commandButton ajax="true" update="@Form" value="Add" action="#{invoiceController.addRowToInvoice(invoiceController.invoice, invoiceRow)}" />
 		</b:form>
 		
 	</ui:define>

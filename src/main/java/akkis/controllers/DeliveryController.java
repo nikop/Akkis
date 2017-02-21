@@ -40,21 +40,20 @@ public class DeliveryController {
 		this.delivery = delivery;
 	}
 
-	public String saveDelivery() {
-
+	public String saveDelivery(Delivery delivery) {
 		tuoteEjb.save(delivery);
-
-		FacesMessages.info("Successfully saved.");
-
-		return null;
+		
+		Akkis.info("Successfully saved.");
+		
+		return "/deliveries/show?id=" + delivery.getId() + "&faces-redirect=true";
 	}
 	
-	public String saveDelivery(Delivery delivery) {
+	public String updateDelivery(Delivery delivery) {
 		tuoteEjb.update(delivery);
 		
-		FacesMessages.info("Successfully saved.");
+		Akkis.info("Successfully saved.");
 		
-		return "delivery?faces-redirect=true";
+		return "/deliveries/show?id=" + delivery.getId() + "&faces-redirect=true";
 	}
 	
 	public String addProductToDelivery(Product p) {
@@ -75,7 +74,7 @@ public class DeliveryController {
 		
 		tuoteEjb.update(delivery);
 		
-		FacesMessages.info("Successfully saved.");
+		Akkis.info("Successfully saved.");
 		
 		return "/deliveries/show?id=" + delivery.getId() + "&faces-redirect=true";
 	}
@@ -89,14 +88,12 @@ public class DeliveryController {
 	public String createInvoice(Delivery delivery)
 	{
 	
-		delivery.createInvoice();
+		Invoice invoice = delivery.createInvoice();
 		tuoteEjb.update(delivery);
 		
-		FacesMessages.info("Invoice created!");
+		Akkis.info("Invoice created!");
 		
-		
-		
-		return null;
+		return "/invoices/show?id=" + invoice.getId() + "&faces-redirect=true";
 	}
 
 	public List<Delivery> getDeliveries() {

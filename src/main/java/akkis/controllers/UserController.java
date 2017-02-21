@@ -39,21 +39,20 @@ public class UserController {
 		this.user = user;
 	}
 
-
 	public String saveUser(User user) {
 		tuoteEjb.save(user);
 		
-		FacesMessages.info("New User created");
+		Akkis.info("New User created");
 		
-		return "users?faces-redirect=true";		
+		return "/users/index?faces-redirect=true";		
 	}
 	
 	public String updateUser(User user) {		
 		tuoteEjb.update(user);
 		
-		FacesMessages.info("Successfully saved.");
+		Akkis.info("Successfully saved.");
 		
-		return "users?faces-redirect=true";
+		return "/users/index?faces-redirect=true";
 	}
 
 	public List<User> getUsers() {

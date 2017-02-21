@@ -36,25 +36,18 @@ public class CustomerController {
 		this.customer = customer;
 	}
 	
-	public String saveCustomer() {
-		FacesContext facesContext = FacesContext.getCurrentInstance();
-		// JSF:ssa luodun beanin nimellä päästään olioon kiinni "fish"
-		// (faces-config.xml)
-		Customer cu = (Customer) facesContext.getExternalContext().getRequestMap().get("customer");
-		System.out.println("Customer:" + cu);
-		tuoteEjb.save(cu);
+	public String saveCustomer(Customer customer) {
+		tuoteEjb.save(customer);
 		
-		FacesMessages.info("Successfully saved.");
+		Akkis.info("Successfully saved.");
 		
 		return "/customers/index?faces-redirect=true";
 	}
 	
-	public String saveCustomer(Customer customer) {
-		//tuoteEjb.save(customer);
-		
+	public String updateCustomer(Customer customer) {
 		tuoteEjb.update(customer);
 		
-		FacesMessages.info("Successfully saved.");
+		Akkis.info("Successfully saved.");
 		
 		return "/customers/index?faces-redirect=true";
 	}

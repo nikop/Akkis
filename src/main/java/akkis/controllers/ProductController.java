@@ -38,24 +38,19 @@ public class ProductController {
 		this.product = product;
 	}
 
-	public String saveProduct() {
-
-		FacesContext facesContext = FacesContext.getCurrentInstance();
-		// JSF:ssa luodun beanin nimellä päästään olioon kiinni "fish"
-		// (faces-config.xml)
-		Product pd = (Product) facesContext.getExternalContext().getRequestMap().get("product");
-		System.out.println("Product:" + pd);
-		tuoteEjb.save(pd);
+	public String saveProduct(Product product) {
 		
-		FacesMessages.info("Successfully saved.");
-				
-		return null;
+		Akkis.info("Successfully created.");
+		
+		tuoteEjb.save(product);
+		
+		return "/products/index?faces-redirect=true";
 	}
 	
-	public String saveProduct(Product product) {		
+	public String updateProduct(Product product) {		
 		tuoteEjb.update(product);
 		
-		FacesMessages.info("Successfully saved.");
+		Akkis.info("Successfully saved.");
 		
 		return "/products/index?faces-redirect=true";
 	}

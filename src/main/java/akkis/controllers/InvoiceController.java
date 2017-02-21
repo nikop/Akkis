@@ -9,6 +9,7 @@ import akkis.AkkisEjb;
 import akkis.Delivery;
 import akkis.Invoice;
 import akkis.InvoiceRow;
+import akkis.types.InvoiceStatus;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -52,9 +53,9 @@ public class InvoiceController {
 	public String saveNewInvoice(Invoice invoice) {
 		tuoteEjb.save(invoice);
 		
-		FacesMessages.info("Successfully saved.");
+		Akkis.info("Successfully saved.");
 		
-		return "/invoices/index";
+		return "/invoices/show?faces-redirect=true&id=" + invoice.getId();
 	}
 	
 	public String saveInvoice(Delivery delivery) {
@@ -66,7 +67,7 @@ public class InvoiceController {
 		
 		tuoteEjb.save(in);
 		
-		FacesMessages.info("Successfully saved.");
+		Akkis.info("Successfully saved.");
 		
 		return null;
 	}
@@ -74,18 +75,20 @@ public class InvoiceController {
 	public String saveInvoice(Invoice invoice) {
 		tuoteEjb.update(invoice);
 		
-		FacesMessages.info("Successfully saved.");
+		Akkis.info("Successfully saved.");
 		
-		return null;
+		return "/invoices/show?faces-redirect=true&id=" + invoice.getId();
 	}
 	
-	public String save(Invoice invoice, InvoiceRow invoiceRow) {
+	public String addRowToInvoice(Invoice invoice, InvoiceRow invoiceRow) {
 		
 		invoice.addRow(invoiceRow);
 		
+		invoice.setSum(invoice.calculateSum());
+		
 		tuoteEjb.update(invoice);
 		
-		FacesMessages.info("Successfully saved.");
+		Akkis.info("Successfully saved.");
 		
 		return "/invoices/show?faces-redirect=true&id=" + invoice.getId();
 	}
@@ -93,9 +96,46 @@ public class InvoiceController {
 	public String update(InvoiceRow invoiceRow) {
 		tuoteEjb.update(invoiceRow);
 		
-		FacesMessages.info("Successfully saved.");
+		Akkis.info("Successfully saved.");
 		
 		return "/invoices/show?faces-redirect=true&id=" + invoiceRow.getInvoice().getId();
+	}
+	
+	public String markOpen(Invoice invoice) {
+		
+		System.out.println(invoice);
+		
+		invoice.setStatus(InvoiceStatus.OPEN);
+		
+		tuoteEjb.update(invoice);
+		
+		Akkis.info("Invoice Open");
+		
+		return null;
+	}
+	
+	public String markPaid(Invoice invoice) {
+		
+		System.out.println(invoice);
+		
+		invoice.setStatus(InvoiceStatus.PAID);
+		
+		tuoteEjb.update(invoice);
+		
+		Akkis.info("Invoice Paid");
+		
+		return null;
+	}
+	
+	public String markVoid(Invoice invoice) {
+		
+		invoice.setStatus(InvoiceStatus.VOIDED);
+		
+		tuoteEjb.update(invoice);
+		
+		Akkis.info("Invoice Voided");
+		
+		return null;
 	}
 
 	public List<Invoice> getInvoices() {

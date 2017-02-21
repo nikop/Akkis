@@ -70,14 +70,14 @@
 			<b:commandButton value="Create Invoice" action="#{deliveryController.createInvoice()}" rendered="#{loginUser.can('EDIT_DELIVERIES')}" />
 		</b:form>
 		
-		<b:panel title="Add Product" collapsible="false">
+		<b:panel title="Add Product" collapsible="false" rendered="#{loginUser.can('EDIT_DELIVERIES')}">
 			<b:form id="productform">
 		
 				<ui:include src="deliveryProductForm.xhtml">
 					<ui:param name="deliveryProduct" value="#{deliveryProduct}" />
 				</ui:include>
 
-				<b:commandButton value="Add"
+				<b:commandButton ajax="true" update="@Form" value="Add"
 					action="#{deliveryController.addProductToDelivery(deliveryProduct)}" />
 			</b:form>
 		</b:panel>

@@ -36,19 +36,19 @@ public class LoginController {
 		
 		if (user == null)
 		{
-			FacesMessages.error("Wrong username or password!");
+			Akkis.error("Wrong username or password!");
 			return null;
 		}
 		loginUser.setUser(user);	
 		
-		FacesMessages.info("Successfully logged in.");
+		Akkis.info("Successfully logged in.");
 		
 		return null;
 	}
 	
 	public String logout()
 	{
-		FacesMessages.info("Successfully logged out.");
+		Akkis.info("Successfully logged out.");
 		
 		loginUser.setUser(null);
 		return "index";

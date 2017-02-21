@@ -42,7 +42,7 @@ public class CompanyController {
 		
 		tuoteEjb.save(company);
 		
-		FacesMessages.info("Successfully saved.");
+		Akkis.info("Successfully saved.");
 		
 		return "/companies/edit?id=" + company.getId() + "&faces-redirect=true";	
 	}
@@ -50,7 +50,7 @@ public class CompanyController {
 	public String updateCompany(Company company) {		
 		tuoteEjb.update(company);
 		
-		FacesMessages.info("Successfully saved.");
+		Akkis.info("Successfully saved.");
 		
 		return "/companies/index?faces-redirect=true";
 	}

@@ -3,6 +3,7 @@ package akkis;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.*;
@@ -35,7 +36,7 @@ public class Invoice {
 	@ManyToOne
 	private Delivery delivery;
 	
-	@DecimalMin("0.01")
+	@DecimalMin("0.0")
 	@DecimalMax("99999.99")
 	private double sum;
 	
@@ -127,6 +128,27 @@ public class Invoice {
 
 	public void setRows(List<InvoiceRow> rows) {
 		this.rows = rows;
+	}
+	
+	public double calculateSum()
+	{
+		double sum = 0;
+		
+		for (InvoiceRow invoiceRow : rows) {
+			sum += invoiceRow.getRowTotal();
+		}
+		
+		return sum;
+	}
+	
+	public boolean canAddItems()
+	{
+		return status == InvoiceStatus.NOT_SENT;
+	}
+	
+	public boolean isOpen()
+	{
+		return status == InvoiceStatus.OPEN;
 	}
 
 	@Override
