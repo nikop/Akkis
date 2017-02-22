@@ -91,7 +91,7 @@ public class Delivery implements Serializable {
 		this.products = products;
 	}
 	
-	public void createInvoice() {
+	public Invoice createInvoice() {
 		
 		Invoice invoice = new Invoice();
 		invoice.setDate(new Date());
@@ -119,6 +119,8 @@ public class Delivery implements Serializable {
 		invoice.setStatus(InvoiceStatus.OPEN);
 		
 		invoices.add(invoice);
+		
+		return invoice;
 	}
 
 

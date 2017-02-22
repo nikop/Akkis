@@ -7,7 +7,7 @@
 	
 	<ui:define name="metadata">
 		<f:metadata>
-		    <f:viewParam name="id" value="#{invoiceController.invoice}" 
+		    <f:viewParam name="id" value="#{invoiceController.invoice}"
 		        converter="#{invoiceConverter}" converterMessage="Unknown Invoice"
 		        required="true" requiredMessage="Bad request, please use a link from within the system."
 		    />
@@ -23,31 +23,43 @@
 	
 		<h2>Invoice ##{invoiceController.invoice.id}</h2>
 		
-		<h:form>
-			<b:buttonGroup styleClass="btn-pad">
-			    <b:button icon="pencil" value="Edit" outcome="edit" size="sm" rendered="#{loginUser.can('EDIT_INVOICES')}">
-			    	 <f:param name="id" value="#{invoiceController.invoice.id}" />
+		<b:form id="invoiceControl">
+			<b:buttonGroup styleClass="btn-pad" size="sm">
+			    <b:button icon="pencil" value="Edit" 
+			    	outcome="edit"
+			    	rendered="#{loginUser.can('EDIT_INVOICES')}">
+			    	<f:param name="id" value="#{invoiceController.invoice.id}" />
 			   	</b:button>
-			   	<b:commandButton id="open" icon="ok" value="Finish" action="#{invoiceController.markOpen(invoiceController.invoice)}" size="sm" rendered="#{invoiceController.invoice.canAddItems()}">
+			   	<b:button icon="print" value="Print" 
+			    	outcome="print">
+			    	<f:param name="id" value="#{invoiceController.invoice.id}" />
+			   	</b:button>
+			   	<b:commandButton id="open" icon="ok" value="Mark Open" 
+			   		action="#{invoiceController.markOpen(invoiceController.invoice)}" 
+			    	rendered="#{loginUser.can('EDIT_INVOICES')}">
 			   	</b:commandButton>
-			   	<b:commandButton id="paid" icon="ok" value="Mark as Paid" action="#{invoiceController. markPaid(invoiceController.invoice)}" size="sm" rendered="#{invoiceController.invoice.isOpen()}">
+			   	<b:commandButton id="paid" icon="ok" value="Mark Paid" 
+			   		action="#{invoiceController.markPaid(invoiceController.invoice)}"
+			    	rendered="#{loginUser.can('EDIT_INVOICES')}">
 			   	</b:commandButton>
-			   	<b:commandButton id="void" icon="remove" value="Void" action="#{invoiceController.markVoid(invoiceController.invoice)}" size="sm" rendered="#{invoiceController.invoice.isOpen()}">
+			   	<b:commandButton id="void" icon="remove" value="Mark Void" 
+			   		action="#{invoiceController.markVoid(invoiceController.invoice)}" 
+			    	rendered="#{loginUser.can('EDIT_INVOICES')}">
 			   	</b:commandButton>
 			</b:buttonGroup>
-		</h:form>
+		</b:form>
 		
 		<b:row>
-		    <b:column medium-screen="1">
+		    <b:column small-screen="1" medium-screen="1">
 		      <strong><h:outputText value="Status"/></strong>
 		    </b:column>
-		    <b:column medium-screen="1">
+		    <b:column small-screen="1" medium-screen="1">
 		     	#{invoiceController.invoice.status.label}
 		    </b:column>
-		    <b:column medium-screen="1">
+		    <b:column small-screen="1" medium-screen="1">
 		      <strong><h:outputText value="Sum"/></strong>
 		    </b:column>
-		    <b:column medium-screen="1">
+		    <b:column small-screen="1" medium-screen="1">
 		     	#{invoiceController.invoice.sum}
 		    </b:column>
 	  	</b:row>
@@ -72,7 +84,7 @@
 		
 		<b:form id="rowform" rendered="#{loginUser.can('EDIT_INVOICES') and invoiceController.invoice.canAddItems()}">
 			<h3>Add Item</h3>
-		
+				
 			<ui:include src="rowForm.xhtml">
 				<ui:param name="invoiceRow" value="#{invoiceRow}" />
 			</ui:include>
