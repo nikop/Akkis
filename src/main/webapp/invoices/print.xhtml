@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+	<title>#{title}</title>
+	<h:outputStylesheet library="css" name="tyylit.css" />
+</h:head>
+<h:body>
+	<f:metadata>
+	    <f:viewParam name="id" value="#{invoiceController.invoice}"
+	        converter="#{invoiceConverter}" converterMessage="Unknown Invoice"
+	        required="true" requiredMessage="Bad request, please use a link from within the system."
+	    />
+	</f:metadata>
+	<f:view>
+		<b:container rendered="#{loginUser.can('VIEW_INVOICES')}">
+			<b:row>
+			    <b:column medium-screen="6" small-screen="6">
+			      <h2>Akkis</h2>
+			    </b:column>
+			    <b:column medium-screen="6" small-screen="6">
+			      <h2>Invoice</h2>
+			    </b:column>
+		  	</b:row>
+			<b:row>
+			    <b:column medium-screen="6" small-screen="6">
+			      Esimerkkikatu 1
+			    </b:column>
+			    <b:column medium-screen="2" small-screen="2">
+			      <strong>Date</strong>
+			    </b:column>
+			    <b:column medium-screen="4" small-screen="4">
+			      	<h:outputText value="#{invoiceController.invoice.date}" >
+				    	<f:convertDateTime pattern="dd.MM.yyyy" />
+					</h:outputText>
+			    </b:column>
+		  	</b:row>
+			<b:row>
+			    <b:column medium-screen="6" small-screen="6">
+			      00100 Helsinki
+			    </b:column>
+			    <b:column medium-screen="2" small-screen="2">
+			      <strong>Invoice Number</strong>
+			    </b:column>
+			    <b:column medium-screen="4" small-screen="4">
+			      #{invoiceController.invoice.id}
+			    </b:column>
+		  	</b:row>
+			<b:row>
+			    <b:column medium-screen="6" small-screen="6">
+			      
+			    </b:column>
+			    <b:column medium-screen="2" small-screen="2">
+			      <strong>Due in</strong>
+			    </b:column>
+			    <b:column medium-screen="4" small-screen="4">
+			      #{invoiceController.invoice.duePeriod} days
+			    </b:column>
+		  	</b:row>		  	<hr />
+		  	<b:row>
+			    <b:column medium-screen="9" small-screen="9">
+			      <strong>Item</strong>
+			    </b:column>
+			    <b:column medium-screen="1" small-screen="1">
+			      <strong>Units</strong>
+			    </b:column>
+			    <b:column medium-screen="1" small-screen="1">
+			      <strong>Unit Price</strong>
+			    </b:column>
+			    <b:column medium-screen="1" small-screen="1">
+			      <strong>Total</strong>
+			    </b:column>
+		  	</b:row>
+		  	<hr />
+		  	<ui:repeat var="i" value="#{invoiceController.invoice.rows}">
+				<b:row>
+				    <b:column medium-screen="9" small-screen="9">
+				      #{i.text}
+				    </b:column>
+				    <b:column medium-screen="1" small-screen="1">
+				      #{i.amount}
+				    </b:column>
+				    <b:column medium-screen="1" small-screen="1">
+				      #{i.unitPrice}
+				    </b:column>
+				    <b:column medium-screen="1" small-screen="1">
+				      #{i.rowTotal}
+				    </b:column>
+			  	</b:row>
+			</ui:repeat>
+			<hr />
+		  	<b:row>
+			    <b:column medium-screen="10" small-screen="10">
+			    </b:column>
+			    <b:column medium-screen="1" small-screen="1">
+			      Total:
+			    </b:column>
+			    <b:column medium-screen="1" small-screen="1">
+			      #{invoiceController.invoice.sum}
+			    </b:column>
+		  	</b:row>			
+	  	</b:container>
+	</f:view>
+</h:body>
+</html>
