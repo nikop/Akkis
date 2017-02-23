@@ -103,8 +103,12 @@ public class InvoiceController {
 	
 	public String markOpen(Invoice invoice) {
 		
-		System.out.println(invoice);
-		
+		if (invoice.getStatus() == InvoiceStatus.OPEN)
+		{
+			Akkis.error("Can't change status");
+			return null;
+		}
+				
 		invoice.setStatus(InvoiceStatus.OPEN);
 		
 		tuoteEjb.update(invoice);
@@ -116,8 +120,12 @@ public class InvoiceController {
 	
 	public String markPaid(Invoice invoice) {
 		
-		System.out.println(invoice);
-		
+		if (invoice.getStatus() != InvoiceStatus.OPEN)
+		{
+			Akkis.error("Can't change status");
+			return null;
+		}
+			
 		invoice.setStatus(InvoiceStatus.PAID);
 		
 		tuoteEjb.update(invoice);
@@ -128,6 +136,12 @@ public class InvoiceController {
 	}
 	
 	public String markVoid(Invoice invoice) {
+		
+		if (invoice.getStatus() != InvoiceStatus.OPEN)
+		{
+			Akkis.error("Can't change status");
+			return null;
+		}		
 		
 		invoice.setStatus(InvoiceStatus.VOIDED);
 		
@@ -140,6 +154,10 @@ public class InvoiceController {
 
 	public List<Invoice> getInvoices() {
 		return tuoteEjb.getInvoices();
+	}
+	
+	public List<Invoice> getOpenInvoices() {
+		return tuoteEjb.getOpenInvoices();
 	}
 	
 	public List<Invoice> getInvoices(Delivery delivery) {

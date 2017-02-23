@@ -9,6 +9,31 @@
     <ui:param name="tab" value="home" />
 
     <ui:define name="content">
+    
+	    <b:row>
+		    <b:column small-screen="4" medium-screen="4" rendered="#{loginUser.can('VIEW_INVOICES')}">
+		    	
+		    	<b:panel>
+		    		<f:facet name="heading">
+		    			Open Invoices
+		    		</f:facet>
+		    		
+		    		<ul>
+		    		<ui:repeat var="i" value="#{invoiceController.openInvoices}">
+		    			<li><h:link outcome="/invoices/show.xhtml" value="Invoice ##{i.id}">
+		                	<f:param name="id" value="#{i.id}" />
+		                </h:link>
+                		- #{i.sum} - 
+				     	<h:outputText value="#{i.date}" >
+					    	<f:convertDateTime pattern="dd.MM.yyyy" />
+						</h:outputText></li>
+		    		</ui:repeat>
+		    		</ul>
+		    	</b:panel>
+		    	
+		    </b:column>
+	  	</b:row>
+    
 		<b:form id="adminform">
 			<b:commandButton action="#{loginController.init()}" value="Lisää oletusdata" />
 		</b:form>

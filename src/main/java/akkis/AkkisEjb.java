@@ -5,6 +5,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import akkis.controllers.LoginUser;
+import akkis.types.InvoiceStatus;
 import akkis.types.Role;
 import akkis.types.Status;
 
@@ -172,6 +173,13 @@ public class AkkisEjb {
 		companies = em.createNamedQuery("searchAllCompanies").getResultList();
 
 		return companies;
+	}
+	
+	public List<Invoice> getOpenInvoices() {
+		List<Invoice> invoices = null;
+		invoices = em.createNamedQuery("invoicesByStatus").setParameter("status", InvoiceStatus.OPEN).getResultList();
+
+		return invoices;
 	}
 
 	public List<Invoice> getInvoices() {

@@ -22,9 +22,10 @@ import javax.faces.bean.RequestScoped;
 @Entity
 @RequestScoped
 @NamedQueries({
-	@NamedQuery(name = "searchAllInvoices", query = "SELECT i from Invoice i"),
+	@NamedQuery(name = "searchAllInvoices", query = "SELECT i from Invoice i ORDER BY i.date DESC"),
 	@NamedQuery(name = "invoiceById", query = "SELECT i from Invoice i WHERE i.id = :id"),
 	@NamedQuery(name = "invoicesForDelivery", query = "SELECT i from Invoice i WHERE i.delivery = :delivery"),
+	@NamedQuery(name = "invoicesByStatus", query = "SELECT i from Invoice i WHERE i.status = :status ORDER BY i.date"),
 })
 public class Invoice {
 
