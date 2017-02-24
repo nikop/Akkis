@@ -11,7 +11,7 @@
 	<h:message for="username" />
 	
 	<b:inputSecret id="password" value="#{user.password}" label="Password"
-		required="true" renderLabel="true" />
+		required="true" renderLabel="true" rendered="#{mode == 'new'}" />
 	<h:message for="password" />
 
 	<b:inputText id="name" value="#{user.name}" label="Name"

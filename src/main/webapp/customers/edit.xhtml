@@ -20,17 +20,17 @@
     <ui:param name="pagePermission" value="EDIT_CUSTOMERS" />
 
 	<ui:define name="content">
+	
+		<h2>Edit Customer - #{customerController.customer.name}</h2>
 
-		<b:panel title="New Customer" collapsible="false">
-			<b:form id="customerform">
+		<b:form id="customerform">
 
-				<ui:include src="customerForm.xhtml">
-					<ui:param name="customer" value="#{customerController.customer}" />
-				</ui:include>
+			<ui:include src="customerForm.xhtml">
+				<ui:param name="customer" value="#{customerController.customer}" />
+			</ui:include>
 
-				<b:commandButton value="Save"
-					action="#{customerController.updateCustomer(customerController.customer)}" />
-			</b:form>
-		</b:panel>
+			<b:commandButton value="Save"
+				action="#{customerController.updateCustomer(customerController.customer)}" />
+		</b:form>
 	</ui:define>
 </ui:composition>

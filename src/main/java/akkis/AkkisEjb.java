@@ -9,6 +9,8 @@ import akkis.types.InvoiceStatus;
 import akkis.types.Role;
 import akkis.types.Status;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -149,10 +151,18 @@ public class AkkisEjb {
 	public User getUser(LoginUser loginUser) {
 		
 		try {
-			User user = (User) em.createNamedQuery("userLogin")
-				.setParameter("user",loginUser.getUsername())
-				.setParameter("password", loginUser.getPassword()).getSingleResult();
+			User user = (User) em.createNamedQuery("userByLogin")
+				.setParameter("user",loginUser.getUsername()).getSingleResult();
 			
+			try {
+				if (!user.checkPasswordForLogin(loginUser.getPassword()))
+					return null;
+			} catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+				e.printStackTrace();
+				
+				return null;
+			}
+				
 			return user;
 		}
 		catch (javax.persistence.NoResultException ex)

@@ -28,9 +28,19 @@
 		
 		<b:dataTable value="#{invoiceController.getInvoices(deliveryController.delivery)}" var="in">
 			<h:column>
+				<f:facet name="header">#</f:facet>
+				<h:link outcome="/invoices/show" value="Invoice #{in.id}">
+                	<f:param name="id" value="#{in.id}" />
+                </h:link>
+			</h:column>
+			<h:column>
 				<f:facet name="header">Sum</f:facet>
                     #{in.sum}
             </h:column>
+            <h:column>
+				<f:facet name="header">Status</f:facet>
+				#{in.status.label}
+			</h:column>
 			<h:column>
 				<f:facet name="header">Date</f:facet>
                 <h:outputText value="#{in.date}" >
@@ -38,18 +48,12 @@
 				</h:outputText>
             </h:column>
 			<h:column>
-				<f:facet name="header">Time Period</f:facet>
-                    #{in.duePeriod}
+				<f:facet name="header">Due Period</f:facet>
+                #{in.duePeriod}
             </h:column>
 			<h:column>
 				<f:facet name="header">Info text</f:facet>
                     #{in.infoText} 
-        	</h:column>
-            <h:column>
-				<f:facet name="header">Actions</f:facet>
-                <h:link outcome="/invoices/edit" value="Edit">
-                	<f:param name="id" value="#{in.id}" />
-                </h:link>
         	</h:column>
 		</b:dataTable>
 		

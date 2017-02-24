@@ -21,11 +21,14 @@
 
 	<ui:define name="content">
 
+		<h2>Edit User - #{userController.user.name}</h2>
+
 		<b:panel title="Edit User" collapsible="false">
 			<b:form id="userform">
 
 				<ui:include src="form.xhtml">
 					<ui:param name="user" value="#{userController.user}" />
+					<ui:param name="mode" value="edit" />
 				</ui:include>
 
 				<b:commandButton value="Save"

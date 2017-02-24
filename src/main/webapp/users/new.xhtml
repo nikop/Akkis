@@ -20,6 +20,7 @@
 
 				<ui:include src="form.xhtml">
 					<ui:param name="user" value="#{user}" />
+					<ui:param name="mode" value="new" />
 				</ui:include>
 
 				<b:commandButton value="Create User" action="#{userController.saveUser(user)}" />

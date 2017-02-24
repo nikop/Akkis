@@ -20,17 +20,16 @@
     <ui:param name="pagePermission" value="EDIT_COMPANIES" />
 
 	<ui:define name="content">
+		<h2>Edit Company - #{companyController.company.name}</h2>
 
-		<b:panel title="Edit Company" collapsible="false">
-			<b:form id="companyform">
+		<b:form id="companyform">
 
-				<ui:include src="form.xhtml">
-					<ui:param name="company" value="#{companyController.company}" />
-				</ui:include>
+			<ui:include src="form.xhtml">
+				<ui:param name="company" value="#{companyController.company}" />
+			</ui:include>
 
-				<b:commandButton value="Save"
-					action="#{companyController.updateCompany(companyController.company)}" />
-			</b:form>
-		</b:panel>
+			<b:commandButton value="Save"
+				action="#{companyController.updateCompany(companyController.company)}" />
+		</b:form>
 	</ui:define>
 </ui:composition>

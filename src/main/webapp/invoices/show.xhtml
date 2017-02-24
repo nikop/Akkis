@@ -62,6 +62,9 @@
 		    <b:column small-screen="1" medium-screen="1">
 		      <strong><h:outputText value="Due"/></strong>
 		    </b:column>
+		    <b:column small-screen="1" medium-screen="1">
+		      <strong><h:outputText value="Delivery"/></strong>
+		    </b:column>
 	  	</b:row>
 	  	
 	  	<b:row>
@@ -78,6 +81,11 @@
 		    </b:column>
 		    <b:column small-screen="1" medium-screen="1">
 		     	#{invoiceController.invoice.duePeriod} days
+		    </b:column>
+		    <b:column small-screen="1" medium-screen="1">
+  				<h:link outcome="/deliveries/show" value="#{invoiceController.invoice.delivery.name}" rendered="#{invoiceController.invoice.delivery != null}">
+                	<f:param name="id" value="#{invoiceController.invoice.delivery.id}" />
+                </h:link>
 		    </b:column>
 	  	</b:row>
 		
