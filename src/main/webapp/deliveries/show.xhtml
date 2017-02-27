@@ -71,10 +71,10 @@
 		</b:dataTable>
 		
 		<b:form id="commands">
-			<b:commandButton value="Create Invoice" action="#{deliveryController.createInvoice()}" rendered="#{loginUser.can('EDIT_DELIVERIES')}" />
+			<b:commandButton value="Create Invoice" action="#{deliveryController.createInvoice()}" rendered="#{userInfo.can('EDIT_DELIVERIES')}" />
 		</b:form>
 		
-		<b:panel title="Add Product" collapsible="false" rendered="#{loginUser.can('EDIT_DELIVERIES')}">
+		<b:panel title="Add Product" collapsible="false" rendered="#{userInfo.can('EDIT_DELIVERIES')}">
 			<b:form id="productform">
 		
 				<ui:include src="deliveryProductForm.xhtml">

@@ -27,7 +27,7 @@
 			<b:buttonGroup styleClass="btn-pad" size="sm">
 			    <b:button icon="pencil" value="Edit" 
 			    	outcome="edit"
-			    	rendered="#{loginUser.can('EDIT_INVOICES')}">
+			    	rendered="#{userInfo.can('EDIT_INVOICES')}">
 			    	<f:param name="id" value="#{invoiceController.invoice.id}" />
 			   	</b:button>
 			   	<b:button icon="print" value="Print" 
@@ -36,15 +36,15 @@
 			   	</b:button>
 			   	<b:commandButton id="open" icon="ok" value="Mark Open" 
 			   		action="#{invoiceController.markOpen(invoiceController.invoice)}" 
-			    	rendered="#{loginUser.can('EDIT_INVOICES') and ((facesContext.postback and not facesContext.renderResponse) or !invoiceController.invoice.open)}">
+			    	rendered="#{userInfo.can('EDIT_INVOICES') and ((facesContext.postback and not facesContext.renderResponse) or !invoiceController.invoice.open)}">
 			   	</b:commandButton>
 			   	<b:commandButton id="paid" icon="ok" value="Mark Paid" 
 			   		action="#{invoiceController.markPaid(invoiceController.invoice)}"
-			    	rendered="#{loginUser.can('EDIT_INVOICES') and ((facesContext.postback and not facesContext.renderResponse) or invoiceController.invoice.open)}">
+			    	rendered="#{userInfo.can('EDIT_INVOICES') and ((facesContext.postback and not facesContext.renderResponse) or invoiceController.invoice.open)}">
 			   	</b:commandButton>
 			   	<b:commandButton id="void" icon="remove" value="Mark Void" 
 			   		action="#{invoiceController.markVoid(invoiceController.invoice)}" 
-			    	rendered="#{loginUser.can('EDIT_INVOICES') and ((facesContext.postback and not facesContext.renderResponse) or invoiceController.invoice.open)}">
+			    	rendered="#{userInfo.can('EDIT_INVOICES') and ((facesContext.postback and not facesContext.renderResponse) or invoiceController.invoice.open)}">
 			   	</b:commandButton>
 			</b:buttonGroup>
 		</b:form>
@@ -92,7 +92,7 @@
 		<b:dataTable value="#{invoiceController.invoice.rows}" var="r" paginated="false" searching="false">
 			<h:column headerstyleClass="first">
 				<f:facet name="header">Item</f:facet>
-				<h:link outcome="row.xhtml" value="#{r.text}" disabled="#{!loginUser.can('EDIT_INVOICES') || !invoiceController.invoice.canAddItems()}">
+				<h:link outcome="row.xhtml" value="#{r.text}" disabled="#{userInfo.can('EDIT_INVOICES') || !invoiceController.invoice.canAddItems()}">
                 	<f:param name="id" value="#{r.id}" />
                 </h:link>
             </h:column>
@@ -107,7 +107,7 @@
 		</b:dataTable>
 		
 		
-		<b:form id="rowform" rendered="#{loginUser.can('EDIT_INVOICES') and invoiceController.invoice.canAddItems()}">
+		<b:form id="rowform" rendered="#{userInfo.can('EDIT_INVOICES') and invoiceController.invoice.canAddItems()}">
 			<h3>Add Item</h3>
 				
 			<ui:include src="rowForm.xhtml">

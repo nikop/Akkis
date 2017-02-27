@@ -4,7 +4,7 @@ package akkis;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import akkis.controllers.LoginUser;
+import akkis.beans.UserInfo;
 import akkis.types.InvoiceStatus;
 import akkis.types.Role;
 import akkis.types.Status;
@@ -145,23 +145,13 @@ public class AkkisEjb {
 		catch (javax.persistence.NoResultException ex)
 		{
 			return null;
-		}	
+		}
 	}
 	
-	public User getUser(LoginUser loginUser) {
-		
+	public User getUser(String username) {
 		try {
 			User user = (User) em.createNamedQuery("userByLogin")
-				.setParameter("user",loginUser.getUsername()).getSingleResult();
-			
-			try {
-				if (!user.checkPasswordForLogin(loginUser.getPassword()))
-					return null;
-			} catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
-				e.printStackTrace();
-				
-				return null;
-			}
+				.setParameter("user", username).getSingleResult();
 				
 			return user;
 		}
@@ -304,6 +294,5 @@ public class AkkisEjb {
 		deliveries = em.createNamedQuery("searchAllDeliveries").getResultList();
 		return deliveries;
 	}
-
 		
 }

@@ -28,7 +28,7 @@
             </h:column>
 			<h:column>
 				<f:facet name="header"></f:facet>
-				<h:link outcome="edit" value="Edit" rendered="#{loginUser.can('EDIT_PRODUCTS')}">
+				<h:link outcome="edit" value="Edit" rendered="#{userInfo.can('EDIT_PRODUCTS')}">
 					<f:param name="id" value="#{pd.id}" />
 				</h:link>
 			</h:column>

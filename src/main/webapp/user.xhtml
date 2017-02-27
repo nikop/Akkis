@@ -1,0 +1,30 @@
+<ui:composition template="/template.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:b="http://bootsfaces.net/ui"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:param name="title" value="Akkis" />
+    <ui:param name="tab" value="home" />
+
+    <ui:define name="content">
+      
+		<b:form id="changepassword">
+		
+			<b:inputSecret id="password" value="#{changePassword.old_password}" label="Old Password"
+				required="true" renderLabel="true" />
+			<h:message for="password" />
+			
+			<b:inputSecret id="newpassword" value="#{changePassword.new_password}" label="New Password"
+				required="true" renderLabel="true" />
+			<h:message for="newpassword" />
+			
+			<b:inputSecret id="newpassword2" value="#{changePassword.new_password2}" label="Repeat Password"
+				required="true" renderLabel="true" />
+			<h:message for="newpassword2" />
+		
+			<b:commandButton action="#{loginController.changePassword(changePassword)}" value="Change Password" />
+		</b:form>
+    </ui:define>
+</ui:composition>

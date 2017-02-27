@@ -9,10 +9,12 @@ import akkis.AkkisEjb;
 import akkis.Company;
 import akkis.Customer;
 import akkis.Product;
+import akkis.StringUtilities;
 import akkis.User;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Random;
 
 import javax.ejb.EJB;
 
@@ -51,6 +53,19 @@ public class UserController {
 		tuoteEjb.update(user);
 		
 		Akkis.info("Successfully saved.");
+		
+		return "/users/index?faces-redirect=true";
+	}
+	
+	public String resetPassword(User user) {
+		
+		String newPassword = StringUtilities.getRandomString(new Random(), 4, 12);
+		
+		user.setPassword(newPassword);
+		
+		tuoteEjb.update(user);
+		
+		Akkis.info(String.format("User %s new password is %s", user.getUsername(), newPassword));
 		
 		return "/users/index?faces-redirect=true";
 	}

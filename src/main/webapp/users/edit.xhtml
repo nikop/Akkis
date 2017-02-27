@@ -32,8 +32,13 @@
 				</ui:include>
 
 				<b:commandButton value="Save"
-					action="#{userController.updateUser(userController.user)}" />
+					action="#{userController.updateUser(userController.user)}" /><br />
+					
+				<b:commandButton value="Reset Password"
+					action="#{userController.resetPassword(userController.user)}" />
 			</b:form>
 		</b:panel>
+		
+		
 	</ui:define>
 </ui:composition>
