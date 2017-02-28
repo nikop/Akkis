@@ -1,19 +1,29 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:b="http://bootsfaces.net/ui"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
-	<title>#{title}</title>
+	<title>
+	
+	<c:set var="canViewPage" value="#{pagePermission != null ? userInfo.can(pagePermission) : true}"></c:set>
+	
+	<c:choose>
+		<c:when test="#{canViewPage}">Akkis - #{title}</c:when>
+		<c:otherwise>
+			Akkis - No Permission
+		</c:otherwise>
+	</c:choose>
+	</title>
 	<h:outputStylesheet library="css" name="tyylit.css" />
 </h:head>
 <h:body style="padding: 60px;">
 	<ui:insert name="metadata" />
 	<f:view>
-		<b:navBar brand="Akkis" brandHref="/akkis" fixed="top"
-			inverse="true">
+		<b:navBar brand="Akkis" brandHref="/akkis" fixed="top" inverse="true">
 			<b:navbarLinks>
 				<b:navLink value="Home" active="#{tab=='home'}" outcome="/index"></b:navLink>
 				<b:navLink value="Users" rendered="#{userInfo.can('VIEW_USERS')}" active="#{tab=='users'}" outcome="/users/index"></b:navLink>
@@ -29,7 +39,7 @@
                 </div>
                 <div class="form-group">
                     <b:inputSecret placeholder="Password" value="#{loginUser.password}" fieldSize="sm"/>
-                </div> 
+                </div>
                 #{' '}
                 <b:commandButton value="Sign in" look="success"
 					icon="chevron-right" iconAlign="right"
@@ -40,18 +50,20 @@
 				<b:commandButton value="Logout" look="success" icon="chevron-right"
 					iconAlign="right" action="#{loginController.logout}" />
 			</b:form>
-			<h:panelGroup class="navbar-text navbar-right" rendered="#{userInfo.logged}">
-				#{userInfo.user.name}
-			</h:panelGroup>
+			<b:navbarLinks pull="right" rendered="#{userInfo.logged}">
+				<b:dropMenu value="#{userInfo.user.name}">
+					<b:navLink value="Change Password" outcome="/user"></b:navLink>
+				</b:dropMenu>
+			</b:navbarLinks>
 		</b:navBar>
 		<b:container>
 	       	<b:messages id="messages" />
 	       	
-	       	<h:panelGroup rendered="#{pagePermission != null ? !userInfo.can(pagePermission) : false}">
+	       	<h:panelGroup rendered="#{!canViewPage}">
 	       		<div class="alert alert-danger">You do not have permission to access this page.</div>	
 	       	</h:panelGroup>
 	       	
-	       	<h:panelGroup rendered="#{pagePermission != null ? userInfo.can(pagePermission) : true}">
+	       	<h:panelGroup rendered="#{canViewPage}">
 				<ui:insert name="content">
 				</ui:insert>
 			</h:panelGroup>
