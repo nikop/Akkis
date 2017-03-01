@@ -23,14 +23,18 @@
 					<f:facet name="header">Delivery</f:facet>
 					<h:link outcome="show.xhtml" value="#{item.name}">
                 		<f:param name="id" value="#{item.id}" />
-                	</h:link>
-			    	 
+                	</h:link>			    	 
 				</h:column>
 				<h:column>
 					<f:facet name="header">Invoices</f:facet>
 					<ol>
 						<ui:repeat value="#{item.invoices}" var="invoice">
-							<li>${invoice.date} - ${invoice.sum}</li>
+							<li>
+								${invoice.date} 
+								- 
+								${invoice.sum} 
+								- 
+								${invoice.status.label}</li>
 						</ui:repeat>
 					</ol>
 				</h:column>

@@ -72,7 +72,9 @@
 		     	#{invoiceController.invoice.status.label}
 		    </b:column>
    		    <b:column small-screen="1" medium-screen="1">
-		     	#{invoiceController.invoice.sum}
+		     	<h:outputText value="#{invoiceController.invoice.sum}">
+					<f:convertNumber type="currency" currencySymbol="#{initParam['currency_symbol']}" locale="#{initParam['currency_locale']}" />
+				</h:outputText>
 		    </b:column>
 		   	<b:column small-screen="1" medium-screen="1">
 		     	<h:outputText value="#{invoiceController.invoice.date}" >
@@ -98,11 +100,16 @@
             </h:column>
             <h:column>
 				<f:facet name="header">Price</f:facet>
-                #{r.amount} x #{r.unitPrice}
+                #{r.amount} x 
+		     	<h:outputText value="#{r.unitPrice}">
+					<f:convertNumber type="currency" currencySymbol="#{initParam['currency_symbol']}" locale="#{initParam['currency_locale']}" />
+				</h:outputText>
             </h:column>
 			<h:column>
 				<f:facet name="header">Sum</f:facet>
-                #{r.rowTotal}
+		     	<h:outputText value="#{r.rowTotal}">
+					<f:convertNumber type="currency" currencySymbol="#{initParam['currency_symbol']}" locale="#{initParam['currency_locale']}" />
+				</h:outputText>
             </h:column>
 		</b:dataTable>
 		

@@ -35,7 +35,9 @@
 			</h:column>
 			<h:column>
 				<f:facet name="header">Sum</f:facet>
-                    #{in.sum}
+                <h:outputText value="#{in.sum}">
+					<f:convertNumber type="currency" currencySymbol="#{initParam['currency_symbol']}" locale="#{initParam['currency_locale']}" />
+				</h:outputText>
             </h:column>
             <h:column>
 				<f:facet name="header">Status</f:facet>
@@ -66,7 +68,10 @@
             </h:column>
 			<h:column>
 				<f:facet name="header">Price</f:facet>
-                #{p.product.price}
+                
+                 <h:outputText value="#{p.product.price}">
+					<f:convertNumber type="currency" currencySymbol="#{initParam['currency_symbol']}" locale="#{initParam['currency_locale']}" />
+				</h:outputText>
             </h:column>
 		</b:dataTable>
 		

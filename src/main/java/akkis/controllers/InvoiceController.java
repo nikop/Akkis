@@ -22,7 +22,7 @@ import net.bootsfaces.utils.FacesMessages;
 public class InvoiceController {
 
 	@EJB
-	private AkkisEjb tuoteEjb;
+	private AkkisEjb ejb;
 	
 	@ManagedProperty(value = "#{invoice}")
 	private Invoice invoice;
@@ -51,9 +51,9 @@ public class InvoiceController {
 	}
 
 	public String saveNewInvoice(Invoice invoice) {
-		tuoteEjb.save(invoice);
+		ejb.save(invoice);
 		
-		Akkis.info("Successfully saved.");
+		Akkis.info("Invoie Created");
 		
 		return "/invoices/show?faces-redirect=true&id=" + invoice.getId();
 	}
@@ -65,17 +65,17 @@ public class InvoiceController {
 		
 		in.setDelivery(delivery);
 		
-		tuoteEjb.save(in);
+		ejb.save(in);
 		
-		Akkis.info("Successfully saved.");
+		Akkis.info("Invoie Created");
 		
 		return null;
 	}
 	
 	public String saveInvoice(Invoice invoice) {
-		tuoteEjb.update(invoice);
+		ejb.update(invoice);
 		
-		Akkis.info("Successfully saved.");
+		Akkis.info("Invoice Updated");
 		
 		return "/invoices/show?faces-redirect=true&id=" + invoice.getId();
 	}
@@ -86,17 +86,17 @@ public class InvoiceController {
 		
 		invoice.setSum(invoice.calculateSum());
 		
-		tuoteEjb.update(invoice);
+		ejb.update(invoice);
 		
-		Akkis.info("Successfully saved.");
+		Akkis.info("Item added to Invoice");
 		
 		return "/invoices/show?faces-redirect=true&id=" + invoice.getId();
 	}
 	
 	public String update(InvoiceRow invoiceRow) {
-		tuoteEjb.update(invoiceRow);
+		ejb.update(invoiceRow);
 		
-		Akkis.info("Successfully saved.");
+		Akkis.info("Item Updated");
 		
 		return "/invoices/show?faces-redirect=true&id=" + invoiceRow.getInvoice().getId();
 	}
@@ -111,7 +111,7 @@ public class InvoiceController {
 				
 		invoice.setStatus(InvoiceStatus.OPEN);
 		
-		tuoteEjb.update(invoice);
+		ejb.update(invoice);
 		
 		Akkis.info("Invoice Open");
 		
@@ -128,7 +128,7 @@ public class InvoiceController {
 			
 		invoice.setStatus(InvoiceStatus.PAID);
 		
-		tuoteEjb.update(invoice);
+		ejb.update(invoice);
 		
 		Akkis.info("Invoice Paid");
 		
@@ -145,7 +145,7 @@ public class InvoiceController {
 		
 		invoice.setStatus(InvoiceStatus.VOIDED);
 		
-		tuoteEjb.update(invoice);
+		ejb.update(invoice);
 		
 		Akkis.info("Invoice Voided");
 		
@@ -153,15 +153,15 @@ public class InvoiceController {
 	}
 
 	public List<Invoice> getInvoices() {
-		return tuoteEjb.getInvoices();
+		return ejb.getInvoices();
 	}
 	
 	public List<Invoice> getOpenInvoices() {
-		return tuoteEjb.getOpenInvoices();
+		return ejb.getOpenInvoices();
 	}
 	
 	public List<Invoice> getInvoices(Delivery delivery) {
-		return tuoteEjb.getInvoices(delivery);
+		return ejb.getInvoices(delivery);
 	}
 	
 }

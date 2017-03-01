@@ -19,7 +19,7 @@ import javax.ejb.EJB;
 public class CustomerController {
 
 	@EJB
-	private AkkisEjb tuoteEjb;
+	private AkkisEjb ejb;
 	
 	@ManagedProperty(value = "#{customer}")
 	private Customer customer;
@@ -37,23 +37,23 @@ public class CustomerController {
 	}
 	
 	public String saveCustomer(Customer customer) {
-		tuoteEjb.save(customer);
+		ejb.save(customer);
 		
-		Akkis.info("Successfully saved.");
+		Akkis.info("Customer created");
 		
 		return "/customers/index?faces-redirect=true";
 	}
 	
 	public String updateCustomer(Customer customer) {
-		tuoteEjb.update(customer);
+		ejb.update(customer);
 		
-		Akkis.info("Successfully saved.");
+		Akkis.info("Customer updated");
 		
 		return "/customers/index?faces-redirect=true";
 	}
 
 	public List<Customer> getCustomers() {
-		return tuoteEjb.getCustomers();
+		return ejb.getCustomers();
 	}
 
 }

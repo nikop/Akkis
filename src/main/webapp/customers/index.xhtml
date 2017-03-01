@@ -20,38 +20,33 @@
 		<b:dataTable value="#{customerController.customers}" var="ca">
 			<h:column headerstyleClass="first">
 				<f:facet name="header">Name</f:facet>
-                    #{ca.name}
+                <h:link outcome="edit.xhtml" value="#{ca.name}" disabled="#{!userInfo.can('EDIT_CUSTOMERS')}">
+                	<f:param name="id" value="#{ca.id}" />
+                </h:link>
             </h:column>
 			<h:column>
 				<f:facet name="header">Address</f:facet>
-                    #{ca.address}
+                #{ca.address}
             </h:column>
-
 			<h:column>
 				<f:facet name="header">Country</f:facet>
-                    #{ca.country}
+                #{ca.country}
             </h:column>
 			<h:column>
 				<f:facet name="header">Email</f:facet>
-                    #{ca.email}
+                 #{ca.email}
             </h:column>
 			<h:column>
 				<f:facet name="header">Phone Number</f:facet>
-                    #{ca.phoneNumber}
+                #{ca.phoneNumber}
             </h:column>
 			<h:column>
 				<f:facet name="header">Status</f:facet>
-                    #{ca.status.label}
+                #{ca.status.label}
             </h:column>
 			<h:column>
 				<f:facet name="header">Responsibility Seller</f:facet>
-                      #{ca.responsibilitySeller} 
-        	</h:column>
-			<h:column>
-				<f:facet name="header">Actions</f:facet>
-                <h:link outcome="edit.xhtml" value="Edit">
-                	<f:param name="id" value="#{ca.id}" />
-                </h:link>
+                #{ca.responsibilitySeller} 
         	</h:column>
 		</b:dataTable>
 	</ui:define>

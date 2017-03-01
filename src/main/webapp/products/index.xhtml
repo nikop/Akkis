@@ -20,19 +20,18 @@
 		<b:dataTable value="#{productController.products}" var="pd">
 			<h:column headerstyleClass="first">
 				<f:facet name="header">Name</f:facet>
-				#{pd.name}
+				
+				<h:link outcome="edit" value="#{pd.name}" disabled="#{!userInfo.can('EDIT_PRODUCTS')}">
+					<f:param name="id" value="#{pd.id}" />
+				</h:link>
             </h:column>
 			<h:column>
 				<f:facet name="header">Price</f:facet>
-                #{pd.price}
+                
+                 <h:outputText value="#{pd.price}">
+					<f:convertNumber type="currency" currencySymbol="#{initParam['currency_symbol']}" locale="#{initParam['currency_locale']}" />
+				</h:outputText>
             </h:column>
-			<h:column>
-				<f:facet name="header"></f:facet>
-				<h:link outcome="edit" value="Edit" rendered="#{userInfo.can('EDIT_PRODUCTS')}">
-					<f:param name="id" value="#{pd.id}" />
-				</h:link>
-			</h:column>
-
 		</b:dataTable>
 
 	</ui:define>

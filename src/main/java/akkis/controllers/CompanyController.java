@@ -21,7 +21,7 @@ import net.bootsfaces.utils.FacesMessages;
 public class CompanyController {
 
 	@EJB
-	private AkkisEjb tuoteEjb;
+	private AkkisEjb ejb;
 	
 	@ManagedProperty(value = "#{company}")
 	private Company company;
@@ -40,23 +40,23 @@ public class CompanyController {
 	
 	public String newCompany(Company company) {
 		
-		tuoteEjb.save(company);
+		ejb.save(company);
 		
-		Akkis.info("Successfully saved.");
+		Akkis.info("Company Created");
 		
 		return "/companies/edit?id=" + company.getId() + "&faces-redirect=true";	
 	}
 	
 	public String updateCompany(Company company) {		
-		tuoteEjb.update(company);
+		ejb.update(company);
 		
-		Akkis.info("Successfully saved.");
+		Akkis.info("Company updated");
 		
 		return "/companies/index?faces-redirect=true";
 	}
 
 	public List<Company> getCompanies() {
-		return tuoteEjb.getCompanies();
+		return ejb.getCompanies();
 	}
 	
 }

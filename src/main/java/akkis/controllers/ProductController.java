@@ -20,7 +20,7 @@ import net.bootsfaces.utils.FacesMessages;
 public class ProductController {
 
 	@EJB
-	private AkkisEjb tuoteEjb;
+	private AkkisEjb ejb;
 	
 	@ManagedProperty(value = "#{product}")
 	private Product product;
@@ -40,23 +40,23 @@ public class ProductController {
 
 	public String saveProduct(Product product) {
 		
-		Akkis.info("Successfully created.");
+		Akkis.info("Product created");
 		
-		tuoteEjb.save(product);
+		ejb.save(product);
 		
 		return "/products/index?faces-redirect=true";
 	}
 	
 	public String updateProduct(Product product) {		
-		tuoteEjb.update(product);
+		ejb.update(product);
 		
-		Akkis.info("Successfully saved.");
+		Akkis.info("Product updated");
 		
 		return "/products/index?faces-redirect=true";
 	}
 
 	public List<Product> getProducts() {
-		return tuoteEjb.getProducts();
+		return ejb.getProducts();
 	}
 
 }

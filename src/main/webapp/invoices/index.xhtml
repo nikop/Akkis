@@ -37,7 +37,10 @@
             </h:column>
 			<h:column>
 				<f:facet name="header">Sum</f:facet>
-                    #{in.sum}
+                    
+                <h:outputText value="#{in.sum}">
+					<f:convertNumber type="currency" currencySymbol="#{initParam['currency_symbol']}" locale="#{initParam['currency_locale']}" />
+				</h:outputText>
             </h:column>
 			<h:column>
 				<f:facet name="header">Date</f:facet>
@@ -52,12 +55,6 @@
 			<h:column>
 				<f:facet name="header">Info text</f:facet>
                     #{in.infoText} 
-        	</h:column>
-            <h:column>
-				<f:facet name="header">Actions</f:facet>
-                <h:link outcome="edit" value="Edit">
-                	<f:param name="id" value="#{in.id}" />
-                </h:link>
         	</h:column>
 		</b:dataTable>
 	</ui:define>

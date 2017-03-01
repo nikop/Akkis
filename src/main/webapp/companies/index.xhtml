@@ -19,8 +19,10 @@
 		
 		<b:dataTable value="#{companyController.companies}" var="ca">
 			<h:column headerstyleClass="first">
-				<f:facet name="header">Name</f:facet>
-				#{ca.name}
+				<f:facet name="header">Name</f:facet>			
+                <h:link outcome="edit.xhtml" value="#{ca.name}" disabled="#{!userInfo.can('EDIT_COMPANIES')}">
+                	<f:param name="id" value="#{ca.id}" />
+                </h:link>           
             </h:column>
 			<h:column>
 				<f:facet name="header">Address</f:facet>
@@ -38,12 +40,6 @@
 				<f:facet name="header">Business Id</f:facet>
                       #{ca.yTunnus} 
             </h:column>
-            <h:column>
-				<f:facet name="header">Actions</f:facet>
-                <h:link outcome="edit.xhtml" value="Edit">
-                	<f:param name="id" value="#{ca.id}" />
-                </h:link>
-        	</h:column>
 		</b:dataTable>
 	</ui:define>
 </ui:composition>

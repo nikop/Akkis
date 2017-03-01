@@ -23,7 +23,7 @@ import net.bootsfaces.utils.FacesMessages;
 public class DeliveryController {
 
 	@EJB
-	private AkkisEjb tuoteEjb;
+	private AkkisEjb ejb;
 
 	@ManagedProperty(value = "#{delivery}")
 	private Delivery delivery;
@@ -41,17 +41,17 @@ public class DeliveryController {
 	}
 
 	public String saveDelivery(Delivery delivery) {
-		tuoteEjb.save(delivery);
+		ejb.save(delivery);
 		
-		Akkis.info("Successfully saved.");
+		Akkis.info("Delivery created");
 		
 		return "/deliveries/show?id=" + delivery.getId() + "&faces-redirect=true";
 	}
 	
 	public String updateDelivery(Delivery delivery) {
-		tuoteEjb.update(delivery);
+		ejb.update(delivery);
 		
-		Akkis.info("Successfully saved.");
+		Akkis.info("Delivery updated");
 		
 		return "/deliveries/show?id=" + delivery.getId() + "&faces-redirect=true";
 	}
@@ -72,16 +72,15 @@ public class DeliveryController {
 		
 		delivery.addProduct(dp);
 		
-		tuoteEjb.update(delivery);
+		ejb.update(delivery);
 		
-		Akkis.info("Successfully saved.");
+		Akkis.info("Product added to delivery");
 		
 		return "/deliveries/show?id=" + delivery.getId() + "&faces-redirect=true";
 	}
 	
 	public String createInvoice()
 	{
-		
 		return createInvoice(delivery);
 	}
 
@@ -89,7 +88,7 @@ public class DeliveryController {
 	{
 	
 		Invoice invoice = delivery.createInvoice();
-		tuoteEjb.update(delivery);
+		ejb.update(delivery);
 		
 		Akkis.info("Invoice created!");
 		
@@ -97,7 +96,7 @@ public class DeliveryController {
 	}
 
 	public List<Delivery> getDeliveries() {
-		return tuoteEjb.getDeliveries();
+		return ejb.getDeliveries();
 	}
 
 }

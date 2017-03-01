@@ -4,8 +4,6 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:b="http://bootsfaces.net/ui">
 	
-	<b:messages styleClass="msgs" redisplay="false" for="@parent" recursive="true" id="formerrors"/>
-
 	<b:selectOneMenu value="#{deliveryProduct.product}" label="Product" id="product">
 		<f:selectItems value="#{productController.products}" var="d"
 			itemValue="#{d}" itemLabel="#{d.name} - #{d.price}" />

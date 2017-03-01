@@ -60,7 +60,8 @@
 			    <b:column medium-screen="4" small-screen="4">
 			      #{invoiceController.invoice.duePeriod} days
 			    </b:column>
-		  	</b:row>		  	<hr />
+		  	</b:row>		  	
+		  	<hr />
 		  	<b:row>
 			    <b:column medium-screen="9" small-screen="9">
 			      <strong>Item</strong>
@@ -83,12 +84,18 @@
 				    </b:column>
 				    <b:column medium-screen="1" small-screen="1">
 				      #{i.amount}
+				      	
 				    </b:column>
 				    <b:column medium-screen="1" small-screen="1">
-				      #{i.unitPrice}
+				      
+				      	<h:outputText value="#{i.unitPrice}">
+							<f:convertNumber type="currency" currencySymbol="#{initParam['currency_symbol']}" locale="#{initParam['currency_locale']}" />
+						</h:outputText>
 				    </b:column>
-				    <b:column medium-screen="1" small-screen="1">
-				      #{i.rowTotal}
+				    <b:column medium-screen="1" small-screen="1">		      
+				      	<h:outputText value="#{i.rowTotal}">
+							<f:convertNumber type="currency" currencySymbol="#{initParam['currency_symbol']}" locale="#{initParam['currency_locale']}" />
+						</h:outputText>
 				    </b:column>
 			  	</b:row>
 			</ui:repeat>
@@ -100,7 +107,9 @@
 			      Total:
 			    </b:column>
 			    <b:column medium-screen="1" small-screen="1">
-			      #{invoiceController.invoice.sum}
+			      	<h:outputText value="#{invoiceController.invoice.sum}">
+						<f:convertNumber type="currency" currencySymbol="#{initParam['currency_symbol']}" locale="#{initParam['currency_locale']}" />
+					</h:outputText>
 			    </b:column>
 		  	</b:row>			
 	  	</b:container>

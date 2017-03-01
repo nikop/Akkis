@@ -21,6 +21,16 @@
 	    <param-value>default</param-value>
 	</context-param>
 	
+	<context-param>
+	    <param-name>currency_symbol</param-name>
+	    <param-value>€</param-value>
+	</context-param>
+	
+	<context-param>
+	    <param-name>currency_locale</param-name>
+	    <param-value>fi-FI</param-value>
+	</context-param>
+	
 	<servlet>
 		<servlet-name>Faces Servlet</servlet-name>
 		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
