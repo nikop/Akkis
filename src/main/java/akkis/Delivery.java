@@ -99,8 +99,6 @@ public class Delivery implements Serializable {
 		invoice.setDelivery(this);
 		invoice.setInfoText(String.format("Invoice for %d products on %s", products.size(), invoice.getDate()));
 		
-		double sum = 0;
-		
 		for (Iterator<DeliveryProduct> iterator = products.iterator(); iterator.hasNext();) {
 			DeliveryProduct dp = iterator.next();
 			InvoiceRow r = new InvoiceRow();
@@ -111,11 +109,8 @@ public class Delivery implements Serializable {
 			r.setUnitPrice(dp.getProduct().getPrice());
 			
 			invoice.addRow(r);
-			
-			sum += r.getRowTotal();
 		}
 		
-		invoice.setSum(sum);
 		invoice.setStatus(InvoiceStatus.OPEN);
 		
 		invoices.add(invoice);

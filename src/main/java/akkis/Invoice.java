@@ -121,6 +121,8 @@ public class Invoice {
 	{
 		row.setInvoice(this);
 		rows.add(row);
+		
+		sum += row.getRowTotal();
 	}
 
 	public List<InvoiceRow> getRows() {

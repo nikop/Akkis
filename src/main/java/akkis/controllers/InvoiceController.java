@@ -84,8 +84,6 @@ public class InvoiceController {
 		
 		invoice.addRow(invoiceRow);
 		
-		invoice.setSum(invoice.calculateSum());
-		
 		ejb.update(invoice);
 		
 		Akkis.info("Item added to Invoice");
