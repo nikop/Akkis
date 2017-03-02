@@ -101,14 +101,8 @@ public class Delivery implements Serializable {
 		
 		for (Iterator<DeliveryProduct> iterator = products.iterator(); iterator.hasNext();) {
 			DeliveryProduct dp = iterator.next();
-			InvoiceRow r = new InvoiceRow();
-			
-			r.setInvoice(invoice);
-			r.setText(dp.getProduct().getName());
-			r.setAmount(1);
-			r.setUnitPrice(dp.getProduct().getPrice());
-			
-			invoice.addRow(r);
+
+			invoice.addRow(new InvoiceRow(dp.getProduct().getName(), dp.getProduct().getPrice()));
 		}
 		
 		invoice.setStatus(InvoiceStatus.OPEN);

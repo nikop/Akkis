@@ -27,7 +27,6 @@ public class Product implements Serializable {
     @Size(min = 2, message = "Write product name")
     private String name; 
 
-    //@Min(1)
     @DecimalMin("0.01")
 	@DecimalMax("9999.99")
     private double price;
@@ -35,7 +34,6 @@ public class Product implements Serializable {
 	public Product() {
 
     } 
-  
 
     public Long getId() {
         return id;
