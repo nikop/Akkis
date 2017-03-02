@@ -14,9 +14,8 @@ public class InvoiceTest {
 		inv.addRow(new InvoiceRow("Item 2", 1, 10));
 		inv.addRow(new InvoiceRow("Item 3", 2, 10));
 		
-		assertEquals(40.0, inv.calculateSum());
-		
-		assertEquals(40.0, inv.getSum());
+		assertEquals(40.0, inv.calculateSum(), 0.0);
+		assertEquals(40.0, inv.getSum(), 0.0);
 	}
 
 }
