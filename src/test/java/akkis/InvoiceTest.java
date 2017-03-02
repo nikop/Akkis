@@ -9,7 +9,7 @@ import org.junit.Test;
 public class InvoiceTest {
 
 	@Test
-	public void test() {
+	public void invoiceSum() {
 		Invoice inv = new Invoice();
 		
 		InvoiceRow row1 = mock(InvoiceRow.class);
