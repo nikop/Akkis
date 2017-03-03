@@ -25,31 +25,31 @@ public class InvoiceRow {
 
 	@Id
 	@SequenceGenerator(name = "id_seq_invoice_row", sequenceName = "InvoiceRow_ID_SEQ")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_seq_invoice_row")
-	private long id;
-	
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_seq_invoice_row")
+	private Long id;
+
 	@ManyToOne
 	private Invoice invoice;
-	
+
 	private String text;
-	
+
 	@Min(1)
 	private int amount;
-	
+
 	private double unitPrice;
-	
+
 	public InvoiceRow()
 	{
 		amount = 1;
 	}
-	
+
 	public InvoiceRow(String rowText, double price)
 	{
 		text = rowText;
 		amount = 1;
 		unitPrice = price;
 	}
-	
+
 	public InvoiceRow(String rowText, int units, double price)
 	{
 		text = rowText;
@@ -58,11 +58,11 @@ public class InvoiceRow {
 	}
 
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -97,8 +97,25 @@ public class InvoiceRow {
 	public void setUnitPrice(double unitPrice) {
 		this.unitPrice = unitPrice;
 	}
-	
+
 	public double getRowTotal() {
 		return unitPrice * amount;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+
+		final InvoiceRow other = (InvoiceRow) obj;
+
+		if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+			return false;
+		}	  
+		return true;
 	}
 }

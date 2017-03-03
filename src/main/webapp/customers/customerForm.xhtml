@@ -27,9 +27,12 @@
 			itemValue="#{status}" itemLabel="#{status.label}" />
 	</b:selectOneMenu>
 	<h:message for="status" />
+	
+	<b:selectOneMenu value="#{customer.responsibilitySeller}" label="Responsibility Seller:" id="seller">
+		<f:selectItems value="#{customerController.sellers}" var="user"
+			itemValue="#{user}" itemLabel="#{user.name}" />
+	</b:selectOneMenu>
 
-	<b:inputText id="seller" value="#{customer.responsibilitySeller}"
-		label="Responsibility Seller" renderLabel="true" />
 	<h:message for="seller" />
 
 </ui:composition>

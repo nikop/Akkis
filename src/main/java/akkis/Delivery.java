@@ -31,7 +31,7 @@ public class Delivery implements Serializable {
 	@SequenceGenerator(name = "id_seq_delivery", sequenceName = "Delivery_ID_SEQ")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_seq_delivery")
 
-	private long id;
+	private Long id;
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, mappedBy="delivery")
 	private List<Invoice> invoices;	
@@ -44,11 +44,11 @@ public class Delivery implements Serializable {
 	}
 
 	
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	
@@ -119,5 +119,20 @@ public class Delivery implements Serializable {
 	}
 
 
-	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+
+		final Delivery other = (Delivery) obj;
+
+		if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+			return false;
+		}	  
+		return true;
+	}	
 }

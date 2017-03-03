@@ -32,7 +32,7 @@ public class Invoice {
 	@Id
 	@SequenceGenerator(name = "id_seq_invoice", sequenceName = "Invoice_ID_SEQ")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_seq_invoice")
-	private long id;
+	private Long id;
 	
 	@ManyToOne
 	private Delivery delivery;
@@ -61,11 +61,11 @@ public class Invoice {
 		duePeriod = 14;
 	}	
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -160,4 +160,20 @@ public class Invoice {
 				+ ", duePeriod=" + duePeriod + ", infoText=" + infoText + "]";
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+
+		final Invoice other = (Invoice) obj;
+
+		if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+			return false;
+		}	  
+		return true;
+	}
 }

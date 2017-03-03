@@ -8,6 +8,7 @@ import javax.faces.context.FacesContext;
 import akkis.AkkisEjb;
 import akkis.Customer;
 import akkis.Product;
+import akkis.User;
 import net.bootsfaces.utils.FacesMessages;
 
 import java.sql.Timestamp;
@@ -56,4 +57,7 @@ public class CustomerController {
 		return ejb.getCustomers();
 	}
 
+	public List<User> getSellers() {
+		return ejb.getUsers();
+	}
 }

@@ -94,6 +94,20 @@ public class Company  implements Serializable {
 				+ ", yTunnus=" + yTunnus + "]";
 	}
 	
-	
-	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+
+		final Company other = (Company) obj;
+
+		if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+			return false;
+		}	  
+		return true;
+	}
 }
