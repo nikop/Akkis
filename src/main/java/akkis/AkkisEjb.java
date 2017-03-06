@@ -167,6 +167,11 @@ public class AkkisEjb {
 		return customers;
 	}
 	
+	public List<Customer> getCustomers(User user) {
+		List<Customer> customers = null;
+		customers = em.createNamedQuery("customersForUser").setParameter("user", user).getResultList();
+		return customers;
+	}
 
 	public List<Company> getCompanies() {
 		List<Company> companies = null;

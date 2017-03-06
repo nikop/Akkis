@@ -20,7 +20,7 @@
 		<b:dataTable value="#{userController.users}" var="user">
 			<h:column headerstyleClass="first">
 				<f:facet name="header">Name</f:facet>
-				<h:link outcome="edit.xhtml" value="#{user.name}">
+				<h:link outcome="show" value="#{user.name}">
                		<f:param name="id" value="#{user.id}" />
                	</h:link>				
             </h:column>

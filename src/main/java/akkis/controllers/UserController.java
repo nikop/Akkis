@@ -24,7 +24,7 @@ import net.bootsfaces.utils.FacesMessages;
 public class UserController {
 
 	@EJB
-	private AkkisEjb tuoteEjb;
+	private AkkisEjb ejb;
 	
 	@ManagedProperty(value = "#{user}")
 	private User user;
@@ -42,7 +42,7 @@ public class UserController {
 	}
 
 	public String saveUser(User user) {
-		tuoteEjb.save(user);
+		ejb.save(user);
 		
 		Akkis.info("New User created");
 		
@@ -50,7 +50,7 @@ public class UserController {
 	}
 	
 	public String updateUser(User user) {		
-		tuoteEjb.update(user);
+		ejb.update(user);
 		
 		Akkis.info("Successfully saved.");
 		
@@ -63,7 +63,7 @@ public class UserController {
 		
 		user.setPassword(newPassword);
 		
-		tuoteEjb.update(user);
+		ejb.update(user);
 		
 		Akkis.info(String.format("User %s new password is %s", user.getUsername(), newPassword));
 		
@@ -71,7 +71,10 @@ public class UserController {
 	}
 
 	public List<User> getUsers() {
-		return tuoteEjb.getUsers();
+		return ejb.getUsers();
 	}
 
+	public List<Customer> getCustomers() {
+		return ejb.getCustomers(user);
+	}
 }

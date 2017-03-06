@@ -23,6 +23,17 @@
 	<ui:define name="content">
 	
 		<h2>${deliveryController.delivery.name}</h2>
+		
+		<b:form id="deliveryControl">
+			<b:buttonGroup styleClass="btn-pad" size="sm">
+			    <b:button icon="pencil" value="Edit" 
+			    	outcome="edit"
+			    	rendered="#{userInfo.can('EDIT_DELIVERIES')}">
+			    	<f:param name="id" value="#{deliveryController.delivery.id}" />
+			   	</b:button>
+				<b:commandButton value="Create Invoice" action="#{deliveryController.createInvoice()}" rendered="#{userInfo.can('EDIT_DELIVERIES')}" />
+			</b:buttonGroup>
+		</b:form>
 	
 		<h3>Invoices for this Delivery</h3>
 		
@@ -74,10 +85,6 @@
 				</h:outputText>
             </h:column>
 		</b:dataTable>
-		
-		<b:form id="commands">
-			<b:commandButton value="Create Invoice" action="#{deliveryController.createInvoice()}" rendered="#{userInfo.can('EDIT_DELIVERIES')}" />
-		</b:form>
 		
 		<b:panel title="Add Product" collapsible="false" rendered="#{userInfo.can('EDIT_DELIVERIES')}">
 			<b:form id="productform">

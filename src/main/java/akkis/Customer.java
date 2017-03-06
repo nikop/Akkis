@@ -16,7 +16,8 @@ import akkis.types.Status;
 @Entity
 @NamedQueries({
 	@NamedQuery(name = "searchAllCustomers", query = "SELECT c from Customer c"),
-	@NamedQuery(name = "customerbyId", query = "SELECT c from Customer c WHERE c.id = :id") 	
+	@NamedQuery(name = "customersForUser", query = "SELECT c from Customer c WHERE c.responsibilitySeller = :user"),
+	@NamedQuery(name = "customerbyId", query = "SELECT c from Customer c WHERE c.id = :id")
 })
 public class Customer implements Serializable {
 	
