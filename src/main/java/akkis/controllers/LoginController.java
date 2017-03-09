@@ -49,7 +49,7 @@ public class LoginController {
 		User user = ejb.getUser(loginUser.getUsername());
 		
 		try {
-			if (!user.checkPasswordForLogin(loginUser.getPassword()))
+			if (user == null || !user.checkPasswordForLogin(loginUser.getPassword()))
 				user = null;
 		} catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
 			e.printStackTrace();

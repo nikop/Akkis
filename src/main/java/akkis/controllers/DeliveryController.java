@@ -88,7 +88,7 @@ public class DeliveryController {
 	{
 	
 		Invoice invoice = delivery.createInvoice();
-		ejb.update(delivery);
+		ejb.save(invoice);
 		
 		Akkis.info("Invoice created!");
 		
